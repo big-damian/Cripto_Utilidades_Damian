@@ -272,38 +272,91 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.makeText(this, "Se loggea con exito", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Iniciada sesión exitosamente", Snackbar.LENGTH_SHORT);
                     View snackBarView = snackbar.getView();
-                    /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    /* Aplicar margen inferior de 50dp */
+                    snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                     snackbar.show();
                     // TODO: Llevar a pagina de login
+                    // De momento se cargan otros elementos del mismo layout
 
 
-                    this.runOnUiThread(new Runnable(){
+                    this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             LinearLayout accountLayout = (LinearLayout) findViewById(R.id.account_layout_principal);
                             accountLayout.setVisibility(View.GONE);
                             LinearLayout accountLoggeadoLayout = (LinearLayout) findViewById(R.id.loggeado_account_layout_principal);
                             accountLoggeadoLayout.setVisibility(View.VISIBLE);
-                        } });
+                        }
+                    });
                     AccountFragment.loggeado = true;
 
+                    // Cargando elementos del perfil a la pantalla
+                    // Nombre completo
+                    StringResultado = new StringBuilder();
 
+                    resultados.beforeFirst();
+                    while (resultados.next()) {
+                        StringResultado.append(resultados.getString("nombre"));
+                    }
 
+                    resultadoQuery = StringResultado.toString();
 
-                } else {
-                    Log.e("MySQL", "No se loggea");
-//                    Toast.makeText(this, "Login incorrecto", Toast.LENGTH_SHORT).show();
-                    Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Error al iniciar sesión, compruebe los datos introducidos", Snackbar.LENGTH_SHORT);
-                    View snackBarView = snackbar.getView();
-                    /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-                    snackbar.show();
+                    Log.e("MySQL", "Obtenido nombre de la BD: <" + resultadoQuery + ">, asignando...");
+
+                    TextView loggeado_formulario_nombreCompleto = findViewById(R.id.loggeado_formulario_nombreCompleto);
+                    loggeado_formulario_nombreCompleto.setText(resultadoQuery);
+                    //
+                    // Nombre de usuario
+                    StringResultado = new StringBuilder();
+
+                    resultados.beforeFirst();
+                    while (resultados.next()) {
+                        StringResultado.append(resultados.getString("username"));
+                    }
+
+                    resultadoQuery = StringResultado.toString();
+
+                    Log.e("MySQL", "Obtenido nombre de usuario de la BD: <" + resultadoQuery + ">, asignando...");
+
+                    TextView loggeado_formulario_nombreUsuario = findViewById(R.id.loggeado_formulario_nombreUsuario);
+                    loggeado_formulario_nombreUsuario.setText(resultadoQuery);
+                    //
+                    // Email
+                    StringResultado = new StringBuilder();
+
+                    resultados.beforeFirst();
+                    while (resultados.next()) {
+                        StringResultado.append(resultados.getString("email"));
+                    }
+
+                    resultadoQuery = StringResultado.toString();
+
+                    Log.e("MySQL", "Obtenido email de la BD: <" + resultadoQuery + ">, asignando...");
+
+                    TextView loggeado_formulario_email = findViewById(R.id.loggeado_formulario_email);
+                    loggeado_formulario_email.setText(resultadoQuery);
+                    //
+                    // Contraseña
+                    StringResultado = new StringBuilder();
+
+                    resultados.beforeFirst();
+                    while (resultados.next()) {
+                        StringResultado.append(resultados.getString("contraseña"));
+                    }
+
+                    resultadoQuery = StringResultado.toString();
+
+                    Log.e("MySQL", "Obtenida contraseña de la BD: <" + resultadoQuery + ">, asignando...");
+
+                    TextView loggeado_formulario_password = findViewById(R.id.loggeado_formulario_password);
+                    loggeado_formulario_password.setText(resultadoQuery);
+                    //
+
+                    statement.close();
+                    resultados.close();
+                    cone.close();
                 }
-
-                statement.close();
-                resultados.close();
-                cone.close();
-
-            } catch(Exception e) {
+            } catch (Exception e) {
                 Log.e("MySQL",Log.getStackTraceString(e));
             }
 

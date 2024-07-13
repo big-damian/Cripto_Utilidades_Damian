@@ -321,7 +321,7 @@
                         android:ems="10"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
-                        android:text="Borja Merchan McDonalds"
+                        android:text="Name Surname"
                         android:clickable="false"
                         android:textSize="15sp" />
 
@@ -334,7 +334,7 @@
                         android:ems="10"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
-                        android:text="Ganamosss"
+                        android:text="user_name"
                         android:clickable="false"
                         android:textSize="15sp" />
 
@@ -347,7 +347,7 @@
                         android:ems="10"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
-                        android:text="borguitaxd@gmail.com"
+                        android:text="email@domain.com"
                         android:clickable="false"
                         android:textSize="15sp" />
 
@@ -361,7 +361,7 @@
                         android:ems="15"
                         android:inputType="textPassword"
                         android:maxLength="50"
-                        android:text="Colegones"
+                        android:text="Password-7"
                         android:clickable="false"
                         android:textSize="15sp" />
 
