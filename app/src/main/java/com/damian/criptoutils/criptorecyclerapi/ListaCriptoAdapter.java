@@ -1,6 +1,7 @@
 package com.damian.criptoutils.criptorecyclerapi;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,11 @@ public class ListaCriptoAdapter extends RecyclerView.Adapter<ListaCriptoAdapter.
         holder.nombreListaCripto.setText(cripto.get(position).getName());
         holder.precioListaCripto.setText(String.valueOf(cripto.get(position).getPrecio()) + " €");
         holder.variacionPrecioListaCripto.setText(String.valueOf(cripto.get(position).getVariacionPrecio2Decis()) + " %");
+        if (cripto.get(position).getVariacionPrecio() > 0) {
+            holder.variacionPrecioListaCripto.setTextColor(Color.GREEN);
+        } else {
+            holder.variacionPrecioListaCripto.setTextColor(Color.RED);
+        }
         Glide.with(context).load(cripto.get(position).getImage()).into(holder.fotoListaCripto);
     }
 

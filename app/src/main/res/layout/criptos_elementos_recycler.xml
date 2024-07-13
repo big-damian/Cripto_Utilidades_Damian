@@ -28,7 +28,8 @@
                 android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:gravity="center|left"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="16.5sp" />
 
             <TextView
                 android:id="@+id/precioListaCripto"
@@ -36,7 +37,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center|left"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="16.5sp" />
 
             <TextView
                 android:id="@+id/variacionPrecioListaCripto"
@@ -45,7 +47,8 @@
                 android:gravity="center|right"
                 android:paddingRight="15dp"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="16.5sp" />
         </LinearLayout>
 
 

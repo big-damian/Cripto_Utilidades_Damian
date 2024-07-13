@@ -42,6 +42,10 @@ public class Criptomoneda {
         return current_price;
     }
 
+    public double getVariacionPrecio() {
+        return price_change_percentage_24h;
+    }
+
     public String getVariacionPrecio2Decis() {
         return String.format("%.2f", price_change_percentage_24h);
     }

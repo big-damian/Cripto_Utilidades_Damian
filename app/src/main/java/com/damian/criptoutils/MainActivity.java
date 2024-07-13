@@ -3,6 +3,7 @@ package com.damian.criptoutils;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
@@ -137,8 +138,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 // Creamos Snackbar para indicar que se va a actualizar el precio
-                // TODO: Margen para estos snackbar
-                Snackbar.make(binding.layoutSnackbar, "Actualizando precios en línea", Snackbar.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Actualizando precios en línea", Snackbar.LENGTH_SHORT);
+                View snackBarView = snackbar.getView();
+                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                snackbar.show();
 
 
                 llamarAPIPrecioMonedaYBD("Bitcoin", true, false);
@@ -171,7 +174,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void botonActualizarPrecioBitcoinHome(View view) {
 
-        Snackbar.make(binding.layoutSnackbar, "Actualizando precio de Bitcoin en línea...", Snackbar.LENGTH_SHORT).show();
+        Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Actualizando precio de Bitcoin en línea...", Snackbar.LENGTH_SHORT);
+        View snackBarView = snackbar.getView();
+        /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+        snackbar.show();
 
         llamarAPIPrecioMonedaYBD("Ethereum", true, false);
 
@@ -222,7 +228,10 @@ public class MainActivity extends AppCompatActivity {
                     if (snackbar == true) {
                         // LinearLayout layout_Snackbar;
                         // layout_Snackbar = (LinearLayout) findViewById(R.id.layout_Snackbar);
-                        Snackbar.make(binding.layoutSnackbar, "Precio actualizado, precio de " + moneda + ": " + respuestaAPIParseada + " EUR", Toast.LENGTH_SHORT).show();
+                        Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Precio actualizado, precio de " + moneda + ": " + respuestaAPIParseada + " EUR", Snackbar.LENGTH_SHORT);
+                        View snackBarView = snackbar.getView();
+                        /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                        snackbar.show();
                     }
 
                 } catch (JSONException e) {
@@ -235,7 +244,11 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 //                Toast.makeText(getActivity(), "Se produjo un error al conectar con la API, comprueba tu internet", Toast.LENGTH_SHORT).show();
 
-                Snackbar.make(binding.layoutSnackbar, "Se produjo un error al conectar con la API, comprueba tu internet", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Se produjo un error al conectar con la API, comprueba tu internet", Snackbar.LENGTH_SHORT);
+                View snackBarView = snackbar.getView();
+                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                snackbar.show();
+
                 Log.e("LlamadaAPI", "Se produjo un error al conectar con la API, posiblemente no haya conexión a Internet");
             }
         });
@@ -351,7 +364,10 @@ public class MainActivity extends AppCompatActivity {
                     // TODO: Arreglar/Eliminar estos Toast
                     Log.e("MySQL", "Se loggea");
 //                    Toast.makeText(this, "Se loggea con exito", Toast.LENGTH_SHORT).show();
-                    Snackbar.make(binding.layoutSnackbar, "Se loggea con exito", Snackbar.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Iniciada sesión exitosamente", Snackbar.LENGTH_SHORT);
+                    View snackBarView = snackbar.getView();
+                    /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    snackbar.show();
                     // TODO: Llevar a pagina de login
 
 
@@ -371,7 +387,10 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Log.e("MySQL", "No se loggea");
 //                    Toast.makeText(this, "Login incorrecto", Toast.LENGTH_SHORT).show();
-                    Snackbar.make(binding.layoutSnackbar, "Login incorrecto", Snackbar.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Error al iniciar sesión, compruebe los datos introducidos", Snackbar.LENGTH_SHORT);
+                    View snackBarView = snackbar.getView();
+                    /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    snackbar.show();
                 }
 
                 statement.close();
@@ -439,7 +458,10 @@ public class MainActivity extends AppCompatActivity {
                 cone.close();
 
                 Log.e("MySQL", "Creado usuario");
-                Snackbar.make(binding.layoutSnackbar, "Usuario creado con éxito", Snackbar.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Nueva cuenta/usuario creado con éxito", Snackbar.LENGTH_SHORT);
+                View snackBarView = snackbar.getView();
+                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                snackbar.show();
                 // TODO: Llevar a pagina de login
 //                AccountFragment fragment = (AccountFragment) getFragmentManager().findFragmentById(getId(););
 //                fragment.metodo();
@@ -463,7 +485,10 @@ public class MainActivity extends AppCompatActivity {
 
             } catch (SQLException e) {
                 Log.e("MySQL", "No se pudo crear el usuario, este correo ya existe");
-                Snackbar.make(binding.layoutSnackbar, "No se pudo crear el usuario, este correo ya existe", Snackbar.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "No se pudo crear nuevo usuario, este correo ya existe", Snackbar.LENGTH_SHORT);
+                View snackBarView = snackbar.getView();
+                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                snackbar.show();
                 Log.e("MySQL",Log.getStackTraceString(e));
             } catch (Exception e) {
                 Log.e("MySQL",Log.getStackTraceString(e));
@@ -539,7 +564,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Criptomoneda>> call, Throwable t) {
                 Log.e("RecyclerViewCargarListaCriptos", "Error de conexión o de obtención de respuesta de la API");
-                Snackbar.make(binding.layoutSnackbar, "No se pudo obtener lista de criptomonedas, error de conexión", Snackbar.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "No se pudo obtener lista de criptomonedas, error de conexión", Snackbar.LENGTH_SHORT);
+                View snackBarView = snackbar.getView();
+                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                snackbar.show();
             }
         });
     }
