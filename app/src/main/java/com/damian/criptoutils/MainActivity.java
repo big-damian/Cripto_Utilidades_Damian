@@ -1,8 +1,6 @@
 package com.damian.criptoutils;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -13,13 +11,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.damian.criptoutils.criptorecyclerapi.Criptomoneda;
-import com.damian.criptoutils.criptorecyclerapi.ListaCriptoAdapter;
-import com.damian.criptoutils.criptorecyclerapi.LlamadaAPIListaCripto;
-import com.damian.criptoutils.criptorecyclerapi.RetrofitLlamadaAPIListaCripto;
 import com.damian.criptoutils.databinding.ActivityMainBinding;
 import com.damian.criptoutils.utilities.CalculadoraFecha;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -51,12 +42,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import retrofit2.Call;
-import retrofit2.Callback;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -68,10 +55,6 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteManager SQLiteBD;
     int segundosDelay = 15; // Segungos tras los cuales actualizar
 
-    // TODO Borrar esto si no sirve
-    private List<Criptomoneda> criptomonedaList;
-    private RecyclerView recyclerView;
-    private ListaCriptoAdapter listaCriptoAdapter;
     // FIN MIS VARIABLES
 
 
@@ -152,17 +135,10 @@ public class MainActivity extends AppCompatActivity {
         }, delay);
 
 
-        // Establecer dais que quedan hasta entrega
+        // Establecer dias que quedan hasta entrega
         TextView text_diasQuedan = (TextView) findViewById(R.id.text_diasQuedan);
         CalculadoraFecha CalculadoraFecha = new CalculadoraFecha();
         text_diasQuedan.setText(CalculadoraFecha.DevolverTiempoTexto());
-
-
-        // Añadir RecyclerView y cargar lista de precios
-        // TODO Borrar esto si no sirve
-//        recyclerView = findViewById(R.id.recyclerCriptosLista);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        cargarListaCriptosRecyclerAPI();
 
 
         //
@@ -213,21 +189,10 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.e("LlamadaAPI", "Guardado: '" + SQLiteBD.selectPrecioBDD("Bitcoin") + "' en la Base de Datos");
 
-                    // Creo que este try-catch no es necesario
-                    try {
-                        TextView texto_precioBitcoin = (TextView) findViewById(R.id.texto_precioBitcoin);
-                        texto_precioBitcoin.setText("BTC: " + SQLiteBD.selectPrecioBDD("Bitcoin") + " €");
-                    } catch (NullPointerException e) {
-                        e.printStackTrace();
-                    }
-
                     if (toast == true) {
-                        //Toast.makeText(getApplicationContext(), "El precio de Bitcoin es: " + respuestaAPIParseada + " EUR", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "Precio actualizado, precio de " + moneda + ": " + respuestaAPIParseada + " EUR", Toast.LENGTH_SHORT).show();
                     }
                     if (snackbar == true) {
-                        // LinearLayout layout_Snackbar;
-                        // layout_Snackbar = (LinearLayout) findViewById(R.id.layout_Snackbar);
                         Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Precio actualizado, precio de " + moneda + ": " + respuestaAPIParseada + " EUR", Snackbar.LENGTH_SHORT);
                         View snackBarView = snackbar.getView();
                         /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
@@ -255,73 +220,14 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-//            Statement statement;
-//            statement = connection.createStatement();
-//            ResultSet resultSet;
-//            resultSet = statement.executeQuery(
-//                    "select * from usuarios");
-//            int code;
-//            String title;
-//            while (resultSet.next()) {
-//                code = resultSet.getInt("code");
-//                title = resultSet.getString("title").trim();
-//                Log.e("MySQL", "Code : " + code + " Title : " + title);
-//            }
-//            resultSet.close();
-//            statement.close();
-//            connection.close();
-
-
-
-
-
-
-
     MySQLManager MySQLManager;
     Connection cone;
     ResultSet resultados;
     String resultadoQuery, str;
 
-    // Sacado de este video que es GOD: https://www.youtube.com/watch?v=mbHvLSwhdLA
-//    public void ConectarMySQL() {
-//        ExecutorService executorService = Executors.newSingleThreadExecutor();
-//        executorService.execute(() -> {
-//            try {
-//                cone = MySQLManager.ConexionMySQL();
-//                if (cone == null) {
-//                    str = "Error al conectar a MySQL";
-//                } else {
-//                    str = "Conectado a MySQL";
-//                }
-//
-//            } catch(Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//
-//            runOnUiThread(() -> {
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-//            });
-//
-//        });
-//    }
-
     public void hacerLoginMySQL() {
+
+        // Sacado de este video que es GOD: https://www.youtube.com/watch?v=mbHvLSwhdLA
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(() -> {
             try {
@@ -502,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // TODO: Arreglar putos toasts
-//                Toast.makeText(getApplicationContext(), resultadoQuery, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplication(), resultadoQuery, Toast.LENGTH_SHORT).show();
 //                TextView texto_precioBitcoin = (TextView) findViewById(R.id.texto_precioBitcoin);
 //                texto_precioBitcoin.setText("BTC: " + SQLiteBD.selectPrecioBDD("Bitcoin") + " €");
 
@@ -541,35 +447,6 @@ public class MainActivity extends AppCompatActivity {
             } });
         AccountFragment.loggeado = true;
 
-    }
-
-    public void cargarListaCriptosRecyclerAPI() {
-
-        Log.e("RecyclerViewCargarListaCriptos", "Llamando a API para cargar lista de criptos");
-
-        Call<List<Criptomoneda>> call = RetrofitLlamadaAPIListaCripto.getClient().create(LlamadaAPIListaCripto.class).getCriptos();
-
-        call.enqueue(new Callback<List<Criptomoneda>>() {
-            @Override
-            public void onResponse(Call<List<Criptomoneda>> call, retrofit2.Response<List<Criptomoneda>> response) {
-
-                if (response.isSuccessful()) {
-                    Log.e("RecyclerViewCargarListaCriptos", "Respuesta recibida de API: " + response.body());
-                    criptomonedaList = response.body();
-                    listaCriptoAdapter = new ListaCriptoAdapter(criptomonedaList,getApplicationContext());
-                    recyclerView.setAdapter(listaCriptoAdapter);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Criptomoneda>> call, Throwable t) {
-                Log.e("RecyclerViewCargarListaCriptos", "Error de conexión o de obtención de respuesta de la API");
-                Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "No se pudo obtener lista de criptomonedas, error de conexión", Snackbar.LENGTH_SHORT);
-                View snackBarView = snackbar.getView();
-                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-                snackbar.show();
-            }
-        });
     }
 
 
