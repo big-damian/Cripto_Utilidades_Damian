@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|top"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="25dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/foto_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/avatar_chicken" />
+
+        <TextView
+            android:id="@+id/texto_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:text="@string/texto_account"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/texto_account2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/texto_account2"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/texto_nombreCompleto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:maxLength="100"
+                        android:text="Nombre completo:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/texto_nombreUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:maxLength="100"
+                        android:text="Nombre de usuario:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/texto_email2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:maxLength="100"
+                        android:text="Email:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/texto_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:maxLength="100"
+                        android:text="Contraseña:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/formulario_nombreCompleto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0"
+                        android:ems="10"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="100"
+                        android:text="Borja Merchan McDonalds"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/formulario_nombreUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0"
+                        android:ems="10"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="100"
+                        android:text="Ganamosss"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/formulario_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0"
+                        android:ems="10"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="100"
+                        android:text="borguitaxd@gmail.com"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/formulario_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_weight="1"
+                        android:ems="15"
+                        android:inputType="textPassword"
+                        android:maxLength="50"
+                        android:text="Colegones"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/switch_mostrarContra"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:ems="9"
+                android:singleLine="true"
+                android:text="Mostrar contraseña" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/boton_actualizarDatos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:text="Actualizar datos" />
+
+            <Button
+                android:id="@+id/boton_cerrarSesion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:onClick="botonCerrarSesion"
+                android:text="Cerrar sesión" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/boton_cambiarContra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:text="Cambiar mi contraseña" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

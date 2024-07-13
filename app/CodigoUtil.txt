@@ -1,0 +1,57 @@
+public void hacerLoginMySQL() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(() -> {
+            try {
+
+                EditText formulario_email = (EditText) findViewById(R.id.formulario_email);
+                String email = String.valueOf(formulario_email.getText());
+                EditText formulario_contra = (EditText) findViewById(R.id.formulario_contra);
+                String contrasena = String.valueOf(formulario_contra.getText());
+
+                cone = MySQLManager.ConexionMySQL();
+                if (cone == null) {
+                    str = "Error al conectar a MySQL";
+                } else {
+                    str = "Conectado a MySQL";
+                }
+
+//                String query = "SELECT * FROM usuarios WHERE email = 'damian@gmail.com'";
+                String query = "SELECT * FROM usuarios WHERE email = '" + email + "' AND contraseña = '" + contrasena + "'";
+
+                PreparedStatement statement = cone.prepareStatement(query);
+                ResultSet resultados = statement.executeQuery();
+
+                StringBuilder StringResultado = new StringBuilder("Lista de usuarios\n");
+
+                while (resultados.next()) {
+//                    StringResultado.append(resultados.getString("username")).append("\n");
+                    StringResultado.append(resultados.getString("username")).append(", ");
+                }
+
+                resultadoQuery = StringResultado.toString();
+
+                statement.close();
+                resultados.close();
+                cone.close();
+
+            } catch(Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            runOnUiThread(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                Toast.makeText(this, resultadoQuery, Toast.LENGTH_SHORT).show();
+//                TextView texto_precioBitcoin = (TextView) findViewById(R.id.texto_precioBitcoin);
+//                texto_precioBitcoin.setText("BTC: " + SQLiteBD.selectPrecioBDD("Bitcoin") + " €");
+
+
+            });
+
+        });
+
+    }

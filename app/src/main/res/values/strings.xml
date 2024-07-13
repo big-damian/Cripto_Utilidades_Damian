@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Cripto Utilidades Damian</string>
+    <string name="title_home">Cripto Utilidades Damian</string>
+    <string name="title_dashboard">Simulación de mercado cripto</string>
+    <string name="title_notifications">Cartera de criptomonedas</string>
+    <string name="title_account">Cuenta</string>
+
+    <!--Textos home-->
+    <string name="texto_home">Bienvenido a la aplicación de fin de curso de Damián Peña</string>
+    <string name="texto_precioBitcoin">
+        El precio de Bitcoin es:
+        \n
+        Pulsa el botón de actualizar para ver
+    </string>
+
+    <!--Textos acccount-->
+    <string name="texto_account">Inicia sesión en tu cuenta</string>
+    <string name="texto_account2">
+        Inicia sesión en tu cuenta introduciendo tu email o nombre de usuario y tu contraseña.
+    </string>
+    <string name="texto_account_loggeado">Bienvenido a tu cuenta de CriptoUtils!</string>
+    <string name="texto_account2_loggeado">
+        En esta página encontrarás los datos de tu cuenta, haz clic en \'Actualizar datos\' para
+        cambiar y haz clic de nuevo parar guardarlos.
+    </string>
+
+    <!--Textos criptomonedas-->
+    <string name="descripcion_bitcoin">Bitcoin es una criptomoneda descentralizada presentada originalmente en un documento técnico en 2008 por una persona, o grupo de personas, utilizando el alias Satoshi Nakamoto. Se lanzó poco después, en enero de 2009.</string>
+
+</resources>
