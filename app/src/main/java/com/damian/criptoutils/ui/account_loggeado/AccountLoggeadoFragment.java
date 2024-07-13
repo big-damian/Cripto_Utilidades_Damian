@@ -37,56 +37,6 @@ public class AccountLoggeadoFragment extends Fragment {
         // MI CODIGO
 
 
-        // Escuchador para mostrar/ocultar contraseña
-//        binding.switchMostrarContra.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                // on below line we are checking
-//                // if switch is checked or not.
-//                if (isChecked) {
-//                    binding.formularioContra.setTransformationMethod(null);
-//                    Log.e("Login", "Se muestra contraseña");
-//                } else {
-//                    binding.formularioContra.setTransformationMethod(new PasswordTransformationMethod());
-//                    Log.e("Login", "Se vuelve a ocultar la contraseña");
-//                }
-//            }
-//        });
-
-
-//        // Conectar a base de datos MySQL
-//        Connection connection = null;
-//        try {
-//            // below two lines are used for connectivity.
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            connection = DriverManager.getConnection(
-//                    "jdbc:mysql://localhost:3306/criptoutilsdamian",
-//                    "android-app", "androideSQL");
-//
-//            // mydb is database
-//            // mydbuser is name of database
-//            // mydbuser is password of database
-//
-//            Statement statement;
-//            statement = connection.createStatement();
-//            ResultSet resultSet;
-//            resultSet = statement.executeQuery(
-//                    "select * from usuarios");
-//            int code;
-//            String title;
-//            while (resultSet.next()) {
-//                code = resultSet.getInt("code");
-//                title = resultSet.getString("title").trim();
-//                Log.e("MySQL", "Code : " + code + " Title : " + title);
-//            }
-//            resultSet.close();
-//            statement.close();
-//            connection.close();
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
 
         // FIN MI CODIGO
         ////////////////////////////////////////////////////////////////////////////////////////////

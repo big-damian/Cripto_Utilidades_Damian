@@ -93,41 +93,6 @@ public class AccountFragment extends Fragment {
             }
         });
 
-
-//        // Conectar a base de datos MySQL
-//        Connection connection = null;
-//        try {
-//            // below two lines are used for connectivity.
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            connection = DriverManager.getConnection(
-//                    "jdbc:mysql://localhost:3306/criptoutilsdamian",
-//                    "android-app", "androideSQL");
-//
-//            // mydb is database
-//            // mydbuser is name of database
-//            // mydbuser is password of database
-//
-//            Statement statement;
-//            statement = connection.createStatement();
-//            ResultSet resultSet;
-//            resultSet = statement.executeQuery(
-//                    "select * from usuarios");
-//            int code;
-//            String title;
-//            while (resultSet.next()) {
-//                code = resultSet.getInt("code");
-//                title = resultSet.getString("title").trim();
-//                Log.e("MySQL", "Code : " + code + " Title : " + title);
-//            }
-//            resultSet.close();
-//            statement.close();
-//            connection.close();
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
-
         // FIN MI CODIGO
         ////////////////////////////////////////////////////////////////////////////////////////////
 
