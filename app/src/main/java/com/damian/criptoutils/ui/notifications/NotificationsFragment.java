@@ -31,44 +31,9 @@ public class NotificationsFragment extends Fragment {
 
 
 
-
-
-
-        // Repetir codigo cada X segundos
-        final Handler handler = new Handler();
-        int delay = 500; // 1000 millisegundos (1 segundo)
-        handler.postDelayed(new Runnable() {
-            public void run() {
-        try {
-            Process process = Runtime.getRuntime().exec("logcat -d *:E ");
-            BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(process.getInputStream()));
-
-            StringBuilder log=new StringBuilder();
-            String line = "";
-            while ((line = bufferedReader.readLine()) != null) {
-                log.append(line + "\n");
-            }
-//            TextView tv = (TextView)findViewById(R.id.textView1);
-//            tv.setText(log.toString());
-            binding.textView2.setText(log.toString());
-        } catch (IOException e) {
-            // Handle Exception
-        }
-
-
-                if (binding.switch1.isChecked() == false) {
-                    binding.scrollView.fullScroll(View.FOCUS_DOWN);
-                }
-
-
-                handler.postDelayed(this, delay * 1); //Repetir cada 1 seg
-            }
-        }, delay);
-
-
-
-
+//        public void anadirTusCriptos(View view) {
+//
+//        }
 
 
 

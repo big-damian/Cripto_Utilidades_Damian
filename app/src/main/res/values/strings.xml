@@ -24,6 +24,9 @@
         cambiar y haz clic de nuevo parar guardarlos.
     </string>
 
+    <!--Textos notifications-->
+    <string name="texto_notifications">Haz clic en el botón \'+ Añadir\' para agregar nuevas criptomonedas que poseas para obtener información de su valor</string>
+
     <!--Textos criptomonedas-->
     <string name="descripcion_bitcoin">Bitcoin es una criptomoneda descentralizada presentada originalmente en un documento técnico en 2008 por una persona, o grupo de personas, utilizando el alias Satoshi Nakamoto. Se lanzó poco después, en enero de 2009.</string>
 
