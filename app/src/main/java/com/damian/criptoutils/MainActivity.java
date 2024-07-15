@@ -534,6 +534,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void anadirTusCriptos(View view) {
         Dialogo.show();
+
+        // TODO: Poblar spinner con este tuto: https://www.youtube.com/watch?v=L1wVdGRnGEg  --- https://www.google.com/search?client=firefox-b-d&q=android+studio+populate+spinner+from+mysql+database
+
     }
 
 
