@@ -1,6 +1,5 @@
 package com.damian.criptoutils;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -18,8 +17,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 // MIS IMPORTS
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -142,29 +139,6 @@ public class MainActivity extends AppCompatActivity {
         TextView text_diasQuedan = (TextView) findViewById(R.id.text_diasQuedan);
         CalculadoraFecha CalculadoraFecha = new CalculadoraFecha();
         text_diasQuedan.setText(CalculadoraFecha.DevolverTiempoTexto());
-
-        Dialogo = new Dialog(MainActivity.this);
-        Dialogo.setContentView(R.layout.dialog_add_yourcripto);
-        Dialogo.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        Dialogo.setCancelable(false);
-
-        botonCancelarDialogo = Dialogo.findViewById(R.id.botonCancelarDialogo);
-        botonDialogoAgregarTusCriptos = Dialogo.findViewById(R.id.botonDialogoAgregarTusCriptos);
-
-        botonCancelarDialogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dialogo.dismiss();
-            }
-        });
-
-        botonDialogoAgregarTusCriptos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Test dialog", Toast.LENGTH_SHORT).show();
-                Dialogo.dismiss();
-            }
-        });
 
 
         //
@@ -527,17 +501,5 @@ public class MainActivity extends AppCompatActivity {
         AccountFragment.loggeado = true;
 
     }
-
-//    Hecho con video: https://www.youtube.com/watch?v=WSOmYN8y0_k
-    Dialog Dialogo;
-    Button botonCancelarDialogo, botonDialogoAgregarTusCriptos;
-
-    public void anadirTusCriptos(View view) {
-        Dialogo.show();
-
-        // TODO: Poblar spinner con este tuto: https://www.youtube.com/watch?v=L1wVdGRnGEg  --- https://www.google.com/search?client=firefox-b-d&q=android+studio+populate+spinner+from+mysql+database
-
-    }
-
 
 }
