@@ -398,7 +398,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 //                String query = "SELECT * FROM usuarios WHERE email = 'damian@gmail.com'";
-                String query = "INSERT INTO `usuarios` (`email`, `contraseña`) VALUES ('" + email + "', '" + contrasena + "')";
+                String query = "INSERT INTO `usuarios` (`email`, `contraseña`, `username`) VALUES ('" + email + "', '" + contrasena + "', '')";
 
                 Log.e("MySQL", "Lanzada query a la BD con Email: <" + email + "> y Contraseña: <" + contrasena + ">");
                 Log.e("MySQL", "Lanzada query a la BD: " + query);

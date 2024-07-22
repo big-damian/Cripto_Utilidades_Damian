@@ -2,6 +2,7 @@ package com.damian.criptoutils.ui.notifications;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,11 +118,15 @@ public class NotificationsFragment extends Fragment {
         // Configurar el botón Aceptar
         botonDialogoAgregarTusCriptos.setOnClickListener(v -> {
             String seleccionSpinner = (String) spinnerListaCriptos.getSelectedItem();
-            if (!editTextNumberDecimal.getText().toString().isEmpty()) {
-                Snackbar.make(fragmentView, "Agregada criptomoneda " + seleccionSpinner + " = " + editTextNumberDecimal.getText() + " unidades", Snackbar.LENGTH_LONG).show();
+            if (!editTextNumberDecimal.getText().toString().isEmpty() && Double.parseDouble(editTextNumberDecimal.getText().toString()) > 0.0) {
+                Snackbar snackbar = Snackbar.make(fragmentView, "Agregada criptomoneda " + seleccionSpinner + " = " + editTextNumberDecimal.getText() + " unidades", Snackbar.LENGTH_LONG);
+                View snackBarView = snackbar.getView();
+                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                snackbar.show();
+
                 dialog.dismiss();
-            } else if (editTextNumberDecimal.getText().toString().isEmpty()) {
-                Toast.makeText(getActivity(), "Selecciona una criptomoneda e introduce la cantidad de criptomonedas que tienes para agregarlas", Toast.LENGTH_SHORT).show();
+            } else if (editTextNumberDecimal.getText().toString().isEmpty() || Double.parseDouble(editTextNumberDecimal.getText().toString()) <= 0.0) {
+                Toast.makeText(getActivity(), "Selecciona una criptomoneda e introduce la cantidad de criptomonedas que tienes para agregarlas (mayor a cero)", Toast.LENGTH_SHORT).show();
         }
         });
 

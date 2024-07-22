@@ -24,7 +24,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="5dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -40,7 +42,6 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
                     android:layout_marginVertical="10dp"
                     android:text="Tus criptomonedas"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -55,10 +56,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
                         android:gravity="center"
+                        android:onClick="anadirTusCriptos"
                         android:text="+ Añadir"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:onClick="anadirTusCriptos" />
+                        app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
