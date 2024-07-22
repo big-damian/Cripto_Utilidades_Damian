@@ -398,7 +398,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 //                String query = "SELECT * FROM usuarios WHERE email = 'damian@gmail.com'";
-                String query = "INSERT INTO `usuarios` (`email`, `contraseña`, `username`) VALUES ('" + email + "', '" + contrasena + "', '')";
+                String query = "INSERT INTO `usuarios` (`email`, `contraseña`) VALUES ('" + email + "', '" + contrasena + "')";
 
                 Log.e("MySQL", "Lanzada query a la BD con Email: <" + email + "> y Contraseña: <" + contrasena + ">");
                 Log.e("MySQL", "Lanzada query a la BD: " + query);
@@ -425,11 +425,6 @@ public class MainActivity extends AppCompatActivity {
 //                AccountFragment fragment = (AccountFragment) getFragmentManager().findFragmentById(getId(););
 //                fragment.metodo();
 
-
-
-                LinearLayout accountLayout = (LinearLayout) findViewById(R.id.account_layout_principal);
-                accountLayout.setVisibility(View.GONE);
-
                 this.runOnUiThread(new Runnable(){
                     @Override
                     public void run() {
@@ -439,6 +434,8 @@ public class MainActivity extends AppCompatActivity {
                         accountLoggeadoLayout.setVisibility(View.VISIBLE);
                     } });
                 AccountFragment.loggeado = true;
+
+                // TODO: Que la página de login recargue los datos cuando se sale y luego entra con otra cuenta
 
 
 

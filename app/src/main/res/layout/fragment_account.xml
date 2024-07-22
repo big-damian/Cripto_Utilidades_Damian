@@ -322,6 +322,7 @@
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
                         android:text="Name Surname"
+                        android:hint="(Vacío)"
                         android:clickable="false"
                         android:textSize="15sp" />
 
@@ -335,6 +336,7 @@
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
                         android:text="user_name"
+                        android:hint="(Vacío)"
                         android:clickable="false"
                         android:textSize="15sp" />
 
