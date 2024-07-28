@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="dp20">18dp</dimen>
+    <dimen name="dp24">22dp</dimen>
+    <dimen name="dp28">26dp</dimen>
+    <dimen name="dp30">28dp</dimen>
+    <dimen name="dp32">30dp</dimen>
+    <dimen name="dp36">34dp</dimen>
+    <dimen name="dp200">175dp</dimen>
+</resources>

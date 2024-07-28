@@ -35,7 +35,7 @@
         <ImageView
             android:id="@+id/foto_avatar"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/dp200"
             android:layout_marginHorizontal="25dp"
             android:layout_marginBottom="25dp"
             android:src="@drawable/avatar_rabbit" />
@@ -217,7 +217,7 @@
         <ImageView
             android:id="@+id/loggeado_foto_avatar"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/dp200"
             android:layout_marginHorizontal="25dp"
             android:layout_marginBottom="25dp"
             android:src="@drawable/avatar_chicken" />

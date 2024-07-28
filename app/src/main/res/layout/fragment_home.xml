@@ -86,7 +86,6 @@
             android:text="Actualizar precio de BTC"
             android:onClick="botonActualizarPrecioBitcoinHome" />
 
-        <!-- TODO: Este texto debe ser el cuanto queda para la entrega -->
         <TextView
             android:id="@+id/text_diasQuedan"
             android:layout_width="match_parent"

@@ -360,19 +360,20 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("MySQL",Log.getStackTraceString(e));
             }
 
-            runOnUiThread(() -> {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+            // TODO: Eliminar si no se usa
+//            runOnUiThread(() -> {
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
 //                Toast.makeText(this, resultadoQuery, Toast.LENGTH_SHORT).show();
 //                TextView texto_precioBitcoin = (TextView) findViewById(R.id.texto_precioBitcoin);
 //                texto_precioBitcoin.setText("BTC: " + SQLiteBD.selectPrecioBDD("Bitcoin") + " €");
-
-
-            });
+//
+//
+//            });
 
         });
 
@@ -421,10 +422,8 @@ public class MainActivity extends AppCompatActivity {
                 View snackBarView = snackbar.getView();
                 /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                 snackbar.show();
-                // TODO: Llevar a pagina de login
-//                AccountFragment fragment = (AccountFragment) getFragmentManager().findFragmentById(getId(););
-//                fragment.metodo();
 
+                // Llevar a pagina de login
                 this.runOnUiThread(new Runnable(){
                     @Override
                     public void run() {
