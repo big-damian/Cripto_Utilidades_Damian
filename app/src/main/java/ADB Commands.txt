@@ -1,0 +1,5 @@
+cd C:\Users\DamianClase\AppData\Local\Android\Sdk\platform-tools
+
+adb -s emulator-5554 shell svc wifi disable
+
+adb -s emulator-5554 shell reboot -p

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -120,23 +121,35 @@ public class DashboardFragment extends Fragment {
 
                 if (response.isSuccessful()) {
                     Log.e("RecyclerViewCargarListaCriptos", "Respuesta recibida de API: " + response.body());
+
+                    // Ocultar icono de No internet
+                    LinearLayout layoutNoInternet = binding.layoutNoInternet;
+                    layoutNoInternet.setVisibility(View.GONE);
+
                     criptomonedaList = response.body();
                     listaCriptoAdapter = new ListaCriptoAdapter(criptomonedaList,getActivity());
                     LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(llm);
                     recyclerView.setAdapter(listaCriptoAdapter);
+
+
                 }
                 else {
-                    Log.e("RecyclerViewCargarListaCriptos", "Error de conexión o de obtención de respuesta de la API 1111");
+                    Log.e("RecyclerViewCargarListaCriptos", "Error de conexión o de obtención de respuesta de la API metodo (onResponse > else)");
                     Log.e("RecyclerViewCargarListaCriptos", "Respuesta recibida de API: " + response.body());
-                    Log.w("2.0 getFeed > Full json res wrapped in pretty printed gson => ",new GsonBuilder().setPrettyPrinting().create().toJson(response));
+
+                    LinearLayout layoutNoInternet = binding.layoutNoInternet;
+                    layoutNoInternet.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<List<Criptomoneda>> call, Throwable t) {
-                Log.e("RecyclerViewCargarListaCriptos", "Error de conexión o de obtención de respuesta de la API");
+                Log.e("RecyclerViewCargarListaCriptos", "Error de conexión o de obtención de respuesta de la API metodo (OnFailure)");
                 Log.e("RecyclerViewCargarListaCriptos", t.toString());
+
+                LinearLayout layoutNoInternet = binding.layoutNoInternet;
+                layoutNoInternet.setVisibility(View.VISIBLE);
 
                 // TODO Poner snackbar o algo;
                 //Snackbar.make(binding.layoutSnackbar, "No se pudo obtener lista de criptomonedas, error de conexión", Snackbar.LENGTH_SHORT).show();

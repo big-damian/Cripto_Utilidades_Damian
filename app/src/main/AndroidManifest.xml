@@ -8,7 +8,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/damian_bitcoin_utils_icono_v2_cutre"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/bitcoin_foto_1_redondo"
+        android:roundIcon="@drawable/damian_bitcoin_utils_icono_v2_cutre_redondo"
         android:supportsRtl="true"
         android:theme="@style/Theme.CriptoUtilidadesDamian"
         tools:targetApi="31">

@@ -9,8 +9,9 @@ import java.util.Objects;
 // Sacado de este video que es GOD: https://www.youtube.com/watch?v=mbHvLSwhdLA
 public class MySQLManager {
 
-//    HERE IM USING ANOTHER CLASS CALLED MySQLManagerKeys.java in com.damian.criptoutils.utilities TO STORE THE KEYS AND ASSIGN THEM INTHE LINES BELOW
-//    THE CLASS LOOKS LIKE THIS:
+//    HERE IM USING ANOTHER CLASS CALLED MySQLManagerKeys.java in com.damian.criptoutils.utilities
+//    TO STORE THE KEYS AND ASSIGN THEM IN THE LINES BELOW, THE CLASS LOOKS LIKE THIS:
+//
 //    CREATE THIS SAME CLASS OR ASSIGN THE KEYS DIRECTLY TO THE VARIABLES FOR THE APP TO WORK!
 //
 //    package com.damian.criptoutils.utilities;

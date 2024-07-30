@@ -41,13 +41,12 @@ public class HomeFragment extends Fragment {
         SQLiteBD = new SQLiteManager(getContext());
         SQLiteBD.open();
 
-        // TODO: Que se ponga en pantalla el precio de BTC desde la BD
         // Ponemos el precio de Bitcoin en pantalla
         Log.e("SQLite", "Cargando precio desde la BDD y poniendolo en pantalla");
         // Si no existe registro de Precio, creamos uno nuevo
         if (SQLiteBD.selectPrecioBDD("Bitcoin") == " ") {
             Log.e("SQLite", "Creando registro para Bitcoin en BBDD");
-            SQLiteBD.insert("Bitcoin", "Precio desconocido", "MarketCap desconocido", getString(R.string.descripcion_bitcoin));
+            SQLiteBD.insert("Bitcoin", "Precio desconocido", "MarketCap desconocido1", getString(R.string.descripcion_bitcoin));
         } else {
             Log.e("SQLite", "Ya existe registro en BBDD para Bitcoin");
             binding.textoPrecioBitcoin.setText("BTC: " + SQLiteBD.selectPrecioBDD("Bitcoin") + " €");

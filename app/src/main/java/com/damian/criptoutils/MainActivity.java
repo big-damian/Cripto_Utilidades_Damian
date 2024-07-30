@@ -239,10 +239,17 @@ public class MainActivity extends AppCompatActivity {
 
                 cone = MySQLManager.ConexionMySQL();
                 if (cone == null) {
-                    str = "Error al conectar a MySQL";
+                    // Loggear y mostrar toast de que no hay conexión a internet
                     Log.e("MySQL", "Error al conectar a MySQL");
+
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "No se puede conectar con la Base de datos, comprueba tu internet", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 } else {
-                    str = "Conectado a MySQL";
+                    // Loggear conexión realizada a la base de datos
                     Log.e("MySQL", "Conectado a MySQL");
                 }
 
@@ -391,10 +398,17 @@ public class MainActivity extends AppCompatActivity {
 
                 cone = MySQLManager.ConexionMySQL();
                 if (cone == null) {
-                    str = "Error al conectar a MySQL";
+                    // Loggear y mostrar toast de que no hay conexión a internet
                     Log.e("MySQL", "Error al conectar a MySQL");
+
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "No se puede conectar con la Base de datos, comprueba tu internet", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 } else {
-                    str = "Conectado a MySQL";
+                    // Loggear conexión realizada a la base de datos
                     Log.e("MySQL", "Conectado a MySQL");
                 }
 

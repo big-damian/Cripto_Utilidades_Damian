@@ -65,12 +65,6 @@ public class SQLiteManager {
     }
 
 
-
-
-
-
-
-
 //    public String getTableAsString(String Nombre) {
 ////        Log.d(TAG, "getTableAsString called");
 //        String cursorString = "";
@@ -106,21 +100,6 @@ public class SQLiteManager {
 
         return tablaString;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public int update(long Id, String Nombre, String Precio, String MarketCap, String Descripcion) {
         ContentValues contentValues = new ContentValues();

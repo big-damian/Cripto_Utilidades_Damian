@@ -1,6 +1,7 @@
 package com.damian.criptoutils.ui.notifications;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -79,6 +80,9 @@ public class NotificationsFragment extends Fragment {
         Button botonCancelarDialogo = dialog.findViewById(R.id.botonCancelarDialogo);
         EditText editTextNumberDecimal = dialog.findViewById(R.id.editTextCantidadCriptos);
 
+        // Establecer boton no clickable hasta que no se haya cargado la info
+        botonDialogoAgregarTusCriptos.setClickable(true);
+
         String url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&x_cg_demo_api_key=CG-SzhFJQ3Nbdqhxh8DMr7x7zDm";
 
         Log.e("SpinnerCargarListaCriptos", "Llamando a API para cargar lista de criptos");
@@ -88,14 +92,17 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-//                    JSONArray jsonArray = response.getJSONArray("name");
-//                    JSONArray jsonArray = response.getJSONArray(null);
+
+                    // Activar boton aceptar y quitar texto no hay internet
+                    botonDialogoAgregarTusCriptos.setActivated(true);
+                    botonDialogoAgregarTusCriptos.setTextColor(Color.WHITE);
+                    botonDialogoAgregarTusCriptos.setClickable(true);
+                    listaCriptoSpinner.clear();
+
                     Log.e("SpinnerCargarListaCriptos", "Parseando: " + response);
                     for (int i=0; i<response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
                         String nombreCriptomoneda = jsonObject.optString("name") + " (" + jsonObject.optString("symbol").toUpperCase() + ")";
-                        // puta
-//                        nombreCriptomoneda = "puta" + i;
                         listaCriptoSpinner.add(nombreCriptomoneda);
                         adapterSpinnerListaCriptos = new ArrayAdapter<>(getActivity(),
                                 android.R.layout.simple_spinner_item, listaCriptoSpinner);
@@ -111,6 +118,18 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("SpinnerCargarListaCriptos", "Error de Volley: " + error.toString());
+
+                // Añadir texto no hay internet en el spinner
+                listaCriptoSpinner.clear();
+                listaCriptoSpinner.add("No hay conexión a internet");
+                adapterSpinnerListaCriptos = new ArrayAdapter<>(getActivity(),
+                        android.R.layout.simple_spinner_item, listaCriptoSpinner);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, listaCriptoSpinner);
+                spinnerListaCriptos.setAdapter(adapter);
+                // Desactivar boton guardar monedas
+                botonDialogoAgregarTusCriptos.setActivated(false);
+                botonDialogoAgregarTusCriptos.setBackgroundColor(Color.RED);
+                botonDialogoAgregarTusCriptos.setClickable(false);
             }
         });
         requestQueue.add(getRequest);
