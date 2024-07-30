@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     // MIS VARIABLES
     private SQLiteManager SQLiteBD;
-    int segundosDelay = 15; // Segungos tras los cuales actualizar
+    int segundosDelay = 15; // Segundos tras los cuales actualizar
 
     // FIN MIS VARIABLES
 
