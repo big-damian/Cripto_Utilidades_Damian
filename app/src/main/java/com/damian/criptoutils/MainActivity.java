@@ -298,17 +298,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("MySQL", "Obtenido de la BD: <" + resultadoQuery + ">");
 
                 if (String.valueOf(resultadoQuery).equals(email)) {
-                    // TODO: Arreglar/Eliminar estos Toast
-                    Log.e("MySQL", "Se loggea");
-//                    Toast.makeText(this, "Se loggea con exito", Toast.LENGTH_SHORT).show();
+
+                    // Mostrar snackbar de exito en el login
                     Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Iniciada sesión exitosamente", Snackbar.LENGTH_SHORT);
                     View snackBarView = snackbar.getView();
                     /* Aplicar margen inferior de 50dp */
                     snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                     snackbar.show();
-                    // TODO: Llevar a pagina de login
-                    // De momento se cargan otros elementos del mismo layout
-
 
                     this.runOnUiThread(new Runnable() {
                         @Override
@@ -387,25 +383,21 @@ public class MainActivity extends AppCompatActivity {
                     resultados.close();
                     cone.close();
                 }
+
+                // Si no existe esa cuenta en la BBDD
+                else if (!String.valueOf(resultadoQuery).equals(email)) {
+
+                    // Mostrar snackbar de fallo en el login
+                    Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "No se pudo iniciar sesión, comprueba los datos introducidos", Snackbar.LENGTH_SHORT);
+                    View snackBarView = snackbar.getView();
+                    /* Aplicar margen inferior de 50dp */
+                    snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    snackbar.show();
+                }
+
             } catch (Exception e) {
                 Log.e("MySQL",Log.getStackTraceString(e));
             }
-
-            // TODO: Eliminar si no se usa
-//            runOnUiThread(() -> {
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                Toast.makeText(this, resultadoQuery, Toast.LENGTH_SHORT).show();
-//                TextView texto_precioBitcoin = (TextView) findViewById(R.id.texto_precioBitcoin);
-//                texto_precioBitcoin.setText("BTC: " + SQLiteBD.selectPrecioBDD("Bitcoin") + " €");
-//
-//
-//            });
-
         });
 
     }
@@ -532,7 +524,13 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout accountLayout = (LinearLayout) findViewById(R.id.account_layout_principal);
                 accountLayout.setVisibility(View.VISIBLE);
             } });
-        AccountFragment.loggeado = true;
+
+        // Mostrar snackbar de exito en el logout
+        Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Cerrada sesión exitosamente", Snackbar.LENGTH_LONG);
+        View snackBarView = snackbar.getView();
+        /* Aplicar margen inferior de 50dp */
+        snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+        snackbar.show();
 
     }
 
