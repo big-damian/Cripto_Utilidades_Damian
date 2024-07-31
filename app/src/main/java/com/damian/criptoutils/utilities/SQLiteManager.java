@@ -1,5 +1,6 @@
 package com.damian.criptoutils.utilities;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -18,14 +19,7 @@ public class SQLiteManager {
     public SQLiteManager(Context c) {
         context = c;
     }
-
-//    public SQLiteManager(Context c, String Precio, String Nombre) {
-//        context = c;
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(SQLiteGenerator.PRICE, Precio);
-//        database.update(SQLiteGenerator.TABLE_NAME, contentValues, SQLiteGenerator.NAME + " = " + Nombre, null);
-//        return i;
-//    }
+    
 
     public SQLiteManager open() throws SQLException {
         SQLiteGenerator = new SQLiteGenerator(context);
@@ -39,16 +33,16 @@ public class SQLiteManager {
 
     public void insert(String Nombre, String Precio, String MarketCap, String Descripcion) {
         ContentValues contentValue = new ContentValues();
-        contentValue.put(SQLiteGenerator.NAME, Nombre);
-        contentValue.put(SQLiteGenerator.PRICE, Precio);
+        contentValue.put(SQLiteGenerator.NOMBRE, Nombre);
+        contentValue.put(SQLiteGenerator.PRECIO, Precio);
         contentValue.put(SQLiteGenerator.MARKETCAP, MarketCap);
-        contentValue.put(SQLiteGenerator.DESCRIPTION, Descripcion);
-        database.insert(SQLiteGenerator.TABLE_NAME, null, contentValue);
+        contentValue.put(SQLiteGenerator.DESCRIPCION, Descripcion);
+        database.insert(SQLiteGenerator.NOMBRE_TABLA1, null, contentValue);
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { SQLiteGenerator.ID, SQLiteGenerator.NAME, SQLiteGenerator.PRICE, SQLiteGenerator.MARKETCAP, SQLiteGenerator.DESCRIPTION };
-        Cursor cursor = database.query(SQLiteGenerator.TABLE_NAME, columns, null, null, null, null, null);
+        String[] columns = new String[] { SQLiteGenerator.ID, SQLiteGenerator.NOMBRE, SQLiteGenerator.PRECIO, SQLiteGenerator.MARKETCAP, SQLiteGenerator.DESCRIPCION };
+        Cursor cursor = database.query(SQLiteGenerator.NOMBRE_TABLA1, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -56,39 +50,15 @@ public class SQLiteManager {
     }
 
     public Cursor fetchPrecio(String Nombre) {
-        String[] columns = new String[] { SQLiteGenerator.PRICE };
-        Cursor cursor = database.query(SQLiteGenerator.TABLE_NAME, columns, "Nombre = " + Nombre, null, null, null, null);
+        String[] columns = new String[] { SQLiteGenerator.PRECIO };
+        Cursor cursor = database.query(SQLiteGenerator.NOMBRE_TABLA1, columns, "Nombre = " + Nombre, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
         return cursor;
     }
 
-
-//    public String getTableAsString(String Nombre) {
-////        Log.d(TAG, "getTableAsString called");
-//        String cursorString = "";
-//        String tablaString = String.format("Table %s:\n", SQLiteGenerator.TABLE_NAME);
-////        Cursor allRows  = database.rawQuery("SELECT Precio FROM Criptomonedas WHERE Nombre = '" + Nombre + "'", null);
-//        Cursor allRows  = database.rawQuery("SELECT Precio FROM Criptomonedas WHERE Nombre = '" + Nombre + "'", null);
-////        Cursor allRows  = database.query(SQLiteGenerator.TABLE_NAME, columns, "Nombre = " + Nombre, null, null, null, null);
-//        if (allRows.moveToFirst() ){
-//            String[] columnNames = allRows.getColumnNames();
-//            for (String name: columnNames)
-//                cursorString += String.format("%s ][ ", name);
-//            cursorString += "\n";
-//            do {
-//                for (String name: columnNames) {
-//                    cursorString += String.format("%s ][ ",
-//                            allRows.getString(allRows.getColumnIndex(name)));
-//                }
-//                cursorString += "\n";
-//            } while (allRows.moveToNext());
-//        }
-//
-//        return tablaString;
-//    }
-
+    @SuppressLint("Range")
     public String selectPrecioBDD(String Nombre) {
 //        Log.d(TAG, "getTableAsString called");
         String tablaString = " ";
@@ -103,24 +73,24 @@ public class SQLiteManager {
 
     public int update(long Id, String Nombre, String Precio, String MarketCap, String Descripcion) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SQLiteGenerator.NAME, Nombre);
-        contentValues.put(SQLiteGenerator.PRICE, Precio);
+        contentValues.put(SQLiteGenerator.NOMBRE, Nombre);
+        contentValues.put(SQLiteGenerator.PRECIO, Precio);
         contentValues.put(SQLiteGenerator.MARKETCAP, MarketCap);
-        contentValues.put(SQLiteGenerator.DESCRIPTION, Descripcion);
-        int i = database.update(SQLiteGenerator.TABLE_NAME, contentValues, SQLiteGenerator.NAME + " = " + Nombre, null);
+        contentValues.put(SQLiteGenerator.DESCRIPCION, Descripcion);
+        int i = database.update(SQLiteGenerator.NOMBRE_TABLA1, contentValues, SQLiteGenerator.NOMBRE + " = " + Nombre, null);
         return i;
     }
 
     public int actualizarPrecio(String Nombre, String Precio) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SQLiteGenerator.PRICE, Precio);
-        int i = database.update(SQLiteGenerator.TABLE_NAME, contentValues, (Nombre + " = " + SQLiteGenerator.NAME), null);
+        contentValues.put(SQLiteGenerator.PRECIO, Precio);
+        int i = database.update(SQLiteGenerator.NOMBRE_TABLA1, contentValues, (Nombre + " = " + SQLiteGenerator.NOMBRE), null);
 //        Log.e("SQLite", "Guardado " + Precio + " para " + Nombre + " en la BD SQLite de Criptos");
 //        Log.e("LlamadaAPI", "Guardado: '" + SQLiteBD.selectPrecioBDD("Bitcoin") + "' en la Base de Datos");
         return i;
     }
 
     public void delete(String Nombre) {
-        database.delete(SQLiteGenerator.TABLE_NAME, SQLiteGenerator.NAME + "=" + Nombre, null);
+        database.delete(SQLiteGenerator.NOMBRE_TABLA1, SQLiteGenerator.NOMBRE + "=" + Nombre, null);
     }
 }

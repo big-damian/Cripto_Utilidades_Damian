@@ -130,10 +130,14 @@ public class DashboardFragment extends Fragment {
 
                     // Ocultar icono de Cargando
                     LinearLayout layoutCargando = binding.layoutCargando;
-                    layoutCargando.setVisibility(View.GONE);
+                    if (layoutCargando == null) {
+                        layoutCargando.setVisibility(View.GONE);
+                    }
                     // Ocultar icono de No internet
                     LinearLayout layoutNoInternet = binding.layoutNoInternet;
-                    layoutNoInternet.setVisibility(View.GONE);
+                    if (layoutNoInternet == null) {
+                        layoutNoInternet.setVisibility(View.GONE);
+                    }
 
                     criptomonedaList = response.body();
                     listaCriptoAdapter = new ListaCriptoAdapter(criptomonedaList,getActivity());
