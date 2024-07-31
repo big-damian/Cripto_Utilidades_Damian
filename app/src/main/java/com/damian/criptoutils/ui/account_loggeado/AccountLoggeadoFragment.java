@@ -42,7 +42,7 @@ public class AccountLoggeadoFragment extends Fragment {
         ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        final TextView textView = binding.textHome;
+        final TextView textView = binding.textAccountLoggeado;
 //        accountLoggeadoViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }

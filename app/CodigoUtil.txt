@@ -55,3 +55,10 @@ public void hacerLoginMySQL() {
         });
 
     }
+
+// Realizar accion solo si fragmento es visible
+if (vistaDeFragmentoHome != null && vistaDeFragmentoHome.getVisibility() == View.VISIBLE) {
+    Toast.makeText(MainActivity.this, "Fragmento específico activo SISISI", Toast.LENGTH_SHORT).show();
+} else {
+    Toast.makeText(MainActivity.this, "No se encontró fragmento específico activo NONONO", Toast.LENGTH_SHORT).show();
+}

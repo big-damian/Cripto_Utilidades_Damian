@@ -7,6 +7,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -114,21 +116,23 @@ public class MainActivity extends AppCompatActivity {
         Log.e("Home", "Bucle de actualización cada " + segundosDelay + " segundos");
         handler.postDelayed(new Runnable() {
             public void run() {
-
-
+                
+                
                 Log.e("LlamadaAPI", "Actualizando precio cada " + segundosDelay + " segundos");
-//                llamarAPIActualizarPrecioMoneda("Bitcoin", R.id.texto_precioBitcoin, true, false);
 
-
+                
                 // Creamos Snackbar para indicar que se va a actualizar el precio
                 Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Actualizando precios en línea", Snackbar.LENGTH_SHORT);
                 View snackBarView = snackbar.getView();
                 /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-                snackbar.show();
 
+                //Solo mostramos Snackbar si estamos en la home
+                View vistaDeFragmentoHome = findViewById(R.id.text_home); // Asignar fragment a variable
+                if (vistaDeFragmentoHome != null && vistaDeFragmentoHome.getVisibility() == View.VISIBLE) {
+                    snackbar.show();
+                }
 
                 llamarAPIPrecioMonedaYBD("Bitcoin", true, false);
-
 
                 handler.postDelayed(this, delay * segundosDelay); //Repetir cada 30 segundos (delay * 30)
             }
@@ -153,7 +157,12 @@ public class MainActivity extends AppCompatActivity {
         Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Actualizando precio de Bitcoin en línea...", Snackbar.LENGTH_SHORT);
         View snackBarView = snackbar.getView();
         /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-        snackbar.show();
+
+        //Solo mostramos Snackbar si estamos en la home
+        View vistaDeFragmentoHome = findViewById(R.id.text_home); // Asignar fragment a variable
+        if (vistaDeFragmentoHome != null && vistaDeFragmentoHome.getVisibility() == View.VISIBLE) {
+            snackbar.show();
+        }
 
         llamarAPIPrecioMonedaYBD("Ethereum", true, false);
 
@@ -190,13 +199,24 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("LlamadaAPI", "Guardado: '" + SQLiteBD.selectPrecioBDD("Bitcoin") + "' en la Base de Datos");
 
                     if (toast == true) {
-                        Toast.makeText(getApplicationContext(), "Precio actualizado, precio de " + moneda + ": " + respuestaAPIParseada + " EUR", Toast.LENGTH_SHORT).show();
+
+                        //Solo mostramos Toast si estamos en la home
+                        View vistaDeFragmentoHome = findViewById(R.id.text_home); // Asignar fragment a variable
+                        if (vistaDeFragmentoHome != null && vistaDeFragmentoHome.getVisibility() == View.VISIBLE) {
+                            Toast.makeText(getApplicationContext(), "Precio actualizado, precio de " + moneda + ": " + respuestaAPIParseada + " EUR", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                     if (snackbar == true) {
                         Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Precio actualizado, precio de " + moneda + ": " + respuestaAPIParseada + " EUR", Snackbar.LENGTH_SHORT);
                         View snackBarView = snackbar.getView();
                         /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-                        snackbar.show();
+
+                        //Solo mostramos Snackbar si estamos en la home
+                        View vistaDeFragmentoHome = findViewById(R.id.text_home); // Asignar fragment a variable
+                        if (vistaDeFragmentoHome != null && vistaDeFragmentoHome.getVisibility() == View.VISIBLE) {
+                            snackbar.show();
+                        }
                     }
 
                 } catch (JSONException e) {
@@ -207,12 +227,16 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getActivity(), "Se produjo un error al conectar con la API, comprueba tu internet", Toast.LENGTH_SHORT).show();
 
                 Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Se produjo un error al conectar con la API, comprueba tu internet", Snackbar.LENGTH_SHORT);
                 View snackBarView = snackbar.getView();
                 /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-                snackbar.show();
+
+                //Solo mostramos Snackbar si estamos en la home
+                View vistaDeFragmentoHome = findViewById(R.id.text_home); // Asignar fragment a variable
+                if (vistaDeFragmentoHome != null && vistaDeFragmentoHome.getVisibility() == View.VISIBLE) {
+                    snackbar.show();
+                }
 
                 Log.e("LlamadaAPI", "Se produjo un error al conectar con la API, posiblemente no haya conexión a Internet");
             }

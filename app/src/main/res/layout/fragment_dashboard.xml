@@ -49,11 +49,40 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
+                android:id="@+id/layoutCargando"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/iconoCargando"
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"
+                    android:layout_marginTop="75dp"
+                    android:foregroundGravity="center"
+                    android:src="@drawable/icono_cargando" />
+
+                <TextView
+                    android:id="@+id/textoCargando"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Cargando lista actualizada\nde criptomonedas..."
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/layoutNoInternet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <ImageView
                     android:id="@+id/iconoNoInternet"
@@ -61,11 +90,11 @@
                     android:layout_height="125dp"
                     android:layout_marginTop="75dp"
                     android:foregroundGravity="center"
-                    android:src="?android:attr/alertDialogIcon" />
+                    android:src="@drawable/icono_no_internet" />
 
                 <TextView
                     android:id="@+id/textoNoInternet"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"

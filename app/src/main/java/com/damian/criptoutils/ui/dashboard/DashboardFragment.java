@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -103,7 +104,12 @@ public class DashboardFragment extends Fragment {
         recyclerView.setAdapter(listaCriptoAdapter);
 
 
-
+        // Mostrar icono de Cargando
+        LinearLayout layoutCargando = binding.layoutCargando;
+        layoutCargando.setVisibility(View.VISIBLE);
+        // Ocultar icono de NoInternet
+        LinearLayout layoutNoInternet = binding.layoutNoInternet;
+        layoutNoInternet.setVisibility(View.GONE);
 
 
 
@@ -122,6 +128,9 @@ public class DashboardFragment extends Fragment {
                 if (response.isSuccessful()) {
                     Log.e("RecyclerViewCargarListaCriptos", "Respuesta recibida de API: " + response.body());
 
+                    // Ocultar icono de Cargando
+                    LinearLayout layoutCargando = binding.layoutCargando;
+                    layoutCargando.setVisibility(View.GONE);
                     // Ocultar icono de No internet
                     LinearLayout layoutNoInternet = binding.layoutNoInternet;
                     layoutNoInternet.setVisibility(View.GONE);
@@ -148,11 +157,13 @@ public class DashboardFragment extends Fragment {
                 Log.e("RecyclerViewCargarListaCriptos", "Error de conexión o de obtención de respuesta de la API metodo (OnFailure)");
                 Log.e("RecyclerViewCargarListaCriptos", t.toString());
 
+                // Ocultar icono de Cargando
+                LinearLayout layoutCargando = binding.layoutCargando;
+                layoutCargando.setVisibility(View.GONE);
+                // Mostrar icono de No internet
                 LinearLayout layoutNoInternet = binding.layoutNoInternet;
                 layoutNoInternet.setVisibility(View.VISIBLE);
 
-                // TODO Poner snackbar o algo;
-                //Snackbar.make(binding.layoutSnackbar, "No se pudo obtener lista de criptomonedas, error de conexión", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

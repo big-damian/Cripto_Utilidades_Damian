@@ -97,7 +97,7 @@ public class AccountFragment extends Fragment {
         ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        final TextView textView = binding.textHome;
+        final TextView textView = binding.textAccount;
         accountViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
