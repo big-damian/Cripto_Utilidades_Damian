@@ -12,9 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.damian.criptoutils.R;
 import com.damian.criptoutils.databinding.FragmentAccountBinding;
-import com.damian.criptoutils.ui.account_loggeado.AccountLoggeadoFragment;
 
 // MIS IMPORTS
 import android.widget.CompoundButton;
@@ -106,20 +104,6 @@ public class AccountFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    public void metodo() {
-        // Create new fragment and transaction
-        Fragment newFragment = new AccountLoggeadoFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
-//        transaction.replace(R.id.account_layout_principal, AccountLoggeadoFragment);
-        transaction.addToBackStack(null);
-
-        // Commit the transaction
-        transaction.commit();
     }
 
 }
