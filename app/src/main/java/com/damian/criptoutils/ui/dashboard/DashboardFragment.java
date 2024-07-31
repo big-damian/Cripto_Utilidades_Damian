@@ -43,9 +43,13 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        ///
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // MI CODIGO OnCreate
+        //
 
-        ///
+        //
+        // FIN DE MI CODIGO OnCreate
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         final TextView textView = binding.textDashboard;
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);

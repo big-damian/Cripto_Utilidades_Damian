@@ -92,4 +92,32 @@ public class SQLiteManager {
     public void delete(String Nombre) {
         database.delete(SQLiteGenerator.NOMBRE_TABLA1, SQLiteGenerator.NOMBRE + "=" + Nombre, null);
     }
+
+    // Metodos para tabla Mis-Criptomonedas
+
+    public long guardarMiCriptomoneda(String Nombre, String Simbolo, String Cantidad) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Nombre", Nombre);
+        contentValues.put("Simbolo", Simbolo);
+        contentValues.put("Cantidad", Cantidad);
+        long idColumna = database.insert(SQLiteGenerator.NOMBRE_TABLA2, null, contentValues);
+
+        database.close();
+
+//        Log.e("SQLite", "Guardado " + Precio + " para " + Nombre + " en la BD SQLite de Criptos");
+//        Log.e("LlamadaAPI", "Guardado: '" + SQLiteBD.selectPrecioBDD("Bitcoin") + "' en la Base de Datos");
+        return idColumna;
+    }
+
+    @SuppressLint("Range")
+    public String selectMisCriptomonedasBDD(String Nombre) {
+        String tablaString = " ";
+        Cursor cursor  = database.rawQuery("SELECT Precio FROM Criptomonedas WHERE Nombre = '" + Nombre + "'", null);
+
+        if (cursor.moveToFirst()) {
+            tablaString = cursor.getString(cursor.getColumnIndex("Precio"));
+        }
+
+        return tablaString;
+    }
 }

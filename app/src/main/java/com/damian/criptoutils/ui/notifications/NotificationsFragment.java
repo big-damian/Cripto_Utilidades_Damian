@@ -27,6 +27,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.damian.criptoutils.R;
 import com.damian.criptoutils.databinding.FragmentNotificationsBinding;
+import com.damian.criptoutils.utilities.SQLiteManager;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -45,6 +46,10 @@ public class NotificationsFragment extends Fragment {
     private ArrayAdapter<String> adapterSpinnerListaCriptos;
     RequestQueue requestQueue;
 
+    // Variables para SQLite
+    private SQLiteManager SQLiteBD;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         NotificationsViewModel notificationsViewModel =
@@ -52,6 +57,18 @@ public class NotificationsFragment extends Fragment {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // MI CODIGO OnCreate
+        //
+
+        // Iniciamos la BD
+        SQLiteBD = new SQLiteManager(getActivity());
+        SQLiteBD.open();
+
+        //
+        // FIN DE MI CODIGO OnCreate
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         final TextView textView = binding.textNotifications;
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
@@ -62,7 +79,6 @@ public class NotificationsFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Supongamos que abres el diálogo al hacer clic en un botón
         view.findViewById(R.id.botonAnadir).setOnClickListener(v -> showDialog(view));
     }
 
@@ -138,12 +154,74 @@ public class NotificationsFragment extends Fragment {
         botonDialogoAgregarTusCriptos.setOnClickListener(v -> {
             String seleccionSpinner = (String) spinnerListaCriptos.getSelectedItem();
             if (!editTextNumberDecimal.getText().toString().isEmpty() && Double.parseDouble(editTextNumberDecimal.getText().toString()) > 0.0) {
+
+                // Guardando moneda en BDD
+//                SQLiteBD.guardarMiCriptomoneda(spinnerListaCriptos.getSelectedItemPosition(), "", "");
+                // Obtener el texto seleccionado usando getSelectedItem
+                String selectedItem = (String) spinnerListaCriptos.getSelectedItem();
+//                Toast.makeText(getActivity(), "Selected: " + selectedItem, Toast.LENGTH_SHORT).show();
+
+                // Alternativamente, obtener el texto usando getSelectedItemPosition
+                int selectedPosition = spinnerListaCriptos.getSelectedItemPosition();
+                String selectedItemAlternative = adapterSpinnerListaCriptos.getItem(selectedPosition);
+//                Toast.makeText(getActivity(), "Selected (Alternative): " + selectedItemAlternative, Toast.LENGTH_SHORT).show();
+
+
+
+                // Definir el patrón regex para capturar el contenido antes del último paréntesis
+                String pattern = "^(.*)\\([^)]*\\)$";
+
+                // Compilar el patrón
+                java.util.regex.Pattern compiledPattern = java.util.regex.Pattern.compile(pattern);
+                java.util.regex.Matcher matcher = compiledPattern.matcher(spinnerListaCriptos.getSelectedItem().toString());
+//                java.util.regex.Matcher matcher = compiledPattern.matcher("This is an example (with a part inside parentheses)");
+
+                // Verificar si coincide y extraer el contenido
+                if (matcher.find()) {
+                    String result = matcher.group(1).trim(); // El primer grupo captura el contenido antes de los paréntesis
+                    System.out.println("Contenido antes de los paréntesis: " + result);
+                    Toast.makeText(getActivity(), "Contenido antes de los paréntesis: " + result, Toast.LENGTH_SHORT).show();
+                } else {
+                    System.out.println("No se encontraron paréntesis al final de la cadena.");
+                    Toast.makeText(getActivity(), "No se encontraron paréntesis al final de la cadena.", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+                // Definir el patrón regex para capturar contenido entre paréntesis al final
+                pattern = "\\(([^)]+)\\)$";
+
+                // Compilar el patrón
+                compiledPattern = java.util.regex.Pattern.compile(pattern);
+                matcher = compiledPattern.matcher(spinnerListaCriptos.getSelectedItem().toString());
+//                matcher = compiledPattern.matcher("This is an example (with a part inside parentheses)");
+
+                // Verificar si coincide y extraer el contenido
+                if (matcher.find()) {
+                    String result = matcher.group(1); // El primer grupo captura el contenido dentro de los paréntesis
+                    System.out.println("Contenido entre paréntesis: " + result);
+                    Toast.makeText(getActivity(), "Contenido entre paréntesis: " + result, Toast.LENGTH_SHORT).show();
+                } else {
+                    System.out.println("No se encontraron paréntesis al final de la cadena.");
+                    Toast.makeText(getActivity(), "No se encontraron paréntesis al final de la cadena.", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+
+
+
+
+                // Mostrar Snackbar criptomoneda guardada
                 Snackbar snackbar = Snackbar.make(fragmentView, "Agregada criptomoneda " + seleccionSpinner + " = " + editTextNumberDecimal.getText() + " unidades", Snackbar.LENGTH_LONG);
                 View snackBarView = snackbar.getView();
                 /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                 snackbar.show();
 
                 dialog.dismiss();
+
             } else if (editTextNumberDecimal.getText().toString().isEmpty() || Double.parseDouble(editTextNumberDecimal.getText().toString()) <= 0.0) {
                 Toast.makeText(getActivity(), "Selecciona una criptomoneda e introduce la cantidad de criptomonedas que tienes para agregarlas (mayor a cero)", Toast.LENGTH_SHORT).show();
         }
