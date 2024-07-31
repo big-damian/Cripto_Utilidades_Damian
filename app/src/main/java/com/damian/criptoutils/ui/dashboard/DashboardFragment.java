@@ -129,13 +129,13 @@ public class DashboardFragment extends Fragment {
                     Log.e("RecyclerViewCargarListaCriptos", "Respuesta recibida de API: " + response.body());
 
                     // Ocultar icono de Cargando
-                    LinearLayout layoutCargando = binding.layoutCargando;
-                    if (layoutCargando == null) {
+                    if (binding != null) {
+                        LinearLayout layoutCargando = binding.layoutCargando;
                         layoutCargando.setVisibility(View.GONE);
                     }
                     // Ocultar icono de No internet
-                    LinearLayout layoutNoInternet = binding.layoutNoInternet;
-                    if (layoutNoInternet == null) {
+                    if (binding != null) {
+                        LinearLayout layoutNoInternet = binding.layoutNoInternet;
                         layoutNoInternet.setVisibility(View.GONE);
                     }
 
