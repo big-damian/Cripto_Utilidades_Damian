@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteGenerator extends SQLiteOpenHelper {
 
+    // --- Variables SQLite ---
+
     // Nombre de las tablas
     public static final String NOMBRE_TABLA1 = "Criptomonedas";
     public static final String NOMBRE_TABLA2 = "Mis-Criptomonedas";
@@ -41,7 +43,7 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
                     + "Euros REAL,"
                     + "Descripcion TEXT)";
 
-    // Metodos
+    // --- Metodos SQLite ---
 
     public SQLiteGenerator(Context context) {
         super(context, BD_NOMBRE, null, BD_VERSION);
