@@ -6,22 +6,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLiteGenerator extends SQLiteOpenHelper {
 
-    // Table NOMBRE
+    // Nombre de las tablas
     public static final String NOMBRE_TABLA1 = "Criptomonedas";
     public static final String NOMBRE_TABLA2 = "Mis-Criptomonedas";
 
-    // Table columns
+    // Columnas de la tabla 1
     public static final String ID = "Id";
     public static final String NOMBRE = "Nombre";
     public static final String PRECIO = "Precio";
     public static final String MARKETCAP = "Cap_Mercado";
     public static final String DESCRIPCION = "Descripcion";
 
-    // Database Information
-    static final String DB_NOMBRE = "CriptoUtilsDamian";
+    // Nombre de la BD
+    static final String BD_NOMBRE = "CriptoUtilsDamian";
 
-    // database version
-    static final int DB_VERSION = 1;
+    // Version de la base de datos
+    static final int BD_VERSION = 1;
 
     // SQL para crear la tabla Criptomonedas
     private static final String CRATE_TABLE_1 = "CREATE TABLE " + NOMBRE_TABLA1 + " ("
@@ -41,8 +41,10 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
                     + "Euros REAL,"
                     + "Descripcion TEXT)";
 
+    // Metodos
+
     public SQLiteGenerator(Context context) {
-        super(context, DB_NOMBRE, null, DB_VERSION);
+        super(context, BD_NOMBRE, null, BD_VERSION);
     }
 
     @Override
