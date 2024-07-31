@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,15 +14,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.damian.criptoutils.MainActivity;
 import com.damian.criptoutils.R;
 import com.damian.criptoutils.criptorecyclerapi.Criptomoneda;
 import com.damian.criptoutils.criptorecyclerapi.ListaCriptoAdapter;
 import com.damian.criptoutils.criptorecyclerapi.LlamadaAPIListaCripto;
 import com.damian.criptoutils.criptorecyclerapi.RetrofitLlamadaAPIListaCripto;
 import com.damian.criptoutils.databinding.FragmentDashboardBinding;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
@@ -49,15 +45,6 @@ public class DashboardFragment extends Fragment {
 
         ///
 
-//        Log.e("RecyclerViewCiprot", "String.valueOf(listaCriptoAdapter.getItemCount())");
-//        Log.e("RecyclerViewCiprot", String.valueOf(listaCriptoAdapter.getItemCount()));
-//        recyclerView = binding.recyclerCriptosLista;
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        listaCriptoAdapter = new ListaCriptoAdapter(criptomonedaList,getActivity());
-//        LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-//        recyclerView.setAdapter(listaCriptoAdapter);
-//        cargarListaCriptosRecyclerAPI();
-
         ///
 
         final TextView textView = binding.textDashboard;
@@ -66,35 +53,6 @@ public class DashboardFragment extends Fragment {
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
-        // Crear y cargar el RecyclerView
-//        recyclerView = binding.recyclerCriptosLista;
-//        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-//        llm.setOrientation(LinearLayoutManager.VERTICAL);
-//        recyclerView.setLayoutManager(llm);
-//        recyclerView.setAdapter(listaCriptoAdapter);
-////        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        cargarListaCriptosRecyclerAPI();
-
-
-
-
-//        recyclerView = binding.recyclerCriptosLista;
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        cargarListaCriptosRecyclerAPI();
-
-//        CODIGO PREVIO AL ARREGLO INDIO https://www.youtube.com/watch?v=HGrFPWUCFNg
-//        Log.e("RecyclerViewCripto", "String.valueOf(listaCriptoAdapter.getItemCount())");
-//        Log.e("RecyclerViewCripto", String.valueOf(listaCriptoAdapter.getItemCount()));
-//        recyclerView = binding.recyclerCriptosLista;
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        listaCriptoAdapter = new ListaCriptoAdapter(criptomonedaList,getActivity());
-//        LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-//        recyclerView.setAdapter(listaCriptoAdapter);
-//        cargarListaCriptosRecyclerAPI();
-
-//        Log.e("RecyclerViewCripto", "String.valueOf(listaCriptoAdapter.getItemCount())");
-//        Log.e("RecyclerViewCripto", String.valueOf(listaCriptoAdapter.getItemCount()));
 
         recyclerView = view.findViewById(R.id.recyclerCriptosLista);
         cargarListaCriptosRecyclerAPI();
@@ -110,7 +68,6 @@ public class DashboardFragment extends Fragment {
         // Ocultar icono de NoInternet
         LinearLayout layoutNoInternet = binding.layoutNoInternet;
         layoutNoInternet.setVisibility(View.GONE);
-
 
 
     }

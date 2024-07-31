@@ -1,6 +1,5 @@
 package com.damian.criptoutils.criptorecyclerapi;
 
-import com.damian.criptoutils.criptorecyclerapi.Criptomoneda;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;

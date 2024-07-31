@@ -1,9 +1,7 @@
 package com.damian.criptoutils.utilities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -15,12 +13,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.damian.criptoutils.MainActivity;
-import com.damian.criptoutils.R;
 
 import org.json.JSONException;
-
-import java.util.Locale;
 
 public class ApiHandlerJSON {
 

@@ -2,9 +2,6 @@ package com.damian.criptoutils.criptorecyclerapi;
 
 import org.json.JSONArray;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 public class Criptomoneda {
 
     private String id;

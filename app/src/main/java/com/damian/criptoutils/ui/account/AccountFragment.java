@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.damian.criptoutils.databinding.FragmentAccountBinding;
@@ -49,14 +48,6 @@ public class AccountFragment extends Fragment {
             binding.accountLayoutPrincipal.setVisibility(View.VISIBLE);
             binding.loggeadoAccountLayoutPrincipal.setVisibility(View.GONE);
         }
-
-//        binding.btThree.setOnClickListener {
-//            binding.clGroupThree.  = View.INVISIBLE;
-//        }
-//
-//        binding.btAll.setOnClickListener {
-//            binding.clGroupAll.  = View.VISIBLE;
-//        }
 
 
         // Escuchador para mostrar/ocultar contraseña
