@@ -10,7 +10,7 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
 
     // Nombre de las tablas
     public static final String NOMBRE_TABLA1 = "Criptomonedas";
-    public static final String NOMBRE_TABLA2 = "Mis-Criptomonedas";
+    public static final String NOMBRE_TABLA2 = "Mis_Criptomonedas";
 
     // Columnas de la tabla 1
     public static final String ID = "Id";
@@ -39,8 +39,8 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
                     + "Id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "Nombre TEXT UNIQUE,"
                     + "Simbolo TEXT UNIQUE,"
-                    + "Cantidad REAL,"
-                    + "Euros REAL,"
+                    + "Cantidad TEXT,"
+                    + "Euros TEXT,"
                     + "Descripcion TEXT)";
 
     // --- Metodos SQLite ---

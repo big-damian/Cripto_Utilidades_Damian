@@ -44,6 +44,7 @@ public class NotificationsFragment extends Fragment {
     private Spinner spinnerListaCriptos;
     private ArrayList<String> listaCriptoSpinner = new ArrayList<>();
     private ArrayAdapter<String> adapterSpinnerListaCriptos;
+    private EditText editTextCantidadCriptos;
     RequestQueue requestQueue;
 
     // Variables para SQLite
@@ -90,6 +91,8 @@ public class NotificationsFragment extends Fragment {
 
         Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.dialog_add_yourcripto);
+
+        editTextCantidadCriptos = dialog.findViewById(R.id.editTextCantidadCriptos);
 
         spinnerListaCriptos = dialog.findViewById(R.id.spinnerListaCriptos);
         Button botonDialogoAgregarTusCriptos = dialog.findViewById(R.id.botonDialogoAgregarTusCriptos);
@@ -155,70 +158,62 @@ public class NotificationsFragment extends Fragment {
             String seleccionSpinner = (String) spinnerListaCriptos.getSelectedItem();
             if (!editTextNumberDecimal.getText().toString().isEmpty() && Double.parseDouble(editTextNumberDecimal.getText().toString()) > 0.0) {
 
-                // Guardando moneda en BDD
-//                SQLiteBD.guardarMiCriptomoneda(spinnerListaCriptos.getSelectedItemPosition(), "", "");
-                // Obtener el texto seleccionado usando getSelectedItem
-                String selectedItem = (String) spinnerListaCriptos.getSelectedItem();
-//                Toast.makeText(getActivity(), "Selected: " + selectedItem, Toast.LENGTH_SHORT).show();
-
-                // Alternativamente, obtener el texto usando getSelectedItemPosition
-                int selectedPosition = spinnerListaCriptos.getSelectedItemPosition();
-                String selectedItemAlternative = adapterSpinnerListaCriptos.getItem(selectedPosition);
-//                Toast.makeText(getActivity(), "Selected (Alternative): " + selectedItemAlternative, Toast.LENGTH_SHORT).show();
-
-
-
+                // Antes de guardar en SQLite obtenemos nombre y simbolo del spinner
+                // Obtener nombre de la cripto antes del parentesis
+                // ---
                 // Definir el patrón regex para capturar el contenido antes del último paréntesis
                 String pattern = "^(.*)\\([^)]*\\)$";
-
                 // Compilar el patrón
                 java.util.regex.Pattern compiledPattern = java.util.regex.Pattern.compile(pattern);
-                java.util.regex.Matcher matcher = compiledPattern.matcher(spinnerListaCriptos.getSelectedItem().toString());
-//                java.util.regex.Matcher matcher = compiledPattern.matcher("This is an example (with a part inside parentheses)");
-
+                java.util.regex.Matcher matcher = compiledPattern.matcher(spinnerListaCriptos.getSelectedItem().toString()); // Pasamos el string del spinner
                 // Verificar si coincide y extraer el contenido
+                String nombreObtenidoTextoSpinner = "";
                 if (matcher.find()) {
-                    String result = matcher.group(1).trim(); // El primer grupo captura el contenido antes de los paréntesis
-                    System.out.println("Contenido antes de los paréntesis: " + result);
-                    Toast.makeText(getActivity(), "Contenido antes de los paréntesis: " + result, Toast.LENGTH_SHORT).show();
+                    nombreObtenidoTextoSpinner = matcher.group(1).trim(); // El primer grupo captura el contenido antes de los paréntesis
                 } else {
-                    System.out.println("No se encontraron paréntesis al final de la cadena.");
-                    Toast.makeText(getActivity(), "No se encontraron paréntesis al final de la cadena.", Toast.LENGTH_SHORT).show();
+                    Log.e("SQLiteMisCriptos", "No se encontraron paréntesis al final de la cadena (Mientras se buscaba el nombre).");
                 }
 
-
-
-
+                // Obtener simbolo de la cripto antes del parentesis
+                // ---
                 // Definir el patrón regex para capturar contenido entre paréntesis al final
                 pattern = "\\(([^)]+)\\)$";
-
                 // Compilar el patrón
                 compiledPattern = java.util.regex.Pattern.compile(pattern);
-                matcher = compiledPattern.matcher(spinnerListaCriptos.getSelectedItem().toString());
-//                matcher = compiledPattern.matcher("This is an example (with a part inside parentheses)");
-
+                matcher = compiledPattern.matcher(spinnerListaCriptos.getSelectedItem().toString()); // Pasamos el string del spinner
                 // Verificar si coincide y extraer el contenido
+                String simboloObtenidoTextoSpinner = "";
                 if (matcher.find()) {
-                    String result = matcher.group(1); // El primer grupo captura el contenido dentro de los paréntesis
-                    System.out.println("Contenido entre paréntesis: " + result);
-                    Toast.makeText(getActivity(), "Contenido entre paréntesis: " + result, Toast.LENGTH_SHORT).show();
+                    simboloObtenidoTextoSpinner = matcher.group(1); // El primer grupo captura el contenido dentro de los paréntesis
                 } else {
-                    System.out.println("No se encontraron paréntesis al final de la cadena.");
-                    Toast.makeText(getActivity(), "No se encontraron paréntesis al final de la cadena.", Toast.LENGTH_SHORT).show();
+                    Log.e("SQLiteMisCriptos", "No se encontraron paréntesis al final de la cadena (Mientras se buscaba el simbolo).");
                 }
 
+                // Guardando moneda en BDD con los resultados anteriores y el editText
+                // Comprobamos que no se haya guardado ya esa cripto y en caso negativo, guardamos
+                if (SQLiteBD.selectMisCriptomonedasBDD(simboloObtenidoTextoSpinner) == " ") {
 
+                    // Guardamos Mis_Criptomonedas en SQLite
+                    SQLiteBD.guardarMiCriptomoneda(nombreObtenidoTextoSpinner, simboloObtenidoTextoSpinner, editTextCantidadCriptos.getText().toString());
+                    // Loggeamos que se ha guardado la criptomoneda
+                    Log.e("SQLiteMisCriptos", "Guardado en SQLite: Nombre cripto: <" + nombreObtenidoTextoSpinner + ">, simbolo: <" + simboloObtenidoTextoSpinner + ">, cantidad: <" + editTextCantidadCriptos.getText().toString() + ">");
 
+                    // Mostrar Snackbar criptomoneda guardada
+                    Snackbar snackbar = Snackbar.make(fragmentView, "Agregada criptomoneda " + seleccionSpinner + " = " + editTextNumberDecimal.getText() + " unidades", Snackbar.LENGTH_LONG);
+                    View snackBarView = snackbar.getView();
+                    /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    snackbar.show();
 
+                } else { // Si la criptomoneda se ha guardado anteriormente:
 
+                    // Mostrar Snackbar criptomoneda ya existe
+                    Snackbar snackbar = Snackbar.make(fragmentView, "No se guardó la criptomoneda " + seleccionSpinner + ". Ésta ya se ha guardado previamente. Elimina la cripto existente para guardarla de nuevo", Snackbar.LENGTH_LONG);
+                    View snackBarView = snackbar.getView();
+                    /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    snackbar.show();
 
-
-
-                // Mostrar Snackbar criptomoneda guardada
-                Snackbar snackbar = Snackbar.make(fragmentView, "Agregada criptomoneda " + seleccionSpinner + " = " + editTextNumberDecimal.getText() + " unidades", Snackbar.LENGTH_LONG);
-                View snackBarView = snackbar.getView();
-                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-                snackbar.show();
+                    Log.e("SQLiteMisCriptos", "Ya existe registro en SQLite Mis_Criptomonedas para cripto: <" + nombreObtenidoTextoSpinner + ">, simbolo: <" + simboloObtenidoTextoSpinner + ">");
+                }
 
                 dialog.dismiss();
 
