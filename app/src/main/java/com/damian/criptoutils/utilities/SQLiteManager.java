@@ -126,7 +126,7 @@ public class SQLiteManager {
 
     // Metodo para obtener todas las criptos para MisCriptos
     @SuppressLint("Range")
-    public List<MisCriptomonedas> getAllCryptos() {
+    public List<MisCriptomonedas> selectTodasMiscriptos() {
         List<MisCriptomonedas> cryptoList = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM Mis_Criptomonedas", null);
 

@@ -81,7 +81,7 @@ public class NotificationsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Obtener los datos de la base de datos
-        List<MisCriptomonedas> cryptoList = SQLiteBD.getAllCryptos();
+        List<MisCriptomonedas> cryptoList = SQLiteBD.selectTodasMiscriptos();
 
         // Configurar el adaptador
         adapter = new ListaMisCriptoAdapter(getContext(), cryptoList);
@@ -236,6 +236,13 @@ public class NotificationsFragment extends Fragment {
 
                     Log.e("SQLiteMisCriptos", "Ya existe registro en SQLite Mis_Criptomonedas para cripto: <" + nombreObtenidoTextoSpinner + ">, simbolo: <" + simboloObtenidoTextoSpinner + ">");
                 }
+
+                // Actualizamos el recylcerview de MisCriptos por si el usuario ha añadido una nueva cripto
+                // Obtener los datos actualizados de la base de datos
+                List<MisCriptomonedas> listaMisCriptoActualizada = SQLiteBD.selectTodasMiscriptos();
+
+                // Actualizar los datos en el adaptador
+                adapter.actualizarRecycler(listaMisCriptoActualizada);
 
                 dialog.dismiss();
 

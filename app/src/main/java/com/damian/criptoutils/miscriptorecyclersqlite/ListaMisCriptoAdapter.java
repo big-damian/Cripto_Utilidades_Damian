@@ -16,12 +16,12 @@ import java.util.List;
 
 public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAdapter.ItemViewHolder> {
 
-    private List<MisCriptomonedas> itemList;
+    private List<MisCriptomonedas> cryptoList;
     private Context context;
 
-    public ListaMisCriptoAdapter(Context context, List<MisCriptomonedas> itemList) {
+    public ListaMisCriptoAdapter(Context context, List<MisCriptomonedas> cryptoList) {
         this.context = context;
-        this.itemList = itemList;
+        this.cryptoList = cryptoList;
     }
 
     @NonNull
@@ -33,13 +33,13 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        MisCriptomonedas item = itemList.get(position);
+        MisCriptomonedas item = cryptoList.get(position);
         holder.nameTextView.setText(item.getName());
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return cryptoList.size();
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -50,4 +50,11 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
             nameTextView = itemView.findViewById(R.id.nombreListaMisCripto);
         }
     }
+
+    // Método para actualizar la lista de datos
+    public void actualizarRecycler(List<MisCriptomonedas> newCryptoList) {
+        this.cryptoList = newCryptoList;
+        notifyDataSetChanged(); // Notificar al adaptador que los datos han cambiado
+    }
+    
 }
