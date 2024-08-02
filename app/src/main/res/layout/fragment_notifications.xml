@@ -70,6 +70,7 @@
                 android:text="@string/texto_notifications" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerMisCriptosLista"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>

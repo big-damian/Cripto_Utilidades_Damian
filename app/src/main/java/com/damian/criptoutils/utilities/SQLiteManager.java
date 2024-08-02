@@ -7,6 +7,11 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.damian.criptoutils.miscriptorecyclersqlite.MisCriptomonedas;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLiteManager {
 
     private SQLiteGenerator SQLiteGenerator;
@@ -118,4 +123,25 @@ public class SQLiteManager {
 
         return tablaString;
     }
+
+    // Metodo para obtener todas las criptos para MisCriptos
+    @SuppressLint("Range")
+    public List<MisCriptomonedas> getAllCryptos() {
+        List<MisCriptomonedas> cryptoList = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Mis_Criptomonedas", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex("Id"));
+                String nombre = cursor.getString(cursor.getColumnIndex("Nombre"));
+                String simbolo = cursor.getString(cursor.getColumnIndex("Simbolo"));
+                String cantidad = cursor.getString(cursor.getColumnIndex("Cantidad"));
+                cryptoList.add(new MisCriptomonedas(id, nombre, simbolo, cantidad));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return cryptoList;
+    }
+
 }

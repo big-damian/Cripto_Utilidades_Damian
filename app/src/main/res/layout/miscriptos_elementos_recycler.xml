@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="0dp"
+    android:paddingVertical="0dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/fotoListaMisCripto"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="0dp"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/nombreListaMisCripto"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:text="TextView"
+                android:textSize="16.5sp" />
+
+            <TextView
+                android:id="@+id/precioListaMisCripto"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="16.5sp" />
+
+            <TextView
+                android:id="@+id/variacionPrecioListaMisCripto"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center|right"
+                android:paddingRight="15dp"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="16.5sp" />
+        </LinearLayout>
+
+
+</LinearLayout>

@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,6 +29,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.damian.criptoutils.R;
 import com.damian.criptoutils.databinding.FragmentNotificationsBinding;
+import com.damian.criptoutils.miscriptorecyclersqlite.ListaMisCriptoAdapter;
+import com.damian.criptoutils.miscriptorecyclersqlite.MisCriptomonedas;
 import com.damian.criptoutils.utilities.SQLiteManager;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -35,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NotificationsFragment extends Fragment {
 
@@ -49,6 +54,10 @@ public class NotificationsFragment extends Fragment {
 
     // Variables para SQLite
     private SQLiteManager SQLiteBD;
+
+    // Mis variables para el recycler
+    private RecyclerView recyclerView;
+    private ListaMisCriptoAdapter adapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,6 +75,19 @@ public class NotificationsFragment extends Fragment {
         // Iniciamos la BD
         SQLiteBD = new SQLiteManager(getActivity());
         SQLiteBD.open();
+
+        // Codigo para el recycler
+        recyclerView = binding.recyclerMisCriptosLista;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Obtener los datos de la base de datos
+        List<MisCriptomonedas> cryptoList = SQLiteBD.getAllCryptos();
+
+        // Configurar el adaptador
+        adapter = new ListaMisCriptoAdapter(getContext(), cryptoList);
+        recyclerView.setAdapter(adapter);
+
+//        return recyclerView;
 
         //
         // FIN DE MI CODIGO OnCreate
