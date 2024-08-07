@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
         Log.e("Home", "Bucle de actualización cada " + segundosDelay + " segundos");
         handler.postDelayed(new Runnable() {
             public void run() {
-                
-                
+
+                // TODO: Solo mostrar estos logs si estamos en la Home
                 Log.e("LlamadaAPI", "Actualizando precio cada " + segundosDelay + " segundos");
 
                 
