@@ -14,4 +14,10 @@
 .cxx
 local.properties
 
+-- Añadidos por mi ---
+-- Claves de la BDD ---
 /app/src/main/java/com/damian/criptoutils/utilities/MySQLManagerKeys.java
+
+-- Archivos EasyCode ChatGPT plugin para AndroidStudio --
+/.idea/easycode/
+/.idea/easycode.ignore

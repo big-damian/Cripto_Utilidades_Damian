@@ -31,7 +31,7 @@ public class Criptomoneda {
     private JSONArray roi;
     private String last_updated;
 
-    public String getName() {
+    public String getNombre() {
         return name;
     }
 
@@ -47,7 +47,7 @@ public class Criptomoneda {
         return String.format("%.2f", price_change_percentage_24h);
     }
 
-    public String getImage() {
+    public String getIcono() {
         return image;
     }
 }

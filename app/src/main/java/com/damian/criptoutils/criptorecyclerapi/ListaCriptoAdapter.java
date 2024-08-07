@@ -37,7 +37,7 @@ public class ListaCriptoAdapter extends RecyclerView.Adapter<ListaCriptoAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ListaCriptoAdapter.ViewHolder holder, int position) {
-        holder.nombreListaCripto.setText(cripto.get(position).getName());
+        holder.nombreListaCripto.setText(cripto.get(position).getNombre());
         holder.precioListaCripto.setText(String.valueOf(cripto.get(position).getPrecio()) + " €");
         holder.variacionPrecioListaCripto.setText(String.valueOf(cripto.get(position).getVariacionPrecio2Decis()) + " %");
         if (cripto.get(position).getVariacionPrecio() > 0) {
@@ -45,7 +45,7 @@ public class ListaCriptoAdapter extends RecyclerView.Adapter<ListaCriptoAdapter.
         } else {
             holder.variacionPrecioListaCripto.setTextColor(Color.RED);
         }
-        Glide.with(context).load(cripto.get(position).getImage()).into(holder.fotoListaCripto);
+        Glide.with(context).load(cripto.get(position).getIcono()).into(holder.fotoListaCripto);
     }
 
     @Override
