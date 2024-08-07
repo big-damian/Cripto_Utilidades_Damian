@@ -1,12 +1,14 @@
 package com.damian.criptoutils.ui.dashboard;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,13 +22,14 @@ import com.damian.criptoutils.criptorecyclerapi.ListaCriptoAdapter;
 import com.damian.criptoutils.criptorecyclerapi.LlamadaAPIListaCripto;
 import com.damian.criptoutils.criptorecyclerapi.RetrofitLlamadaAPIListaCripto;
 import com.damian.criptoutils.databinding.FragmentDashboardBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements ListaCriptoAdapter.OnItemClickListener {
 
     private FragmentDashboardBinding binding;
 
@@ -62,7 +65,9 @@ public class DashboardFragment extends Fragment {
         cargarListaCriptosRecyclerAPI();
         LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(llm);
-        listaCriptoAdapter = new ListaCriptoAdapter(criptomonedaList,getActivity());
+        listaCriptoAdapter = new ListaCriptoAdapter(criptomonedaList, getActivity());
+        // Añadimos el listener del click
+        listaCriptoAdapter.setOnItemClickListener(this); // Set the item click listener
         recyclerView.setAdapter(listaCriptoAdapter);
 
 
@@ -77,6 +82,9 @@ public class DashboardFragment extends Fragment {
     }
 
     public void cargarListaCriptosRecyclerAPI() {
+
+        // Creamos una referencia al DashboardFragment
+        DashboardFragment fragment = this;
 
         Log.e("RecyclerViewCargarListaCriptos", "Llamando a API para cargar lista de criptos");
 
@@ -101,9 +109,13 @@ public class DashboardFragment extends Fragment {
                     }
 
                     criptomonedaList = response.body();
-                    listaCriptoAdapter = new ListaCriptoAdapter(criptomonedaList,getActivity());
+                    listaCriptoAdapter = new ListaCriptoAdapter(criptomonedaList, getActivity());
                     LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(llm);
+                    // Añadimos el listener del click
+                    listaCriptoAdapter.setOnItemClickListener(fragment); // Set the item click listener
+
+                    // Cargamos adapter
                     recyclerView.setAdapter(listaCriptoAdapter);
 
 
@@ -138,4 +150,12 @@ public class DashboardFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    // Metodo para crear nueva pantalla desde el recyclerview
+    @Override
+    public void onItemClick(int position) {
+        // Codigo que ocurre al clicar sobre un elemento del RecyclerView
+        Log.e("RecyclerViewCargarListaCriptos", "Tocado recylerItem numero: " + position);
+    }
+
 }

@@ -2,6 +2,7 @@ package com.damian.criptoutils.criptorecyclerapi;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ public class ListaCriptoAdapter extends RecyclerView.Adapter<ListaCriptoAdapter.
 
     private List<Criptomoneda> cripto;
     private Context context;
+    // Variable para el clickListerner del recyclerview
+    private OnItemClickListener onItemClickListener;
 
     public ListaCriptoAdapter(List<Criptomoneda> cripto, Context context) {
         this.cripto = cripto;
@@ -46,6 +49,15 @@ public class ListaCriptoAdapter extends RecyclerView.Adapter<ListaCriptoAdapter.
             holder.variacionPrecioListaCripto.setTextColor(Color.RED);
         }
         Glide.with(context).load(cripto.get(position).getIcono()).into(holder.fotoListaCripto);
+
+        // Click evento para nueva pantalla
+        holder.itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(position);
+            }
+            else { Log.e("ListaCriptoAdapter", "onItemClickListener es null"); }
+        });
+
     }
 
     @Override
@@ -70,4 +82,15 @@ public class ListaCriptoAdapter extends RecyclerView.Adapter<ListaCriptoAdapter.
             variacionPrecioListaCripto = itemView.findViewById(R.id.variacionPrecioListaCripto);
         }
     }
+
+    // Interfaz y metodos para añadir nueva pantalla al clicar elemento
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
 }
