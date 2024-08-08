@@ -50,4 +50,8 @@ public class Criptomoneda {
     public String getIcono() {
         return image;
     }
+
+    public String getId() {
+        return id;
+    }
 }

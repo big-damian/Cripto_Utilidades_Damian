@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,10 +36,14 @@ public class DashboardFragment extends Fragment implements ListaCriptoAdapter.On
 
     private FragmentDashboardBinding binding;
 
-    // Mi variable para el Recycler
+    // Mis variable para el Recycler
     private List<Criptomoneda> criptomonedaList;
     private RecyclerView recyclerView;
     private ListaCriptoAdapter listaCriptoAdapter;
+
+    // Mis variables para el Webview detalle de criptos
+    private WebView webView;
+    private String UrlDetalleCripto = "about:blank";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +56,31 @@ public class DashboardFragment extends Fragment implements ListaCriptoAdapter.On
         ////////////////////////////////////////////////////////////////////////////////////////////
         // MI CODIGO OnCreate
         //
+
+        // Asignamos el webview
+        webView = binding.webviewDetalleCripto;
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                // Inyectar CSS personalizado
+                String customCSS = "#cdp-global-nav-wrapper,[data-module-name=Coin-stats]>div>div>div:nth-child(4),[data-module-name=Coin-stats]>div[class],div[cmc-ui-portal],div[data-role=global-header],footer{display:none!important}[data-hydration-on-demand=true] *{pointer-events:none!important}[data-module-name=Coin-stats]{display:unset!important}[data-module-name=Coin-stats]>div[class]:nth-child(2){display:revert!important}[data-module-name]{display:none}#onetrust-consent-sdk{display:none!important}li[data-index=tab-6]{display:none!important}li[data-index=tab-5]{display:none!important}div.btn-group{display:none!important}";
+                String javascript = "javascript:(function() {" +
+                        "var style = document.createElement('style');" +
+                        "style.innerHTML = '" + customCSS + "';" +
+                        "document.head.appendChild(style);" +
+                        "})()";
+
+                webView.loadUrl(javascript);
+            }
+        });
+
+        // Cargar la URL específica
+        webView.loadUrl(UrlDetalleCripto);
 
         //
         // FIN DE MI CODIGO OnCreate
@@ -153,9 +185,22 @@ public class DashboardFragment extends Fragment implements ListaCriptoAdapter.On
 
     // Metodo para crear nueva pantalla desde el recyclerview
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(String id, int position) {
         // Codigo que ocurre al clicar sobre un elemento del RecyclerView
-        Log.e("RecyclerViewCargarListaCriptos", "Tocado recylerItem numero: " + position);
+        // Loggeamos posicion clicada
+        Log.e("RecyclerViewCargarListaCriptos", "Tocado recylerItem con ID: " + id + ", numero: " + position);
+        // Cargamos URL para el detalle
+        UrlDetalleCripto = "https://coinmarketcap.com/es/currencies/" + id + "/";
+        webView.loadUrl(UrlDetalleCripto);
+        // Mostrar Layout detalle
+        LinearLayout layoutWebviewDetalleCripto = binding.layoutWebviewDetalleCripto;
+        layoutWebviewDetalleCripto.setVisibility(View.VISIBLE);
+        // Ocultar icono de NoInternet
+        LinearLayout layoutRecyclerMercado = binding.layoutRecyclerMercado;
+        layoutRecyclerMercado.setVisibility(View.GONE);
     }
+
+    // Mis metodos para el Webview detalle de criptos
+
 
 }

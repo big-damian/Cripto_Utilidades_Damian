@@ -53,7 +53,7 @@ public class ListaCriptoAdapter extends RecyclerView.Adapter<ListaCriptoAdapter.
         // Click evento para nueva pantalla
         holder.itemView.setOnClickListener(view -> {
             if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(position);
+                onItemClickListener.onItemClick(cripto.get(position).getId(), position);
             }
             else { Log.e("ListaCriptoAdapter", "onItemClickListener es null"); }
         });
@@ -85,7 +85,7 @@ public class ListaCriptoAdapter extends RecyclerView.Adapter<ListaCriptoAdapter.
 
     // Interfaz y metodos para añadir nueva pantalla al clicar elemento
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(String id, int position);
 
     }
 
