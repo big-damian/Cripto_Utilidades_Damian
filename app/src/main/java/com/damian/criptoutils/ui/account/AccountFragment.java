@@ -21,6 +21,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.widget.Toast;
 
 
+// TODO: Pensar si se pone funcionalidad de recordar la cuenta y de 'olvidé mi contraseña'
 public class AccountFragment extends Fragment {
 
     private FragmentAccountBinding binding;

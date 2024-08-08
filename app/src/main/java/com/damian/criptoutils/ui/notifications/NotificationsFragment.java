@@ -86,8 +86,9 @@ public class NotificationsFragment extends Fragment {
         // Configurar el adaptador
         adapter = new ListaMisCriptoAdapter(getContext(), cryptoList);
         recyclerView.setAdapter(adapter);
+        // TODO: Mostrar cantidad en la lista de recylcer
+        // TODO: Funcionalidad de eliminar moneda guardada
 
-//        return recyclerView;
 
         //
         // FIN DE MI CODIGO OnCreate

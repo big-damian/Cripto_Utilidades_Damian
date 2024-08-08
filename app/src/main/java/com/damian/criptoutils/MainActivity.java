@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             public void run() {
 
-                // TODO: Solo mostrar estos logs si estamos en la Home
+                // TO-DO: Solo mostrar estos logs si estamos en la Home
                 Log.e("LlamadaAPI", "Actualizando precio cada " + segundosDelay + " segundos");
 
                 
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 //                  Log.e("LlamadaAPI", "Guardando " + response.getJSONObject(moneda.toLowerCase()).getString("eur") + " en la Base de Datos");
                     Log.e("SQLite", "Guardando " + respuestaAPIParseada + " en la BD SQLite de Criptos");
 
-                    // .TODO:  ESO DE NOMBRE HABRIA QUE CAMBIARLO POR 'Bitcoin'
+                    // TODO: Eso de nombre hay que cambioarlo 'Bitcoin' y arreglarlo
                     SQLiteBD.actualizarPrecio("Nombre", respuestaAPIParseada);
 
                     Log.e("LlamadaAPI", "Guardado: '" + SQLiteBD.selectPrecioBDD("Bitcoin") + "' en la Base de Datos");
