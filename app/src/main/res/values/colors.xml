@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="verde_cripto_valor">#15c683</color>
+    <color name="rojo_cripto_valor">#ea3641</color>
 </resources>
