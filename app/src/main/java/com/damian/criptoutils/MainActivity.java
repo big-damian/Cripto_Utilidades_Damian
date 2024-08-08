@@ -451,6 +451,9 @@ public class MainActivity extends AppCompatActivity {
                 /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                 snackbar.show();
 
+                // Usamos el metodo anterior para cargar los datos en pantalla del usuario recien registrado (un poco cutre pero bué)
+                hacerLoginMySQL();
+
                 // Llevar a pagina de login
                 this.runOnUiThread(new Runnable(){
                     @Override
@@ -461,10 +464,6 @@ public class MainActivity extends AppCompatActivity {
                         accountLoggeadoLayout.setVisibility(View.VISIBLE);
                     } });
                 AccountFragment.loggeado = true;
-
-                // TODO: Que la página de login recargue los datos cuando se sale y luego entra con otra cuenta
-
-
 
             } catch (SQLException e) {
                 Log.e("MySQL", "No se pudo crear el usuario, este correo ya existe");
