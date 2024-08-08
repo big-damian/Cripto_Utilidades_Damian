@@ -58,4 +58,13 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0") // Añadir Retrofit para cargar desde API
     implementation("com.squareup.retrofit2:converter-gson:2.9.0") // Añadir Retrofit para parsear JSON desde APIs
     implementation("com.github.bumptech.glide:glide:4.12.0") // Añadir Picasso para pintar imagenes desde URL (Desde API)
+
+    // Ultima version de Glide a 08-08-2024
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    // Webpdecoder para Glide
+    implementation("com.github.zjupure:webpdecoder:2.6.4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    // Biblioteca de transformaciones de Glide https://github.com/wasabeef/glide-transformations
+    implementation("jp.wasabeef:glide-transformations:4.3.0")
+
 }
