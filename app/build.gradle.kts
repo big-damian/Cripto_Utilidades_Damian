@@ -61,7 +61,7 @@ dependencies {
 
     // Ultima version de Glide a 08-08-2024
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    // Webpdecoder para Glide
+    // WEBP decoder para Glide
     implementation("com.github.zjupure:webpdecoder:2.6.4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
     // Biblioteca de transformaciones de Glide https://github.com/wasabeef/glide-transformations
