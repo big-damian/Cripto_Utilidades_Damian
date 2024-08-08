@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
             snackbar.show();
         }
 
+        // TODO: Quitar lo de Ethereum
         llamarAPIPrecioMonedaYBD("Ethereum", true, false);
 
     }
@@ -482,12 +483,6 @@ public class MainActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                // TODO: Arreglar putos toasts
-//                Toast.makeText(getApplication(), resultadoQuery, Toast.LENGTH_SHORT).show();
-//                TextView texto_precioBitcoin = (TextView) findViewById(R.id.texto_precioBitcoin);
-//                texto_precioBitcoin.setText("BTC: " + SQLiteBD.selectPrecioBDD("Bitcoin") + " €");
-
 
             });
 

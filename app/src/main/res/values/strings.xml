@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Cripto Utilidades Damian</string>
-    <string name="title_home">Cripto Utilidades Damian</string>
+    <string name="title_home">Inicio</string>
     <string name="title_dashboard">Mercado cripto</string>
-    <string name="title_notifications">Cartera de criptomonedas</string>
+    <string name="title_notifications">Cartera de criptos</string>
     <string name="title_account">Cuenta</string>
 
     <!--Textos home-->

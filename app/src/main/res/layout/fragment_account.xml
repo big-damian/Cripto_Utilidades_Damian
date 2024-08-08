@@ -33,7 +33,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        tools:visibility="invisible">
 
         <ImageView
             android:id="@+id/foto_avatar"
@@ -209,7 +209,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/loggeado_foto_avatar"
@@ -315,12 +315,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="0"
-                        android:clickable="false"
                         android:ems="10"
                         android:hint="(Vacío)"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
                         android:text="Name Surname"
+                        android:enabled="false"
+                        android:textColor="@color/black"
                         android:textSize="15sp" />
 
                     <EditText
@@ -329,12 +330,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="0"
-                        android:clickable="false"
                         android:ems="10"
                         android:hint="(Vacío)"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
                         android:text="user_name"
+                        android:enabled="false"
+                        android:textColor="@color/black"
                         android:textSize="15sp" />
 
                     <EditText
@@ -343,11 +345,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="0"
-                        android:clickable="false"
                         android:ems="10"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
                         android:text="email@domain.com"
+                        android:enabled="false"
+                        android:textColor="@color/black"
                         android:textSize="15sp" />
 
                     <EditText
@@ -357,11 +360,12 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="30dp"
                         android:layout_weight="1"
-                        android:clickable="false"
                         android:ems="15"
                         android:inputType="textPassword"
                         android:maxLength="50"
                         android:text="Password-7"
+                        android:enabled="false"
+                        android:textColor="@color/black"
                         android:textSize="15sp" />
 
                 </LinearLayout>
@@ -417,7 +421,8 @@
             android:layout_marginHorizontal="50dp"
             android:scaleX="0.8"
             android:scaleY="0.8"
-            android:text="Cambiar mi contraseña" />
+            android:text="Cambiar mi contraseña"
+            android:visibility="gone" />
 
     </LinearLayout>
 
