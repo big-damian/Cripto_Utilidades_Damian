@@ -127,6 +127,7 @@ public class AccountFragment extends Fragment {
                     // TODO: Poner codigo de actualizar datos en BDD
 
                     // Cancelamos animación del boton Actualizar
+                    binding.loggeadoFormularioNombreCompleto.setAlpha(1f); // Asegura que el botón quede visible
                     animacionParpadeo.cancel();
                 }
 
