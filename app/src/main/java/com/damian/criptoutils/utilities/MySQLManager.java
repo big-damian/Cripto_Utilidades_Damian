@@ -32,7 +32,7 @@ public class MySQLManager {
     protected static String username = MySQLManagerKeys.username;
     protected static String password = MySQLManagerKeys.password;
 
-    public Connection ConexionMySQL() {
+    public static Connection ConexionMySQL() {
         Connection cone = null;
 
         try {

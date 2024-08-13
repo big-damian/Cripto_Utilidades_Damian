@@ -121,8 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 
                 // Creamos Snackbar para indicar que se va a actualizar el precio
                 Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Actualizando precios en línea", Snackbar.LENGTH_SHORT);
-                View snackBarView = snackbar.getView();
-                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
 
                 //Solo mostramos Snackbar si estamos en la home
                 View vistaDeFragmentoHome = findViewById(R.id.text_home); // Asignar fragment a variable
@@ -153,8 +152,7 @@ public class MainActivity extends AppCompatActivity {
     public void botonActualizarPrecioBitcoinHome(View view) {
 
         Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Actualizando precio de Bitcoin en línea...", Snackbar.LENGTH_SHORT);
-        View snackBarView = snackbar.getView();
-        /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+        /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
 
         //Solo mostramos Snackbar si estamos en la home
         View vistaDeFragmentoHome = findViewById(R.id.text_home); // Asignar fragment a variable
@@ -208,8 +206,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (snackbar == true) {
                         Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Precio actualizado, precio de " + moneda + ": " + respuestaAPIParseada + " EUR", Snackbar.LENGTH_SHORT);
-                        View snackBarView = snackbar.getView();
-                        /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                        /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
 
                         //Solo mostramos Snackbar si estamos en la home
                         View vistaDeFragmentoHome = findViewById(R.id.text_home); // Asignar fragment a variable
@@ -228,8 +225,7 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
                 Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Se produjo un error al conectar con la API, comprueba tu internet", Snackbar.LENGTH_SHORT);
-                View snackBarView = snackbar.getView();
-                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
 
                 //Solo mostramos Snackbar si estamos en la home
                 View vistaDeFragmentoHome = findViewById(R.id.text_home); // Asignar fragment a variable
@@ -300,9 +296,7 @@ public class MainActivity extends AppCompatActivity {
 
                     // Mostrar snackbar de exito en el login
                     Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Iniciada sesión exitosamente", Snackbar.LENGTH_SHORT);
-                    View snackBarView = snackbar.getView();
-                    /* Aplicar margen inferior de 50dp */
-                    snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                     snackbar.show();
 
                     this.runOnUiThread(new Runnable() {
@@ -388,9 +382,7 @@ public class MainActivity extends AppCompatActivity {
 
                     // Mostrar snackbar de fallo en el login
                     Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "No se pudo iniciar sesión, comprueba los datos introducidos", Snackbar.LENGTH_SHORT);
-                    View snackBarView = snackbar.getView();
-                    /* Aplicar margen inferior de 50dp */
-                    snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                     snackbar.show();
                 }
 
@@ -448,8 +440,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e("MySQL", "Creado usuario");
                 Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Nueva cuenta/usuario creado con éxito", Snackbar.LENGTH_SHORT);
-                View snackBarView = snackbar.getView();
-                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                 snackbar.show();
 
                 // Usamos el metodo anterior para cargar los datos en pantalla del usuario recien registrado (un poco cutre pero bué)
@@ -469,8 +460,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (SQLException e) {
                 Log.e("MySQL", "No se pudo crear el usuario, este correo ya existe");
                 Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "No se pudo crear nuevo usuario, este correo ya existe", Snackbar.LENGTH_SHORT);
-                View snackBarView = snackbar.getView();
-                /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                 snackbar.show();
                 Log.e("MySQL",Log.getStackTraceString(e));
             } catch (Exception e) {
@@ -508,6 +498,9 @@ public class MainActivity extends AppCompatActivity {
 
         AccountFragment.loggeado = false;
 
+        // Establecemos estado de edicion en false siempre que se cierre sesión
+        AccountFragment.estadoEdicion = false;
+
         this.runOnUiThread(new Runnable(){
             @Override
             public void run() {
@@ -519,9 +512,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Mostrar snackbar de exito en el logout
         Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Cerrada sesión exitosamente", Snackbar.LENGTH_LONG);
-        View snackBarView = snackbar.getView();
-        /* Aplicar margen inferior de 50dp */
-        snackBarView.setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+        /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
         snackbar.show();
 
     }

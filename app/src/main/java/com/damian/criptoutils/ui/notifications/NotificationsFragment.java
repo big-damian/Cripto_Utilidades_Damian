@@ -223,16 +223,14 @@ public class NotificationsFragment extends Fragment {
 
                     // Mostrar Snackbar criptomoneda guardada
                     Snackbar snackbar = Snackbar.make(fragmentView, "Agregada criptomoneda " + seleccionSpinner + " = " + editTextNumberDecimal.getText() + " unidades", Snackbar.LENGTH_LONG);
-                    View snackBarView = snackbar.getView();
-                    /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                     snackbar.show();
 
                 } else { // Si la criptomoneda se ha guardado anteriormente:
 
                     // Mostrar Snackbar criptomoneda ya existe
                     Snackbar snackbar = Snackbar.make(fragmentView, "No se guardó la criptomoneda " + seleccionSpinner + ". Ésta ya se ha guardado previamente. Elimina la cripto existente para guardarla de nuevo", Snackbar.LENGTH_LONG);
-                    View snackBarView = snackbar.getView();
-                    /* Aplicar margen inferior de 50dp */ snackBarView.setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                     snackbar.show();
 
                     Log.e("SQLiteMisCriptos", "Ya existe registro en SQLite Mis_Criptomonedas para cripto: <" + nombreObtenidoTextoSpinner + ">, simbolo: <" + simboloObtenidoTextoSpinner + ">");

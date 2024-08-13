@@ -117,7 +117,7 @@
                         android:ems="10"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
-                        android:text="damian@gmail.com" />
+                        android:text="damian1@gmail.com" />
 
                     <EditText
                         android:id="@+id/formulario_contra"
