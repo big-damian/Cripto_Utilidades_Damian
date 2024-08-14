@@ -1,5 +1,6 @@
 package com.damian.criptoutils;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -493,28 +494,4 @@ public class MainActivity extends AppCompatActivity {
         registrarUsuarioMySQL();
 
     }
-
-    public void botonCerrarSesion(View view) {
-
-        AccountFragment.loggeado = false;
-
-        // Establecemos estado de edicion en false siempre que se cierre sesión
-        AccountFragment.estadoEdicion = false;
-
-        this.runOnUiThread(new Runnable(){
-            @Override
-            public void run() {
-                LinearLayout accountLoggeadoLayout = (LinearLayout) findViewById(R.id.loggeado_account_layout_principal);
-                accountLoggeadoLayout.setVisibility(View.GONE);
-                LinearLayout accountLayout = (LinearLayout) findViewById(R.id.account_layout_principal);
-                accountLayout.setVisibility(View.VISIBLE);
-            } });
-
-        // Mostrar snackbar de exito en el logout
-        Snackbar snackbar = Snackbar.make(binding.layoutSnackbar, "Cerrada sesión exitosamente", Snackbar.LENGTH_LONG);
-        /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getApplication().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-        snackbar.show();
-
-    }
-
 }

@@ -28,6 +28,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 // TODO: Pensar si se pone funcionalidad de recordar la cuenta y de 'olvidé mi contraseña'
@@ -114,7 +115,6 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
 
                 if (estadoEdicion == false) {
-
                     // Activamos modo edición y loggeamos
                     estadoEdicion = true;
                     Log.e("MySQLCuentaActualizar", "Entrado en modo edición de datos de cuenta");
@@ -122,71 +122,131 @@ public class AccountFragment extends Fragment {
                     // Activamos los campos de texto para que sean editables
                     binding.loggeadoFormularioNombreCompleto.setEnabled(true);
                     binding.loggeadoFormularioNombreUsuario.setEnabled(true);
-                    // binding.loggeadoFormularioEmail.setEnabled(true); // No permitimos editar el email porque es nuestra clave unica
                     binding.loggeadoFormularioPassword.setEnabled(true);
 
-                    // Damos animacion al boton de actualizar
+                    // Damos animación al botón de actualizar
                     animacionParpadeo.start();
 
-                } else if (estadoEdicion == true) {
-
+                } else {
                     // Desactivamos modo edición y loggeamos
                     estadoEdicion = false;
                     Log.e("MySQLCuentaActualizar", "Enviando cambios de datos cuenta a BDD y cambiando a modoEdicion false");
 
-                    int resultadoActualizacionDatos = actualizarUsuarioMySQL();
+                    // Realizamos las comprobaciones necesarias y la actualización en la base de datos
+                    String nuevoNombreCompleto = binding.loggeadoFormularioNombreCompleto.getText().toString();
+                    String nuevoNombreUsuario = binding.loggeadoFormularioNombreUsuario.getText().toString();
+                    String nuevoPassword = binding.loggeadoFormularioPassword.getText().toString();
 
-                    if (resultadoActualizacionDatos == 1) {
-
-                        // Desactivamos los campos de texto para que ya no sean editables
-                        binding.loggeadoFormularioNombreCompleto.setEnabled(false);
-                        binding.loggeadoFormularioNombreUsuario.setEnabled(false);
-                        // binding.loggeadoFormularioEmail.setEnabled(true); // No permitimos editar el email porque es nuestra clave unica
-                        binding.loggeadoFormularioPassword.setEnabled(false);
-
-                        // Cancelamos animación del boton Actualizar
-                        binding.loggeadoFormularioNombreCompleto.setAlpha(1f); // Asegura que el botón quede visible
-                        animacionParpadeo.cancel();
-
-                    } else if (resultadoActualizacionDatos == 0) {
-
-                        // Dejamos estadoEdicion en true para que se vuelva a intentar
+                    if (nuevoNombreUsuario.isEmpty()) {
+                        Snackbar snackbar = Snackbar.make(getView(), "El nombre de usuario no puede estar en blanco", Snackbar.LENGTH_SHORT);
+                        snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                        snackbar.show();
                         estadoEdicion = true;
+                        return;
+                    }
 
-                        // TODO: (ARREGLAR ESTA GUARRADA) Arreglar esta parte del codigo de actualizar datos en BDD
-                        // Desactivamos los campos de texto para que ya no sean editables
-                        binding.loggeadoFormularioNombreCompleto.setEnabled(false);
-                        binding.loggeadoFormularioNombreUsuario.setEnabled(false);
-                        // binding.loggeadoFormularioEmail.setEnabled(true); // No permitimos editar el email porque es nuestra clave unica
-                        binding.loggeadoFormularioPassword.setEnabled(false);
+                    if (nuevoPassword.length() < 4) {
+                        Snackbar snackbar = Snackbar.make(getView(), "La contraseña no puede ser inferior a 4 caracteres", Snackbar.LENGTH_SHORT);
+                        snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                        snackbar.show();
+                        estadoEdicion = true;
+                        return;
+                    }
 
-                        // Cancelamos animación del boton Actualizar
-                        ObjectAnimator animacionParpadeo = ObjectAnimator.ofFloat(binding.loggeadoBotonActualizarDatos, "alpha", 1f);
-                        binding.loggeadoFormularioNombreCompleto.setAlpha(1f); // Asegura que el botón quede visible
-                        animacionParpadeo.end();
+                    // Deshabilitamos el botón para evitar múltiples clics
+                    binding.loggeadoBotonActualizarDatos.setEnabled(false);
 
-                        estadoEdicion = false;
-                        // ----------------------------------------------------------------------------------------
+                    ExecutorService executorService = Executors.newSingleThreadExecutor();
+                    executorService.execute(() -> {
+                        try {
+                            Connection cone = MySQLManager.ConexionMySQL();
 
-                    } else if (resultadoActualizacionDatos > 1) {
+                            if (cone == null) {
+                                Log.e("MySQLCuentaActualizar", "Error al conectar a MySQL");
+                                getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "No se puede conectar con la Base de datos, comprueba tu internet", Toast.LENGTH_SHORT).show());
+                            } else {
+                                Log.e("MySQLCuentaActualizar", "Conectado a MySQL para actualizar datos de usuario");
 
-                        // Desactivamos los campos de texto para que ya no sean editables
-                        binding.loggeadoFormularioNombreCompleto.setEnabled(false);
-                        binding.loggeadoFormularioNombreUsuario.setEnabled(false);
-                        // binding.loggeadoFormularioEmail.setEnabled(true); // No permitimos editar el email porque es nuestra clave unica
-                        binding.loggeadoFormularioPassword.setEnabled(false);
+                                String query = "UPDATE usuarios SET username = ?, contraseña = ?, nombre = ? WHERE email = ?";
+                                PreparedStatement statement = cone.prepareStatement(query);
+                                statement.setString(1, nuevoNombreUsuario);
+                                statement.setString(2, nuevoPassword);
+                                statement.setString(3, nuevoNombreCompleto);
+                                statement.setString(4, binding.loggeadoFormularioEmail.getText().toString());
 
-                        // Cancelamos animación del boton Actualizar
-                        binding.loggeadoFormularioNombreCompleto.setAlpha(1f); // Asegura que el botón quede visible
-                        animacionParpadeo.cancel();
+                                int filasActualizadas = statement.executeUpdate();
 
-                        // Dejamos estadoEdicion en true para que se vuelva a intentar
-                        estadoEdicion = false;
+                                getActivity().runOnUiThread(() -> {
+                                    if (filasActualizadas == 1) {
+                                        Log.e("MySQLCuentaActualizar", "Registro actualizado exitosamente");
+                                        Snackbar snackbar = Snackbar.make(getView(), "Datos actualizados exitosamente", Snackbar.LENGTH_SHORT);
+                                        snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                                        snackbar.show();
 
-                    } else { }
+                                        // Desactivamos los campos de texto para que ya no sean editables
+                                        binding.loggeadoFormularioNombreCompleto.setEnabled(false);
+                                        binding.loggeadoFormularioNombreUsuario.setEnabled(false);
+                                        binding.loggeadoFormularioPassword.setEnabled(false);
+
+                                        // Cancelamos animación del botón Actualizar
+                                        binding.loggeadoFormularioNombreCompleto.setAlpha(1f); // Asegura que el botón quede visible
+                                        animacionParpadeo.end();
+                                    } else if (filasActualizadas > 1) {
+                                        Log.e("MySQLCuentaActualizar", "MULTIPLES registros actualizados!!");
+                                        Snackbar snackbar = Snackbar.make(getView(), "Datos actualizados exitosamente (?)", Snackbar.LENGTH_SHORT);
+                                        snackbar.getView().setTranslationY(-250 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                                        snackbar.show();
+                                    } else {
+                                        Log.e("MySQLCuentaActualizar", "No se encontró el registro para actualizar");
+                                        Snackbar snackbar = Snackbar.make(getView(), "No se pudo actualizar los datos, comprueba los datos introducidos", Snackbar.LENGTH_SHORT);
+                                        snackbar.getView().setTranslationY(-250 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                                        snackbar.show();
+                                    }
+                                });
+
+                                statement.close();
+                                cone.close();
+                            }
+                        } catch (SQLException e) {
+                            Log.e("MySQLCuentaActualizar", Log.getStackTraceString(e));
+                        } finally {
+                            // Restauramos el estado del botón al finalizar la tarea
+                            getActivity().runOnUiThread(() -> binding.loggeadoBotonActualizarDatos.setEnabled(true));
+                            getActivity().runOnUiThread(() -> animacionParpadeo.end());
+                        }
+                    });
                 }
             }
         });
+
+        // Boton cerrar sesion
+        binding.loggeadoBotonCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Establecemos loggeado en false para el recordar contraseña
+                loggeado = false;
+
+                // Establecemos estado de edicion en false y reestablecemos siempre que se cierre sesión
+                estadoEdicion = false;
+                // Desactivamos los campos de texto para que ya no sean editables
+                binding.loggeadoFormularioNombreCompleto.setEnabled(false);
+                binding.loggeadoFormularioNombreUsuario.setEnabled(false);
+                binding.loggeadoFormularioPassword.setEnabled(false);
+                // Quitamos animación al botón actualizar
+                animacionParpadeo.end();
+
+                // Cambiar la visibilidad de los layouts
+                binding.loggeadoAccountLayoutPrincipal.setVisibility(View.GONE);
+                binding.accountLayoutPrincipal.setVisibility(View.VISIBLE);
+
+                // Mostrar snackbar de éxito en el logout
+                Snackbar snackbar = Snackbar.make(getView(), "Cerrada sesión exitosamente", Snackbar.LENGTH_LONG);
+                /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                snackbar.show();
+            }
+        });
+
 
         // FIN MI CODIGO
         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -203,104 +263,109 @@ public class AccountFragment extends Fragment {
         binding = null;
     }
 
-    int filasActualizadas; // Variable de clase para el metodo actualizarUsuarioMySQL()
-    public int actualizarUsuarioMySQL() {
-        filasActualizadas = 0;
+//    TODO: Borrar este codigo si ya no sirve
+//    // Variable de clase para el metodo actualizarUsuarioMySQL()
+//    int filasActualizadas;
+//    public int actualizarUsuarioMySQL() {
+//        AtomicInteger filasActualizadasAtomico = new AtomicInteger(0);
+//        filasActualizadas = 0;
+//
+//        ObjectAnimator animacionParpadeo = ObjectAnimator.ofFloat(binding.loggeadoBotonActualizarDatos, "alpha", 1f, 0.25f, 1f);
+//        animacionParpadeo.setDuration(1500); // Duración del parpadeo en milisegundos
+//        animacionParpadeo.setRepeatCount(ObjectAnimator.INFINITE); // Repetir infinitamente
+//        animacionParpadeo.setRepeatMode(ObjectAnimator.REVERSE); // Revertir la animación
+//        animacionParpadeo.start();
+//
+//        String nuevoNombreCompleto = binding.loggeadoFormularioNombreCompleto.getText().toString();
+//        String nuevoNombreUsuario = binding.loggeadoFormularioNombreUsuario.getText().toString();
+//        String nuevoPassword = binding.loggeadoFormularioPassword.getText().toString();
+//
+//        // Comprobamos que el nombre de usuario y la contraseña cumplen con los minimos
+//        if (binding.loggeadoFormularioNombreUsuario.getText().toString().equals("")) {
+//            Snackbar snackbar = Snackbar.make(getView(), "El nombre de usuario no puede estar en blanco", Snackbar.LENGTH_SHORT);
+//            /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+//            snackbar.show();
+//
+//            //filasActualizadas = 0; return filasActualizadas; // Devolvemos filasActualizadas = 0 indicando que la actualizacion no se hizo
+//        }
+//        if (binding.loggeadoFormularioPassword.getText().toString().length() < 4) {
+//            Snackbar snackbar = Snackbar.make(getView(), "La contraseña no puede ser inferior a 4 caracteres", Snackbar.LENGTH_SHORT);
+//            /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+//            snackbar.show();
+//
+//            //filasActualizadas = 0; return filasActualizadas; // Devolvemos filasafectadas = 0 indicando que la actualizacion no se hizo
+//        }
+//        if (!binding.loggeadoFormularioNombreUsuario.getText().toString().equals("") && binding.loggeadoFormularioPassword.getText().toString().length() >= 4) {
+//
+//            binding.loggeadoBotonActualizarDatos.setEnabled(false);
+//
+//            ExecutorService executorService = Executors.newSingleThreadExecutor();
+//            executorService.execute(() -> {
+//                try {
+//
+//                    Connection cone = MySQLManager.ConexionMySQL();
+//
+//                    if (cone == null) {
+//                        Log.e("MySQLCuentaActualizar", "Error al conectar a MySQL");
+//                        getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "No se puede conectar con la Base de datos, comprueba tu internet", Toast.LENGTH_SHORT).show());
+//                    } else {
+//                        Log.e("MySQLCuentaActualizar", "Conectado a MySQL");
+//                    }
+//
+//                    String query = "UPDATE usuarios SET username = ?, contraseña = ?, nombre = ? WHERE email = ?";
+//                    PreparedStatement statement = cone.prepareStatement(query);
+//                    statement.setString(1, nuevoNombreUsuario);
+//                    statement.setString(2, nuevoPassword);
+//                    statement.setString(3, nuevoNombreCompleto);
+//                    statement.setString(4, binding.loggeadoFormularioEmail.getText().toString());
+//
+//                    // Ejecutamos query update
+//                    int filasActualizadasLambda = statement.executeUpdate();
+//                    // Asignamos el filas actualizadas para devolver
+//
+//                    filasActualizadasAtomico.set(filasActualizadasLambda);
+//
+//                    if (filasActualizadasLambda == 1) {
+//                        Log.e("MySQLCuentaActualizar", "Registro actualizado exitosamente");
+//                        getActivity().runOnUiThread(() -> {
+//                            Snackbar snackbar = Snackbar.make(getView(), "Datos actualizados exitosamente", Snackbar.LENGTH_SHORT);
+//                            /* Aplicar margen inferior de 50dp */
+//                            snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+//                            snackbar.show();
+//                        });
+//                    } else if (filasActualizadasLambda > 1) {
+//                        Log.e("MySQLCuentaActualizar", "MULTIPLES registros actualizados!!");
+//                        getActivity().runOnUiThread(() -> {
+//                            Snackbar snackbar = Snackbar.make(getView(), "Datos actualizados exitosamente", Snackbar.LENGTH_SHORT);
+//                            /* Aplicar margen inferior de 250dp */
+//                            snackbar.getView().setTranslationY(-250 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+//                            snackbar.show();
+//                        });
+//                    } else {
+//                        Log.e("MySQLCuentaActualizar", "No se encontró el registro para actualizar");
+//                        getActivity().runOnUiThread(() -> {
+//                            Snackbar snackbar = Snackbar.make(getView(), "No se pudo actualizar los datos, comprueba los datos introducidos", Snackbar.LENGTH_SHORT);
+//                            /* Aplicar margen inferior de 250dp */
+//                            snackbar.getView().setTranslationY(-250 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+//                            snackbar.show();
+//                        });
+//                    }
+//
+//                    statement.close();
+//                    cone.close();
+//
+//                } catch (SQLException e) {
+//                    Log.e("MySQLCuentaActualizar", Log.getStackTraceString(e));
+//                }
+//            });
+//
+//            animacionParpadeo.end();
+//            binding.loggeadoBotonActualizarDatos.setEnabled(true);
+//
+//        }
+//
+//        return filasActualizadas;
+//
+//    }
 
-        ObjectAnimator animacionParpadeo = ObjectAnimator.ofFloat(binding.loggeadoBotonActualizarDatos, "alpha", 1f, 0.25f, 1f);
-        animacionParpadeo.setDuration(1500); // Duración del parpadeo en milisegundos
-        animacionParpadeo.setRepeatCount(ObjectAnimator.INFINITE); // Repetir infinitamente
-        animacionParpadeo.setRepeatMode(ObjectAnimator.REVERSE); // Revertir la animación
-        animacionParpadeo.start();
-
-        String nuevoNombreCompleto = binding.loggeadoFormularioNombreCompleto.getText().toString();
-        String nuevoNombreUsuario = binding.loggeadoFormularioNombreUsuario.getText().toString();
-        String nuevoPassword = binding.loggeadoFormularioPassword.getText().toString();
-
-        // Comprobamos que el nombre de usuario y la contraseña cumplen con los minimos
-        if (binding.loggeadoFormularioNombreUsuario.getText().toString().equals("")) {
-            Snackbar snackbar = Snackbar.make(getView(), "El nombre de usuario no puede estar en blanco", Snackbar.LENGTH_SHORT);
-            /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-            snackbar.show();
-
-            //filasActualizadas = 0; return filasActualizadas; // Devolvemos filasActualizadas = 0 indicando que la actualizacion no se hizo
-        }
-        if (binding.loggeadoFormularioPassword.getText().toString().length() < 4) {
-            Snackbar snackbar = Snackbar.make(getView(), "La contraseña no puede ser inferior a 4 caracteres", Snackbar.LENGTH_SHORT);
-            /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-            snackbar.show();
-
-            //filasActualizadas = 0; return filasActualizadas; // Devolvemos filasafectadas = 0 indicando que la actualizacion no se hizo
-        }
-        if (!binding.loggeadoFormularioNombreUsuario.getText().toString().equals("") && binding.loggeadoFormularioPassword.getText().toString().length() >= 4) {
-
-            binding.loggeadoBotonActualizarDatos.setEnabled(false);
-
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
-            executorService.execute(() -> {
-                try {
-
-                    Connection cone = MySQLManager.ConexionMySQL();
-
-                    if (cone == null) {
-                        Log.e("MySQLCuentaActualizar", "Error al conectar a MySQL");
-                        getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "No se puede conectar con la Base de datos, comprueba tu internet", Toast.LENGTH_SHORT).show());
-                    } else {
-                        Log.e("MySQLCuentaActualizar", "Conectado a MySQL");
-                    }
-
-                    String query = "UPDATE usuarios SET username = ?, contraseña = ?, nombre = ? WHERE email = ?";
-                    PreparedStatement statement = cone.prepareStatement(query);
-                    statement.setString(1, nuevoNombreUsuario);
-                    statement.setString(2, nuevoPassword);
-                    statement.setString(3, nuevoNombreCompleto);
-                    statement.setString(4, binding.loggeadoFormularioEmail.getText().toString());
-
-                    // Ejecutamos query update
-                    int filasActualizadasLambda = statement.executeUpdate();
-                    // Asignamos el filas actualizadas para devolver
-                    filasActualizadas = filasActualizadasLambda;
-
-                    if (filasActualizadasLambda == 1) {
-                        Log.e("MySQLCuentaActualizar", "Registro actualizado exitosamente");
-                        getActivity().runOnUiThread(() -> {
-                            Snackbar snackbar = Snackbar.make(getView(), "Datos actualizados exitosamente", Snackbar.LENGTH_SHORT);
-                            /* Aplicar margen inferior de 50dp */
-                            snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-                            snackbar.show();
-                        });
-                    } else if (filasActualizadasLambda > 1) {
-                        Log.e("MySQLCuentaActualizar", "MULTIPLES registros actualizados!!");
-                        getActivity().runOnUiThread(() -> {
-                            Snackbar snackbar = Snackbar.make(getView(), "Datos actualizados exitosamente", Snackbar.LENGTH_SHORT);
-                            /* Aplicar margen inferior de 250dp */
-                            snackbar.getView().setTranslationY(-250 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-                            snackbar.show();
-                        });
-                    } else {
-                        Log.e("MySQLCuentaActualizar", "No se encontró el registro para actualizar");
-                        getActivity().runOnUiThread(() -> {
-                            Snackbar snackbar = Snackbar.make(getView(), "No se pudo actualizar los datos, comprueba los datos introducidos", Snackbar.LENGTH_SHORT);
-                            /* Aplicar margen inferior de 250dp */
-                            snackbar.getView().setTranslationY(-250 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-                            snackbar.show();
-                        });
-                    }
-
-                    statement.close();
-                    cone.close();
-
-                } catch (SQLException e) {
-                    Log.e("MySQLCuentaActualizar", Log.getStackTraceString(e));
-                }
-            });
-
-            animacionParpadeo.end();
-            binding.loggeadoBotonActualizarDatos.setEnabled(true);
-
-        }
-
-        return filasActualizadas;
-        
-    }
 }
