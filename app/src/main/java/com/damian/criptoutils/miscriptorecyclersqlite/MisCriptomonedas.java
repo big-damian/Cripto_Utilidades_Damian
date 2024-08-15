@@ -20,4 +20,16 @@ public class MisCriptomonedas {
     public String getName() {
         return name;
     }
+
+    public String getSimbolo() {
+        return simbolo;
+    }
+
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public String getValor() {
+        return "0 €";  // TODO: Actualizar esto para que devuelva el valor de la cantidad en euros (cantidad * precio)
+    }
 }

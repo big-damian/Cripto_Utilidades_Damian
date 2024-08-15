@@ -1,5 +1,6 @@
 package com.damian.criptoutils.ui.dashboard;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -186,6 +187,13 @@ public class DashboardFragment extends Fragment implements ListaCriptoAdapter.On
     // Metodo para crear nueva pantalla desde el recyclerview
     @Override
     public void onItemClick(String id, int position) {
+
+//      TODO: OPCIONAL: Dar animacion de clic a elemento del recycler (como :hover de CSS o algo asi)
+        // Animamos el elemento para reflejar la pulsación
+//        ObjectAnimator animacion = ObjectAnimator.ofFloat(recyclerView.findViewHolderForAdapterPosition(position), "alpha", 1f, 1.1f, 1f);
+//        animacion.setDuration(500); // Duración de la animación en milisegundos
+//        animacion.start();
+
         // Codigo que ocurre al clicar sobre un elemento del RecyclerView
         // Loggeamos posicion clicada
         Log.e("RecyclerViewCargarListaCriptos", "Tocado recylerItem con ID: " + id + ", numero: " + position);

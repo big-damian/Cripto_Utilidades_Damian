@@ -25,23 +25,33 @@
 
             <TextView
                 android:id="@+id/nombreListaMisCripto"
-                android:layout_width="125dp"
+                android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:gravity="center|left"
                 android:text="TextView"
                 android:textSize="16.5sp" />
 
             <TextView
-                android:id="@+id/precioListaMisCripto"
+                android:id="@+id/cantidadListaMisCripto"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:gravity="center|left"
+                android:gravity="center|right"
                 android:layout_weight="1"
                 android:text="TextView"
                 android:textSize="16.5sp" />
 
+<!--            TODO: Añadir precio por moneda en la lista-->
+<!--            <TextView-->
+<!--                android:id="@+id/precioListaMisCripto"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:gravity="center|left"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="TextView"-->
+<!--                android:textSize="16.5sp" />-->
+
             <TextView
-                android:id="@+id/variacionPrecioListaMisCripto"
+                android:id="@+id/valorListaMisCripto"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:gravity="center|right"
