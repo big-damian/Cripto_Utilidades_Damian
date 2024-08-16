@@ -25,9 +25,10 @@
 
             <TextView
                 android:id="@+id/nombreListaMisCripto"
-                android:layout_width="150dp"
+                android:layout_width="135dp"
                 android:layout_height="match_parent"
                 android:gravity="center|left"
+                android:singleLine="true"
                 android:text="TextView"
                 android:textSize="16.5sp" />
 
@@ -35,8 +36,9 @@
                 android:id="@+id/cantidadListaMisCripto"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:gravity="center|right"
                 android:layout_weight="1"
+                android:gravity="center|right"
+                android:singleLine="true"
                 android:text="TextView"
                 android:textSize="16.5sp" />
 
@@ -52,13 +54,21 @@
 
             <TextView
                 android:id="@+id/valorListaMisCripto"
-                android:layout_width="100dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center|right"
                 android:paddingRight="15dp"
-                android:layout_weight="1"
                 android:text="TextView"
                 android:textSize="16.5sp" />
+
+            <ImageView
+                android:id="@+id/iconoBorrarMisCriptos"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingVertical="11dp"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
         </LinearLayout>
 
 
