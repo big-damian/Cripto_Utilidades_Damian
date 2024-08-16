@@ -64,11 +64,11 @@
 
             <ImageView
                 android:id="@+id/iconoBorrarMisCriptos"
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingVertical="11dp"
-                app:srcCompat="@android:drawable/ic_menu_delete" />
+                android:paddingVertical="16dp"
+                app:srcCompat="@android:drawable/ic_delete" />
         </LinearLayout>
 
 
