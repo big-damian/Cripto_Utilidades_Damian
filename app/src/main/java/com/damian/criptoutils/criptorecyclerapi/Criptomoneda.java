@@ -54,4 +54,8 @@ public class Criptomoneda {
     public String getId() {
         return id;
     }
+
+    public long getMarketCap() {
+        return market_cap;
+    }
 }

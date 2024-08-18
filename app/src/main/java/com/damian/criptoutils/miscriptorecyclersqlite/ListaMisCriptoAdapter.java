@@ -3,6 +3,7 @@ package com.damian.criptoutils.miscriptorecyclersqlite;
 import android.app.Dialog;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.damian.criptoutils.R;
 import com.damian.criptoutils.utilities.SQLiteManager;
 
+import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAdapter.ItemViewHolder> {
@@ -43,7 +45,27 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
         MisCriptomonedas item = cryptoList.get(position);
         holder.nombreTextView.setText(item.getName() + " (" + item.getSimbolo() + ")");
         holder.cantidadTextView.setText(item.getCantidad() + " " + item.getSimbolo());
-        holder.valorTextView.setText(item.getValor());
+
+        // Calculo de valor de Mis Criptos
+        // Abrir base de datos y llamar a metodo eliminar moneda por simbolo
+        SQLiteManager dbManager = new SQLiteManager(context);
+        dbManager.open();
+        // Multiplicamos la cantidad por el precio sacado de la BDD
+        try {
+            double calculoValor = Double.parseDouble( item.getCantidad() ) * Double.parseDouble( dbManager.selectPrecioBDD(item.getName()) ); // Calculo de valor con multiplicacion sacada de SQLite
+            String calculoValor2Decimales = String.format("%.2f", calculoValor);
+            holder.valorTextView.setText(calculoValor2Decimales + " €");
+        } catch (NumberFormatException e) {
+            Log.e("CalculoValorMisCriptos", "No se pudo parsear el valor del precio o de la cantidad");
+            holder.valorTextView.setText("? €");
+        }
+        //
+
+        // Use Glide para cargar los iconos
+        Glide.with(context)
+                .load(dbManager.selectIconoURL(item.getName())) // Assuming you have a method to get the image URL
+                .placeholder(R.drawable.icono_cargando) // Placeholder image
+                .into(holder.fotoListaMisCripto);
 
         holder.iconoBorrarMisCriptos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,17 +124,15 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        ImageView fotoMisCriptos;
-        ImageView letraFotoMisCriptos;
+        ImageView iconoBorrarMisCriptos;
         TextView nombreTextView;
         TextView cantidadTextView;
         TextView valorTextView;
-        ImageView iconoBorrarMisCriptos;
+        ImageView fotoListaMisCripto;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            fotoMisCriptos = itemView.findViewById(R.id.fotoListaMisCripto);
-//            letraFotoMisCriptos = itemView.findViewById(R.id.letraFotoMisCriptos);
+            fotoListaMisCripto = itemView.findViewById(R.id.fotoListaMisCripto);
             nombreTextView = itemView.findViewById(R.id.nombreListaMisCripto);
             cantidadTextView = itemView.findViewById(R.id.cantidadListaMisCripto);
             valorTextView = itemView.findViewById(R.id.valorListaMisCripto);

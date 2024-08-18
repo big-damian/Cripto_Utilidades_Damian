@@ -18,6 +18,7 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
     public static final String PRECIO = "Precio";
     public static final String MARKETCAP = "Cap_Mercado";
     public static final String DESCRIPCION = "Descripcion";
+    public static final String ICONOURL = "IconoURL";
 
     // Nombre de la BD
     static final String BD_NOMBRE = "CriptoUtilsDamian";
@@ -31,7 +32,8 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
             + NOMBRE + " TEXT UNIQUE,"
             + PRECIO + " TEXT,"
             + MARKETCAP + " TEXT,"
-            + DESCRIPCION + " TEXT)";
+            + DESCRIPCION + " TEXT,"
+            + ICONOURL + " TEXT)";
 
     // SQL para crear la tabla Mis_criptomonedas
     private static final String CRATE_TABLE_2 =

@@ -35,6 +35,16 @@ public class SQLiteManager {
         SQLiteGenerator.close();
     }
 
+    public void insert(String Nombre, String Precio, String MarketCap, String Descripcion, String iconoURL) {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(SQLiteGenerator.NOMBRE, Nombre);
+        contentValue.put(SQLiteGenerator.PRECIO, Precio);
+        contentValue.put(SQLiteGenerator.MARKETCAP, MarketCap);
+        contentValue.put(SQLiteGenerator.DESCRIPCION, Descripcion);
+        contentValue.put(SQLiteGenerator.ICONOURL, iconoURL);
+        database.insert(SQLiteGenerator.NOMBRE_TABLA1, null, contentValue);
+    }
+
     public void insert(String Nombre, String Precio, String MarketCap, String Descripcion) {
         ContentValues contentValue = new ContentValues();
         contentValue.put(SQLiteGenerator.NOMBRE, Nombre);
@@ -85,13 +95,33 @@ public class SQLiteManager {
         return i;
     }
 
-    public int actualizarPrecio(String Nombre, String Precio) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(SQLiteGenerator.PRECIO, Precio);
-        int i = database.update(SQLiteGenerator.NOMBRE_TABLA1, contentValues, (Nombre + " = " + SQLiteGenerator.NOMBRE), null);
-//        Log.e("SQLite", "Guardado " + Precio + " para " + Nombre + " en la BD SQLite de Criptos");
-//        Log.e("LlamadaAPI", "Guardado: '" + SQLiteBD.selectPrecioBDD("Bitcoin") + "' en la Base de Datos");
-        return i;
+    public void actualizarPrecioCriptomoneda(String nombre, String precio) {
+        ContentValues values = new ContentValues();
+        values.put("Precio", precio);
+
+        // Update the row in the Criptomonedas table where the name matches
+        database.update("Criptomonedas", values, "Nombre = ?", new String[]{nombre});
+    }
+
+    public void actualizarCriptomoneda(String nombre, String precio, String marketCap, String descripcion, String iconoURL) {
+        ContentValues values = new ContentValues();
+        values.put("Precio", precio);
+        values.put("Cap_Mercado", marketCap);
+        values.put("Descripcion", descripcion);
+        values.put("IconoURL", iconoURL);
+
+        // Update the row in the Criptomonedas table where the name matches
+        database.update("Criptomonedas", values, "Nombre = ?", new String[]{nombre});
+    }
+
+    public void actualizarCriptomoneda(String nombre, String precio, String marketCap, String descripcion) {
+        ContentValues values = new ContentValues();
+        values.put("Precio", precio);
+        values.put("Cap_Mercado", marketCap);
+        values.put("Descripcion", descripcion);
+
+        // Update the row in the Criptomonedas table where the name matches
+        database.update("Criptomonedas", values, "Nombre = ?", new String[]{nombre});
     }
 
     public void delete(String Nombre) {
@@ -122,6 +152,18 @@ public class SQLiteManager {
         }
 
         return tablaString;
+    }
+
+    public String selectIconoURL(String nombreCripto) {
+        String valor = "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400"; // Por defecto
+
+        Cursor cursor = database.rawQuery("SELECT IconoURL FROM Criptomonedas WHERE Nombre = ?", new String[]{nombreCripto});
+
+        if (cursor.moveToFirst()) {
+            valor = cursor.getString(0);
+        } cursor.close();
+
+        return valor;
     }
 
     // Metodo para obtener todas las criptos para MisCriptos

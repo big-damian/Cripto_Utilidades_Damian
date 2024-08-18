@@ -26,6 +26,7 @@ import com.damian.criptoutils.criptorecyclerapi.ListaCriptoAdapter;
 import com.damian.criptoutils.criptorecyclerapi.LlamadaAPIListaCripto;
 import com.damian.criptoutils.criptorecyclerapi.RetrofitLlamadaAPIListaCripto;
 import com.damian.criptoutils.databinding.FragmentDashboardBinding;
+import com.damian.criptoutils.utilities.SQLiteManager;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -41,6 +42,9 @@ public class DashboardFragment extends Fragment implements ListaCriptoAdapter.On
     private List<Criptomoneda> criptomonedaList;
     private RecyclerView recyclerView;
     private ListaCriptoAdapter listaCriptoAdapter;
+
+    // Variables para SQLite
+    private SQLiteManager SQLiteBD;
 
     // Mis variables para el Webview detalle de criptos
     private WebView webView;
@@ -128,7 +132,7 @@ public class DashboardFragment extends Fragment implements ListaCriptoAdapter.On
             public void onResponse(Call<List<Criptomoneda>> call, retrofit2.Response<List<Criptomoneda>> response) {
 
                 if (response.isSuccessful()) {
-                    Log.e("RecyclerViewCargarListaCriptos", "Respuesta recibida de API: " + response.body());
+                    Log.i("RecyclerViewCargarListaCriptos", "Respuesta recibida de API: " + response.body());
 
                     // Ocultar icono de Cargando
                     if (binding != null) {
@@ -150,6 +154,21 @@ public class DashboardFragment extends Fragment implements ListaCriptoAdapter.On
 
                     // Cargamos adapter
                     recyclerView.setAdapter(listaCriptoAdapter);
+
+                    // Guardamos info de las monedas en SQLite
+                    for (Criptomoneda cripto : criptomonedaList) {
+                        // Iniciamos la BD
+                        SQLiteBD = new SQLiteManager(getContext());
+                        SQLiteBD.open();
+                        // Si no existe registro de Precio, creamos uno nuevo
+                        if (SQLiteBD.selectPrecioBDD(cripto.getNombre()) == " ") {
+                            Log.i("SQLite", "Retrofit/RecyclerView: Creando registro SQLite para: " + cripto.getNombre() + " en BBDD");
+                            SQLiteBD.insert(cripto.getNombre(), String.valueOf(cripto.getPrecio()), String.valueOf(cripto.getMarketCap()), "Descripcion", cripto.getIcono());
+                        } else {
+                            SQLiteBD.actualizarCriptomoneda(cripto.getNombre(), String.valueOf(cripto.getPrecio()), String.valueOf(cripto.getMarketCap()), "Descripcion", cripto.getIcono());
+                            Log.i("SQLite", "Retrofit/RecyclerView: Ya existe registro en SQLite BDD para: " + cripto.getNombre());
+                        }
+                    }
 
 
                 }

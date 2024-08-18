@@ -188,11 +188,10 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.e("LlamadaAPI", "Respuesta API: Parseada: " + respuestaAPIParseada);
 
-//                  Log.e("LlamadaAPI", "Guardando " + response.getJSONObject(moneda.toLowerCase()).getString("eur") + " en la Base de Datos");
                     Log.e("SQLite", "Guardando " + respuestaAPIParseada + " en la BD SQLite de Criptos");
 
-                    // TODO: Eso de nombre hay que cambioarlo 'Bitcoin' y arreglarlo
-                    SQLiteBD.actualizarPrecio("Nombre", respuestaAPIParseada);
+                    SQLiteBD.actualizarPrecioCriptomoneda(moneda, respuestaAPIParseada);
+
 
                     Log.e("LlamadaAPI", "Guardado: '" + SQLiteBD.selectPrecioBDD("Bitcoin") + "' en la Base de Datos");
 

@@ -86,8 +86,10 @@ public class NotificationsFragment extends Fragment {
         // Configurar el adaptador
         adapter = new ListaMisCriptoAdapter(getContext(), cryptoList);
         recyclerView.setAdapter(adapter);
-        // TODO: Mostrar cantidad en la lista de recylcer
-        // TODO: Funcionalidad de eliminar moneda guardada
+
+        if (adapter.getItemCount() == 0) {
+
+        }
 
 
         //
@@ -170,6 +172,7 @@ public class NotificationsFragment extends Fragment {
                 spinnerListaCriptos.setAdapter(adapter);
                 // Desactivar boton guardar monedas
                 botonDialogoAgregarTusCriptos.setActivated(false);
+//                botonDialogoAgregarTusCriptos.setEnabled(false);
                 botonDialogoAgregarTusCriptos.setBackgroundColor(Color.RED);
                 botonDialogoAgregarTusCriptos.setClickable(false);
             }
