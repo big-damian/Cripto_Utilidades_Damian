@@ -88,7 +88,9 @@ public class NotificationsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         if (adapter.getItemCount() == 0) {
-
+            binding.layoutNoMisCriptosGuardadas.setVisibility(View.VISIBLE);
+        } else {
+            binding.layoutNoMisCriptosGuardadas.setVisibility(View.GONE);
         }
 
 
@@ -245,6 +247,11 @@ public class NotificationsFragment extends Fragment {
 
                 // Actualizar los datos en el adaptador
                 adapter.actualizarRecycler(listaMisCriptoActualizada);
+                if (adapter.getItemCount() == 0) {
+                    binding.layoutNoMisCriptosGuardadas.setVisibility(View.VISIBLE);
+                } else {
+                    binding.layoutNoMisCriptosGuardadas.setVisibility(View.GONE);
+                }
 
                 dialog.dismiss();
 

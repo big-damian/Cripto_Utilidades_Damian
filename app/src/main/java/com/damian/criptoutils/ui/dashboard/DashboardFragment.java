@@ -217,7 +217,8 @@ public class DashboardFragment extends Fragment implements ListaCriptoAdapter.On
         // Loggeamos posicion clicada
         Log.e("RecyclerViewCargarListaCriptos", "Tocado recylerItem con ID: " + id + ", numero: " + position);
         // Cargamos URL para el detalle
-        UrlDetalleCripto = "https://coinmarketcap.com/es/currencies/" + id + "/";
+        corregirURLsDetalleCripto(id);
+//        UrlDetalleCripto = "https://coinmarketcap.com/es/currencies/" + id + "/";
         webView.loadUrl(UrlDetalleCripto);
         // Mostrar Layout detalle
         LinearLayout layoutWebviewDetalleCripto = binding.layoutWebviewDetalleCripto;
@@ -230,4 +231,20 @@ public class DashboardFragment extends Fragment implements ListaCriptoAdapter.On
     // Mis metodos para el Webview detalle de criptos
 
 
+    private void corregirURLsDetalleCripto(String id) {
+        if (id.equals("binancecoin")) {
+            UrlDetalleCripto = "https://coinmarketcap.com/es/currencies/" + "bnb" + "/";
+        } else if (id.equals("staked-ether")) {
+            UrlDetalleCripto = "https://coinmarketcap.com/es/currencies/" + "steth" + "/";
+        } else if (id.equals("the-open-network")) {
+            UrlDetalleCripto = "https://coinmarketcap.com/es/currencies/" + "toncoin" + "/";
+        } else if (id.equals("wrapped-steth")) {
+            UrlDetalleCripto = "https://coinmarketcap.com/es/currencies/" + "lido-finance-wsteth" + "/";
+        } else if (id.equals("leo-token")) {
+            UrlDetalleCripto = "https://coinmarketcap.com/es/currencies/" + "unus-sed-leo" + "/";
+        }
+        else {
+            UrlDetalleCripto = "https://coinmarketcap.com/es/currencies/" + id + "/";
+        }
+    }
 }

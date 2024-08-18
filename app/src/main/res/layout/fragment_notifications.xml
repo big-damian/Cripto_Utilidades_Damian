@@ -74,6 +74,33 @@
                 android:id="@+id/recyclerMisCriptosLista"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/layoutNoMisCriptosGuardadas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/textoNoMisCriptosGuardadas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="85dp"
+                    android:gravity="center"
+                    android:text="Aún no has añadido\nninguna criptomoneda!"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textoNoMisCriptosGuardadas2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Añade alguna usando\nel botón añadir"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
