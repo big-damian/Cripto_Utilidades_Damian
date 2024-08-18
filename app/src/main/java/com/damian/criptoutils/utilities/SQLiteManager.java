@@ -144,4 +144,9 @@ public class SQLiteManager {
         return cryptoList;
     }
 
+    // Metodo borrar MisCriptomonedas por simbolo
+    public void deleteMisCriptomoneda(String simbolo) {
+        database.delete(SQLiteGenerator.NOMBRE_TABLA2, "Simbolo = ?", new String[]{simbolo});
+    }
+
 }

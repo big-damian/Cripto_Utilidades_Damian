@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.damian.criptoutils.R;
+import com.damian.criptoutils.utilities.SQLiteManager;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
         holder.iconoBorrarMisCriptos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                showDialog(item.getSimbolo());
             }
         });
     }
@@ -64,7 +65,7 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
         notifyDataSetChanged(); // Notificar al adaptador que los datos han cambiado
     }
 
-    private void showDialog() {
+    private void showDialog(String simbolo) {
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_delete_miscripto);
 
@@ -83,6 +84,16 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
             @Override
             public void onClick(View v) {
                 Toast.makeText(v.getContext(), "Dialogo eliminar criptos", Toast.LENGTH_SHORT).show();
+
+                // Abrir base de datos y llamar a metodo eliminar moneda por simbolo
+                SQLiteManager dbManager = new SQLiteManager(context);
+                dbManager.open();
+                dbManager.deleteMisCriptomoneda(simbolo);
+                dialog.dismiss();
+                // Update the RecyclerView
+                List<MisCriptomonedas> updatedList = dbManager.selectTodasMiscriptos();
+                actualizarRecycler(updatedList);
+
                 dialog.dismiss();
             }
         });
@@ -91,6 +102,8 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
+        ImageView fotoMisCriptos;
+        ImageView letraFotoMisCriptos;
         TextView nombreTextView;
         TextView cantidadTextView;
         TextView valorTextView;
@@ -98,6 +111,8 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
+            fotoMisCriptos = itemView.findViewById(R.id.fotoListaMisCripto);
+//            letraFotoMisCriptos = itemView.findViewById(R.id.letraFotoMisCriptos);
             nombreTextView = itemView.findViewById(R.id.nombreListaMisCripto);
             cantidadTextView = itemView.findViewById(R.id.cantidadListaMisCripto);
             valorTextView = itemView.findViewById(R.id.valorListaMisCripto);
