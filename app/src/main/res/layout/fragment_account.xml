@@ -33,7 +33,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="invisible">
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/foto_avatar"
@@ -115,9 +115,9 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="0"
                         android:ems="10"
+                        android:hint="Escribe tu email aquí"
                         android:inputType="textEmailAddress"
-                        android:maxLength="100"
-                        android:text="damian1@gmail.com" />
+                        android:maxLength="100" />
 
                     <EditText
                         android:id="@+id/formulario_contra"
@@ -126,9 +126,9 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:ems="15"
+                        android:hint="Escribe tu contraseña aquí"
                         android:inputType="textPassword"
-                        android:maxLength="50"
-                        android:text="damian" />
+                        android:maxLength="50" />
 
                 </LinearLayout>
 
@@ -193,7 +193,8 @@
             android:layout_marginHorizontal="50dp"
             android:scaleX="0.8"
             android:scaleY="0.8"
-            android:text="Olvidé mi contraseña" />
+            android:text="Olvidé mi contraseña"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -209,7 +210,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <ImageView
             android:id="@+id/loggeado_foto_avatar"
@@ -316,11 +317,11 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="0"
                         android:ems="10"
+                        android:enabled="false"
                         android:hint="(Vacío)"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
                         android:text="Name Surname"
-                        android:enabled="false"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -331,11 +332,11 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="0"
                         android:ems="10"
+                        android:enabled="false"
                         android:hint="(Vacío)"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
                         android:text="user_name"
-                        android:enabled="false"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -346,10 +347,10 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="0"
                         android:ems="10"
+                        android:enabled="false"
                         android:inputType="textEmailAddress"
                         android:maxLength="100"
                         android:text="email@domain.com"
-                        android:enabled="false"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -361,10 +362,10 @@
                         android:layout_marginTop="30dp"
                         android:layout_weight="1"
                         android:ems="15"
+                        android:enabled="false"
                         android:inputType="textPassword"
                         android:maxLength="50"
                         android:text="Password-7"
-                        android:enabled="false"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 

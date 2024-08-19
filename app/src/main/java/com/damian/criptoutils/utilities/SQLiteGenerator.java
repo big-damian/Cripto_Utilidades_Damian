@@ -11,6 +11,7 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
     // Nombre de las tablas
     public static final String NOMBRE_TABLA1 = "Criptomonedas";
     public static final String NOMBRE_TABLA2 = "Mis_Criptomonedas";
+    public static final String NOMBRE_TABLA3 = "Recordar_Usuario";
 
     // Columnas de la tabla 1
     public static final String ID = "Id";
@@ -28,7 +29,7 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
 
     // SQL para crear la tabla Criptomonedas
     private static final String CRATE_TABLE_1 = "CREATE TABLE " + NOMBRE_TABLA1 + " ("
-            + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ID + " INTEGER, "
             + NOMBRE + " TEXT UNIQUE,"
             + PRECIO + " TEXT,"
             + MARKETCAP + " TEXT,"
@@ -45,6 +46,14 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
                     + "Euros TEXT,"
                     + "Descripcion TEXT)";
 
+    // SQL para crear la tabla Recordar_Usuario
+    private static final String CRATE_TABLE_3 =
+            "CREATE TABLE " + NOMBRE_TABLA3 + " ("
+                    + "Id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + "Email TEXT UNIQUE,"
+                    + "Contraseña TEXT UNIQUE,"
+                    + "Switch_Activo TEXT UNIQUE)";
+
     // --- Metodos SQLite ---
 
     public SQLiteGenerator(Context context) {
@@ -55,12 +64,14 @@ public class SQLiteGenerator extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CRATE_TABLE_1);
         db.execSQL(CRATE_TABLE_2);
+        db.execSQL(CRATE_TABLE_3);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + NOMBRE_TABLA1);
         db.execSQL("DROP TABLE IF EXISTS " + NOMBRE_TABLA2);
+        db.execSQL("DROP TABLE IF EXISTS " + NOMBRE_TABLA3);
         onCreate(db);
     }
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.damian.criptoutils.miscriptorecyclersqlite.MisCriptomonedas;
 
@@ -191,4 +192,63 @@ public class SQLiteManager {
         database.delete(SQLiteGenerator.NOMBRE_TABLA2, "Simbolo = ?", new String[]{simbolo});
     }
 
+    // Recordar usuario
+    public void recordarUsuarioBDD(String Email, String Contraseña) {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put("Id", "1");
+        contentValue.put("Email", Email);
+        contentValue.put("Contraseña", Contraseña);
+        contentValue.put("Switch_Activo", "true");
+        database.insert(SQLiteGenerator.NOMBRE_TABLA3, null, contentValue);
+    }
+
+    // Olvidar usuario
+    public void olvidarUsuarioBDD() {
+//        database.delete(SQLiteGenerator.NOMBRE_TABLA3, "Email = ?", new String[]{"*"});
+        try {
+            // Borra todos los registros de la tabla
+            database.delete(SQLiteGenerator.NOMBRE_TABLA3, null, null);
+        } catch (Exception e) {
+            Log.e("SQLite", "Error eliminando registros usuario recordadado: " + Log.getStackTraceString(e));
+        }
+    }
+
+    // Comprobar si usuario guardado
+    public String comprobarUsarioRecordado() {
+        String valor = "false"; // Por defecto
+
+        Cursor cursor = database.rawQuery("SELECT Switch_Activo FROM " + SQLiteGenerator.NOMBRE_TABLA3, null, null);
+
+        if (cursor.moveToFirst()) {
+            valor = cursor.getString(0);
+        } cursor.close();
+
+        return valor;
+    }
+
+    // Recuperar email usuario guardado
+    public String recuperarEmailRecordado() {
+        String valor = ""; // Por defecto
+
+        Cursor cursor = database.rawQuery("SELECT Email FROM " + SQLiteGenerator.NOMBRE_TABLA3, null, null);
+
+        if (cursor.moveToFirst()) {
+            valor = cursor.getString(0);
+        } cursor.close();
+
+        return valor;
+    }
+
+    // Recuperar contraseña usuario guardado
+    public String recuperarContraseñaRecordado() {
+        String valor = ""; // Por defecto
+
+        Cursor cursor = database.rawQuery("SELECT Contraseña FROM " + SQLiteGenerator.NOMBRE_TABLA3, null, null);
+
+        if (cursor.moveToFirst()) {
+            valor = cursor.getString(0);
+        } cursor.close();
+
+        return valor;
+    }
 }

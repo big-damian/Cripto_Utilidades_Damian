@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.damian.criptoutils.databinding.FragmentAccountBinding;
+import com.damian.criptoutils.utilities.SQLiteManager;
 import com.google.android.material.snackbar.Snackbar;
 
 // MIS IMPORTS
@@ -30,10 +31,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
-// TODO: Pensar si se pone funcionalidad de recordar la cuenta y de 'olvidé mi contraseña'
 public class AccountFragment extends Fragment {
 
     private FragmentAccountBinding binding;
@@ -70,6 +69,21 @@ public class AccountFragment extends Fragment {
             binding.loggeadoAccountLayoutPrincipal.setVisibility(View.GONE);
         }
 
+        // Comprobar si usuario recordado y cargar desde BDD
+        // Abrir base de datos y comprobar si guardado usuario
+        SQLiteManager dbManager = new SQLiteManager(getContext());
+        dbManager.open();
+        if (dbManager.comprobarUsarioRecordado().equals("true")) {
+            Log.e("Login", "Usario recordado, cargando en campos");
+            binding.formularioEmail.setText(dbManager.recuperarEmailRecordado());
+            binding.formularioContra.setText(dbManager.recuperarContraseñaRecordado());
+            binding.switchRecordarContra.setChecked(true);
+        } else {
+            Log.e("Login", "No hay usuario recordado");
+            binding.formularioEmail.setText("");
+            binding.formularioContra.setText("");
+        }
+
 
         // Escuchador para mostrar/ocultar contraseña
         binding.switchMostrarContra.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -99,6 +113,24 @@ public class AccountFragment extends Fragment {
                 } else {
                     binding.loggeadoFormularioPassword.setTransformationMethod(new PasswordTransformationMethod());
                     Log.e("Login", "Se vuelve a ocultar la contraseña");
+                }
+            }
+        });
+
+        // Escuchador para recordar contraseña
+        binding.switchRecordarContra.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // on below line we are checking
+                // if switch is checked or not.
+                if (isChecked) {
+                    // Llamar a metodo guardar usuario
+                    dbManager.recordarUsuarioBDD(binding.formularioEmail.getText().toString(), binding.formularioContra.getText().toString());
+                    Log.e("Login", "Se guarda email y contraseña");
+                } else {
+                    // Llamar a metodo eliminar usuarios guardados
+                    dbManager.olvidarUsuarioBDD();
+                    Log.e("Login", "Se borra email y contraseña");
                 }
             }
         });

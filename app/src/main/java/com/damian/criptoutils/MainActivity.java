@@ -2,6 +2,7 @@ package com.damian.criptoutils;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 // MIS IMPORTS
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -29,6 +31,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 import org.json.JSONException;
+import org.w3c.dom.Text;
+
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -161,8 +165,18 @@ public class MainActivity extends AppCompatActivity {
             snackbar.show();
         }
 
-        // TODO: Quitar lo de Ethereum
-        llamarAPIPrecioMonedaYBD("Ethereum", true, false);
+        llamarAPIPrecioMonedaYBD("Bitcoin", true, false);
+
+        // Ponemos nuevo precio de Bitcoin en la pantalla
+        if (SQLiteBD.selectPrecioBDD("Bitcoin") == " ") {
+            Log.e("SQLite", "Creando registro para Bitcoin en BBDD");
+            SQLiteBD.insert("Bitcoin", "Precio desconocido", "MarketCap desconocido", getString(R.string.descripcion_bitcoin));
+        } else {
+            Log.e("SQLite", "Ya existe registro en BBDD para Bitcoin");
+        }
+        TextView texto_precioBitcoin = (TextView) findViewById(R.id.texto_precioBitcoin);
+        texto_precioBitcoin.setText("BTC: " + SQLiteBD.selectPrecioBDD("Bitcoin") + " €");
+
 
     }
 
@@ -485,12 +499,46 @@ public class MainActivity extends AppCompatActivity {
         MySQLManager = new MySQLManager();
         hacerLoginMySQL();
 
+        // Si recordar usuario está activo, guardamos de nuevo
+        SQLiteManager dbManager = new SQLiteManager(this);
+        dbManager.open();
+        Switch switch_recordarContra = findViewById(R.id.switch_recordarContra);
+        TextView formulario_email = findViewById(R.id.formulario_email);
+        TextView formulario_contra = findViewById(R.id.formulario_contra);
+        if (switch_recordarContra.isChecked()) {
+            // Llamar a metodo guardar usuario
+            dbManager.olvidarUsuarioBDD();
+            dbManager.recordarUsuarioBDD(formulario_email.getText().toString(), formulario_contra.getText().toString());
+            Log.e("Login", "Se guarda email y contraseña");
+        } else {
+            // Llamar a metodo eliminar usuarios guardados
+            dbManager.olvidarUsuarioBDD();
+            Log.e("Login", "Se borra email y contraseña");
+        }
+
     }
 
     public void botonRegistrarUsuario(View view) {
 
         MySQLManager = new MySQLManager();
         registrarUsuarioMySQL();
+
+        // Si recordar usuario está activo, guardamos de nuevo
+        SQLiteManager dbManager = new SQLiteManager(this);
+        dbManager.open();
+        Switch switch_recordarContra = findViewById(R.id.switch_recordarContra);
+        TextView formulario_email = findViewById(R.id.formulario_email);
+        TextView formulario_contra = findViewById(R.id.formulario_contra);
+        if (switch_recordarContra.isChecked()) {
+            // Llamar a metodo guardar usuario
+            dbManager.olvidarUsuarioBDD();
+            dbManager.recordarUsuarioBDD(formulario_email.getText().toString(), formulario_contra.getText().toString());
+            Log.e("Login", "Se guarda email y contraseña");
+        } else {
+            // Llamar a metodo eliminar usuarios guardados
+            dbManager.olvidarUsuarioBDD();
+            Log.e("Login", "Se borra email y contraseña");
+        }
 
     }
 }
