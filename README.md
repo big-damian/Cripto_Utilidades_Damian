@@ -1,5 +1,5 @@
 <p align="center">
-  {{ This README.md is uncompleted, work in progress }}
+  - This README.md is uncompleted, work in progress -
 </p>
 
 <p align="center">
@@ -8,24 +8,24 @@
 
 <div align="center">
 
-![app-stability-strong](https://img.shields.io/badge/app-stability-strong-green.svg)
+![App_stability-strong](https://img.shields.io/badge/App_stability-strong-green.svg)
 
 </div>
 
 # Cripto Utilidades Damian, a crypto Android application for my TFG (Bachelor´s Degree Final Project)
 
-Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s Degree Final Project (TFG). It has the capability
+Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s Degree Final Project (TFG). It provides users with a list of up-to-date cryptocurrencies and basic data using the CoinGecko API, along with detailed information based on the CoinMarketCap website. Users can add cryptocurrencies from the updated CoinGecko list to their wallet to track their value in euros. Additionally, you can log in to your account and update your user information.
 
-## Libraries Used 
+## Libraries Used
 
-  * [Data Binding][1] - Declaratively bind observable data to UI elements.
-  * [ViewModel][2] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
-  * [SQLiteOpenHelper][3] - Access your app's SQLite database.
-  * [MySQL (java.sql -> DriverManager)][4] - To connect to remote MySQL database for login
-     asynchronous tasks for optimal execution.
-  * [Volley][5] for making HTTP requests
-  * [Glide][6] for image loading
-  * [Retrofit][7] for dynamic loading a recyclerview from api (combined with Glide for images)
+* [Data Binding] - Declaratively bind observable data to UI elements.
+* [ViewModel] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
+* [SQLiteOpenHelper] - Access your app's SQLite database.
+* [MySQL (java.sql -> DriverManager)] - To connect to remote MySQL database for login
+  asynchronous tasks for optimal execution.
+* [Volley] for making HTTP requests
+* [Glide] for image loading
+* [Retrofit] for dynamic loading a recyclerview from api (combined with Glide for images)
 
 ## User Stories
 
