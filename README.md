@@ -41,7 +41,7 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 
 |                 Home screen                  |                                                 Crypto List + Detail Screen                                                  | Wallet/Tracking screen | Account screen |
 |:--------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------:| :-: | :-: |
-| ![Home screen](./README/screenshots/Home_screenshot.png) | ![Crypto List](./README/screenshots/Market_screenshot.png)![Detail Screen](./README/screenshots/Market_detail_screenshot.png) | ![Wallet/Tracking screen](./README/screenshots/Wallet_screenshot.png) | ![Account screen](./README/screenshots/Login_Signup_screenshot.png) |
+| <img width="200" src="./README/screenshots/Home_screenshot.png"> | ![Crypto List](./README/screenshots/Market_screenshot.png)![Detail Screen](./README/screenshots/Market_detail_screenshot.png) | ![Wallet/Tracking screen](./README/screenshots/Wallet_screenshot.png) | ![Account screen](./README/screenshots/Login_Signup_screenshot.png) |
 
 ### User Registration
 
