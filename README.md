@@ -9,6 +9,7 @@
 <div align="center">
 
 ![App_stability-strong](https://img.shields.io/badge/App_stability-strong-green.svg)
+![Language_used-Java](https://img.shields.io/badge/Language_used-Java-orange.svg)
 
 </div>
 
@@ -48,6 +49,6 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 * [Volley] for making HTTP requests
 * [Glide] for image loading
 * [Retrofit] for dynamic loading a recyclerview from api (combined with Glide for images)
-* 
+
 ## Useful links and resources
 - [Example link](https://github.com/big-damian/Cripto_Utilidades_Damian)
