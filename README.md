@@ -39,15 +39,15 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 
 ### Screenshots
 
-|                 Home screen                  |                                                 Crypto List + Detail Screen                                                  | Wallet/Tracking screen |                             Account screen                             |
-|:--------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------:| :-: |:----------------------------------------------------------------------:|
-| <img width="200" src="./README/screenshots/Home_screenshot.png"> | <img width="200" src="./README/screenshots/Market_screenshot.png"><img width="200" src="./README/screenshots/Market_detail_screenshot.png"> | <img width="200" src="./README/screenshots/Wallet_screenshot.png"> | <img width="200" src="./README/screenshots/Login_Signup_screenshot.png"> |
+|                           Home screen                            |                    Market screen (Crypto List)                     |                      Wallet/Tracking screen                        |                             Account screen                               |
+|:----------------------------------------------------------------:|:------------------------------------------------------------------:|:------------------------------------------------------------------:|:------------------------------------------------------------------------:|
+| <img width="250" src="./README/screenshots/Home_screenshot.png"> | <img width="250" src="./README/screenshots/Market_screenshot.png"> | <img width="250" src="./README/screenshots/Wallet_screenshot.png"> | <img width="250" src="./README/screenshots/Login_Signup_screenshot.png"> |
 
 ### User Registration
 
-|                 Log in + sign in                 |                         Logged in                          |
-|:------------------------------------------------:|:----------------------------------------------------------:|
-| <img width="200" src="./README/screenshots/Login_Signup_screenshot.png"> | <img width="200" src="./README/screenshots/Loggedin_screenshot.png">  |
+|                             Log in + sign in                             |                              Logged in                               |
+|:------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
+| <img width="250" src="./README/screenshots/Login_Signup_screenshot.png"> | <img width="250" src="./README/screenshots/Loggedin_screenshot.png"> |
 
 ## Useful links and resources
 - [Example link](https://github.com/big-damian/Cripto_Utilidades_Damian)
