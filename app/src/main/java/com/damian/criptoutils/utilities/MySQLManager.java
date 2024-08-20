@@ -44,6 +44,7 @@ public class MySQLManager {
 
         } catch(Exception e) {
 //            throw new Exception(e);
+            Log.e("MySQL", "No se pudo realizar la conexión a MySQL");
             Log.e("MySQL", Objects.requireNonNull(e.getMessage()));
         }
 

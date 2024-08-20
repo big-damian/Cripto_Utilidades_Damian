@@ -108,7 +108,7 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
         botonDialogoEliminarTusCriptos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Dialogo eliminar criptos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "Registro de Criptomoneda eliminado con éxito", Toast.LENGTH_SHORT).show();
 
                 // Abrir base de datos y llamar a metodo eliminar moneda por simbolo
                 SQLiteManager dbManager = new SQLiteManager(context);

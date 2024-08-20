@@ -1,6 +1,10 @@
 package com.damian.criptoutils.ui.notifications;
 
+import static com.damian.criptoutils.ui.account.AccountFragment.loggeado;
+
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -31,6 +35,7 @@ import com.damian.criptoutils.R;
 import com.damian.criptoutils.databinding.FragmentNotificationsBinding;
 import com.damian.criptoutils.miscriptorecyclersqlite.ListaMisCriptoAdapter;
 import com.damian.criptoutils.miscriptorecyclersqlite.MisCriptomonedas;
+import com.damian.criptoutils.utilities.MySQLManager;
 import com.damian.criptoutils.utilities.SQLiteManager;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -38,8 +43,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class NotificationsFragment extends Fragment {
 
@@ -54,6 +64,9 @@ public class NotificationsFragment extends Fragment {
 
     // Variables para SQLite
     private SQLiteManager SQLiteBD;
+
+    // Variable para cargar/guardar criptos en cuenta del usuario
+    public static String loggeadoEmail;
 
     // Mis variables para el recycler
     private RecyclerView recyclerView;
@@ -108,6 +121,33 @@ public class NotificationsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         view.findViewById(R.id.botonAnadir).setOnClickListener(v -> showDialog(view));
+
+        // Boton guardar mis criptos en la nube
+        binding.botonGuardarMisCriptoNube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (loggeado) {
+                    guardarMisCriptoNube();
+                } else {
+                    Snackbar snackbar = Snackbar.make(getView(), "Inicia sesión en tu cuenta para poder guardar tus criptomonedas", Snackbar.LENGTH_LONG);
+                    /* Aplicar margen inferior de 125dp */ snackbar.getView().setTranslationY(-125 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    snackbar.show();
+                }
+            }
+        });
+        // Boton cargar mis criptos de la nube
+        binding.botonCargarMisCriptoNube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (loggeado) {
+                    cargarMisCriptoNube();
+                } else {
+                    Snackbar snackbar = Snackbar.make(getView(), "Inicia sesión en tu cuenta para poder cargar tus criptomonedas", Snackbar.LENGTH_LONG);
+                    /* Aplicar margen inferior de 125dp */ snackbar.getView().setTranslationY(-125 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    snackbar.show();
+                }
+            }
+        });
     }
 
     // Hecho con este video: https://www.youtube.com/watch?v=L1wVdGRnGEg (y la ayuda de chatGPT para que deje asignar el adapter al spinner)
@@ -228,14 +268,14 @@ public class NotificationsFragment extends Fragment {
 
                     // Mostrar Snackbar criptomoneda guardada
                     Snackbar snackbar = Snackbar.make(fragmentView, "Agregada criptomoneda " + seleccionSpinner + " = " + editTextNumberDecimal.getText() + " unidades", Snackbar.LENGTH_LONG);
-                    /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    /* Aplicar margen inferior de 125dp */ snackbar.getView().setTranslationY(-125 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                     snackbar.show();
 
                 } else { // Si la criptomoneda se ha guardado anteriormente:
 
                     // Mostrar Snackbar criptomoneda ya existe
                     Snackbar snackbar = Snackbar.make(fragmentView, "No se guardó la criptomoneda " + seleccionSpinner + ". Ésta ya se ha guardado previamente. Elimina la cripto existente para guardarla de nuevo", Snackbar.LENGTH_LONG);
-                    /* Aplicar margen inferior de 50dp */ snackbar.getView().setTranslationY(-50 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    /* Aplicar margen inferior de 125dp */ snackbar.getView().setTranslationY(-125 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
                     snackbar.show();
 
                     Log.e("SQLiteMisCriptos", "Ya existe registro en SQLite Mis_Criptomonedas para cripto: <" + nombreObtenidoTextoSpinner + ">, simbolo: <" + simboloObtenidoTextoSpinner + ">");
@@ -271,5 +311,113 @@ public class NotificationsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    // Guardar mis criptos en la nube
+    private void guardarMisCriptoNube() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(() -> {
+            // Primero eliminamos todos los registros de la cuenta
+            try {
+                Connection cone = MySQLManager.ConexionMySQL();
+                PreparedStatement preparedStatement = cone.prepareStatement("DELETE FROM criptomonedas_usuarios WHERE email_usuario = ?");
+                preparedStatement.setString(1, loggeadoEmail);
+                int rowsAffected = preparedStatement.executeUpdate();
+                cone.close();
+                Log.e("eliminarTodasMisCriptosNube", "Eliminadas " + rowsAffected + " registros de la cuenta: " + loggeadoEmail);
+            } catch (Exception e) {
+                Log.e("eliminarTodasMisCriptosNube", "No se pudieron eliminar los registros de la cuenta: " + loggeadoEmail + ": " + Log.getStackTraceString(e));
+            }
+            // Creamos cursor para SQLite y bucle para los multiples registros
+            Cursor cursor = SQLiteBD.rawQuery("SELECT * FROM Mis_Criptomonedas", null);
+            if (cursor.moveToFirst()) {
+                        do {
+                            // Seleccionamos los registros de SQLite
+                            @SuppressLint("Range") String nombre = cursor.getString(cursor.getColumnIndex("Nombre"));
+                            @SuppressLint("Range") String simbolo = cursor.getString(cursor.getColumnIndex("Simbolo"));
+                            @SuppressLint("Range") String cantidad = cursor.getString(cursor.getColumnIndex("Cantidad"));
+                            Log.e("guardarMisCriptoNube", "Recuperadas de SQLite mis criptos para MySQL");
+
+                            // Mandamos los registros a MySQL
+                            try {
+                                Connection cone = MySQLManager.ConexionMySQL();
+                                PreparedStatement preparedStatement = cone.prepareStatement("INSERT INTO criptomonedas_usuarios (email_usuario, nombre_cripto, simbolo_cripto, cantidad_cripto) VALUES (?, ?, ?, ?)");
+                                preparedStatement.setString(1, loggeadoEmail);
+                                preparedStatement.setString(2, nombre);
+                                preparedStatement.setString(3, simbolo);
+                                preparedStatement.setString(4, cantidad);
+                                preparedStatement.executeUpdate();
+                                preparedStatement.close();
+                                cone.close();
+                                Log.e("guardarMisCriptoNube", "Guardadas mis criptos a MySQL");
+
+                                // Mostramos snackbar de exito
+                                Snackbar snackbar = Snackbar.make(getView(), "Tu criptomoneda " + nombre + " se ha guardado en la nube exitosamente!", Snackbar.LENGTH_LONG);
+                                /* Aplicar margen inferior de 125dp */ snackbar.getView().setTranslationY(-125 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                                snackbar.show();
+
+                            } catch (Exception e) {
+                                Log.e("guardarMisCriptoNube", "Error enviando mis criptos a MySQL: " + Log.getStackTraceString(e));
+                            }
+
+                        } while (cursor.moveToNext());
+                    }
+            cursor.close();
+        });
+
+    }
+
+    private void cargarMisCriptoNube() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(() -> {
+            // Primero cogemos los registros de la cuenta en MySQL
+            try {
+                Connection cone = MySQLManager.ConexionMySQL();
+                PreparedStatement preparedStatement = cone.prepareStatement("SELECT nombre_cripto, simbolo_cripto, cantidad_cripto FROM criptomonedas_usuarios WHERE email_usuario = ?");
+                preparedStatement.setString(1, loggeadoEmail);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                Log.e("cargarMisCriptoNube", "Registros obtenidos de MySQL con éxito");
+
+                // Insertamos los registros en SQLite
+                try {
+                    // Eliminamos todos los registros de SQLite
+                    SQLiteBD.deleteTodasMisCriptomonedas();
+                    while (resultSet.next()) {
+                        String nombre = resultSet.getString("nombre_cripto");
+                        String simbolo = resultSet.getString("simbolo_cripto");
+                        String cantidad = resultSet.getString("cantidad_cripto");
+
+                        SQLiteBD.guardarMiCriptomoneda(nombre, simbolo, cantidad);
+                    }
+                    Log.e("cargarMisCriptoNube", "Registros guardados con éxito en SQLite");
+
+                    // Mostramos snackbar de exito
+                    Snackbar snackbar = Snackbar.make(getView(), "Tus criptomonedas se han cargado desde la nube correctamente!", Snackbar.LENGTH_LONG);
+                    /* Aplicar margen inferior de 125dp */ snackbar.getView().setTranslationY(-125 * ((float) getActivity().getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+                    snackbar.show();
+
+                } catch (Exception e) {
+                    Log.e("cargarMisCriptoNube", "Error guardando los registros en SQLite: " + Log.getStackTraceString(e));
+                }
+                resultSet.close();
+                preparedStatement.close();
+                cone.close();
+            } catch (Exception e) {
+                Log.e("cargarMisCriptoNube", "cargarMisCriptoNube error: " + Log.getStackTraceString(e));
+            }
+        });
+        try {
+            Thread.sleep(500);
+            // Actualizamos el recyclerView para que muestre los cambios
+            List<MisCriptomonedas> listaMisCriptoActualizada = SQLiteBD.selectTodasMiscriptos();
+            adapter.actualizarRecycler(listaMisCriptoActualizada);
+            if (adapter.getItemCount() == 0) {
+                binding.layoutNoMisCriptosGuardadas.setVisibility(View.VISIBLE);
+            } else {
+                binding.layoutNoMisCriptosGuardadas.setVisibility(View.GONE);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

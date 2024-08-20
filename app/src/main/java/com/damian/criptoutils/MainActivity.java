@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.damian.criptoutils.databinding.ActivityMainBinding;
+import com.damian.criptoutils.ui.notifications.NotificationsFragment;
 import com.damian.criptoutils.utilities.CalculadoraFecha;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -320,6 +321,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                     AccountFragment.loggeado = true;
+
+                    // Establecemos el nombre de usuario en variable estatica para cargar en nube
+                    NotificationsFragment.loggeadoEmail = email;
 
                     // Cargando elementos del perfil a la pantalla
                     // Nombre completo

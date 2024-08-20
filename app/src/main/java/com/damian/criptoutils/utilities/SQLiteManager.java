@@ -192,6 +192,11 @@ public class SQLiteManager {
         database.delete(SQLiteGenerator.NOMBRE_TABLA2, "Simbolo = ?", new String[]{simbolo});
     }
 
+    // Metodo borrar todas MisCriptomonedas
+    public void deleteTodasMisCriptomonedas() {
+        database.delete(SQLiteGenerator.NOMBRE_TABLA2, null, null);
+    }
+
     // Recordar usuario
     public void recordarUsuarioBDD(String Email, String Contraseña) {
         ContentValues contentValue = new ContentValues();
@@ -250,5 +255,10 @@ public class SQLiteManager {
         } cursor.close();
 
         return valor;
+    }
+
+    public Cursor rawQuery(String query, Object o) {
+        Cursor cursor = database.rawQuery("SELECT * FROM Mis_Criptomonedas", null);
+        return cursor;
     }
 }

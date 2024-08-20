@@ -124,7 +124,6 @@
             android:layout_marginHorizontal="5dp"
             android:layout_marginVertical="5dp"
             android:layout_weight="1"
-            android:onClick="guardarMisCriptoNube"
             android:text="Guardar mis criptos en mi cuenta" />
 
         <Button
@@ -134,7 +133,6 @@
             android:layout_marginHorizontal="5dp"
             android:layout_marginVertical="5dp"
             android:layout_weight="1"
-            android:onClick="cargarMisCriptoNube"
             android:text="Cargar criptos de mi cuenta" />
     </LinearLayout>
 
