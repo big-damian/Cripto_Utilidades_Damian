@@ -21,12 +21,16 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 
 ## User Stories
 
-- [x] The user can see the list of cryptocurrencies from the CoinGecko API and see some basic information.
-- [x] Progressively load more list items (and their icon) by scrolling down the list.
+- [x] The user can see the list of cryptocurrencies from the CoinGecko API and see some basic information (using a RecyclerView).
+- [x] Progressively load more list items (and their icon) by scrolling down the list (Using dynamic loading through API and image load with Glide).
 - [x] The user can see updated info about the cryptocurrencies through a WebView connected to CoinMarketCap(https://coinmarketcap.com/).
-- [x] The user can save his own crypto into a wallet to track their value.
-- [x] The user can log into his account, create a new one and edit some basic user data once he has logged in.
-- [x] The user can backup his crypto to his account through the cloud and restore them.
+- [x] The user can save his own crypto into a wallet to track their value (Using SQLite).
+- [x] The user can log into his account, create a new one and edit some basic user data once he has logged in (Using a online MySQL database).
+- [x] The user can backup his crypto to his account through the cloud and restore them (Using SQLite and MySQL databases).
+- [x] User's email and password will be remembered in the login screen if "remember password is selected" (SQLite).
+- [x] The user can see how many days are left until first of September (TFG delivery date) in the home screen.
+- [ ] The user can see 3 crypto currencies in the home screen.
+- [ ] The user can stay logged in if "remember password is selected".
 
 ### Screenshots
 
