@@ -10,5 +10,5 @@
     <dimen name="dp32">32dp</dimen>
     <dimen name="dp36">36dp</dimen>
     <dimen name="dp200">200dp</dimen>
-
+    <dimen name="dp350">350dp</dimen>
 </resources>

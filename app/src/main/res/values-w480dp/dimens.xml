@@ -6,4 +6,5 @@
     <dimen name="dp32">30dp</dimen>
     <dimen name="dp36">34dp</dimen>
     <dimen name="dp200">175dp</dimen>
+    <dimen name="dp350">300dp</dimen>
 </resources>
