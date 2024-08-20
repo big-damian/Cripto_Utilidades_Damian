@@ -8,7 +8,7 @@
 
 <div align="center">
 
-![stability-strong](https://img.shields.io/badge/stability-strong-green.svg)
+![app-stability-strong](https://img.shields.io/badge/app-stability-strong-green.svg)
 
 </div>
 
