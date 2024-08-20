@@ -8,8 +8,7 @@
 
 <div align="center">
 
-<img alt="Static Badge" src="https://img.shields.io/badge/Stability%3A%20Basic">
-![stability-basic](https://img.shields.io/badge/stability-basic-green.svg)
+![stability-basic](https://img.shields.io/badge/stability-basic-lightgrey.svg)
 
 </div>
 
