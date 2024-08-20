@@ -1,5 +1,5 @@
 <p align="center">
-  - This README.md is uncompleted, work in progress -
+  - This readme is uncompleted, work in progress -
 </p>
 
 <p align="center">
@@ -21,11 +21,11 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 
 ## User Stories
 
-- [ ] The user can see the list of cryptocurrencies from the CoinGecko API and see some basic information.
-- [ ] Progressively load more list items (and their icon) by scrolling down the list.
-- [ ] The user can see updated info about the cryptocurrencies through a WebView connected to CoinMarketCap(https://coinmarketcap.com/).
-- [ ] The user can save his own crypto into a wallet to track their value.
-- [ ] The user can log into his account, create a new one and edit some basic user data once he has logged in.
+- [x] The user can see the list of cryptocurrencies from the CoinGecko API and see some basic information.
+- [x] Progressively load more list items (and their icon) by scrolling down the list.
+- [x] The user can see updated info about the cryptocurrencies through a WebView connected to CoinMarketCap(https://coinmarketcap.com/).
+- [x] The user can save his own crypto into a wallet to track their value.
+- [x] The user can log into his account, create a new one and edit some basic user data once he has logged in.
 
 ### Screenshots
 
