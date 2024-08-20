@@ -35,11 +35,9 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 
 ### User Registration
 
-<div align="center">
   |                             Log in + sign in                             |                              Logged in                               |
   |:------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
   | <img width="250" src="./README/screenshots/Login_Signup_screenshot.png"> | <img width="250" src="./README/screenshots/Loggedin_screenshot.png"> |
-</div>
 
 ## Libraries Used
 
