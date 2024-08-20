@@ -1,7 +1,9 @@
-{This README.md is uncompleted (work in progress)}
+<p align="center">
+  {{ This README.md is uncompleted, work in progress }}
+</p>
 
 <p align="center">
-  <img src=".app/src/main/res/drawable/damian_bitcoin_utils_icono_v2_cutre_redondo.png" alt="Cripto_Utilidades_Damian" width="90" />
+  <img src="./app/src/main/res/drawable/damian_bitcoin_utils_icono_v2_cutre_redondo.png" alt="Cripto_Utilidades_Damian" width="90" />
 </p>
 
 <div align="center">
@@ -40,13 +42,13 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 
 | Home screen  | Crypto List + Detail Screen | Wallet/Tracking screen | Account screen |
 | :-: | :-: | :-: | :-: |
-| ![Home screen](icono_cargando.png) | ![Crypto List + Detail Screen](icono_cargando.png) | ![Wallet/Tracking screen](icono_cargando.png) | ![Account screen](icono_cargando.png) |
+| ![Home screen](./app/src/main/res/drawable/icono_cargando.png) | ![Crypto List + Detail Screen](./app/src/main/res/drawable/icono_cargando.png) | ![Wallet/Tracking screen](./app/src/main/res/drawable/icono_cargando.png) | ![Account screen](./app/src/main/res/drawable/icono_cargando.png) |
 
 ### User Registration
 
 | Log in + sign in  | Logged in |
 | :-: | :-: |
-| ![Log in + sign in](icono_cargando.png) | ![Logged in](icono_cargando.png)  |
+| ![Log in + sign in](./app/src/main/res/drawable/icono_cargando.png) | ![Logged in](./app/src/main/res/drawable/icono_cargando.png)  |
 
 ## Useful links and resources
 - [Example](https://www.google.com/)

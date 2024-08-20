@@ -1,8 +1,6 @@
 package com.damian.criptoutils;
 
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +29,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 import org.json.JSONException;
-import org.w3c.dom.Text;
 
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.snackbar.Snackbar;
