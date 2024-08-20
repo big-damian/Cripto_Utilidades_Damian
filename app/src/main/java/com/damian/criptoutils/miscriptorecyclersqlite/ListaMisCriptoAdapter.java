@@ -43,7 +43,10 @@ public class ListaMisCriptoAdapter extends RecyclerView.Adapter<ListaMisCriptoAd
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         MisCriptomonedas item = cryptoList.get(position);
-        holder.nombreTextView.setText(item.getName() + " (" + item.getSimbolo() + ")");
+
+        // Ponemos solo nombre
+//        holder.nombreTextView.setText(item.getName() + " (" + item.getSimbolo() + ")");
+        holder.nombreTextView.setText(item.getName());
         holder.cantidadTextView.setText(item.getCantidad() + " " + item.getSimbolo());
 
         // Calculo de valor de Mis Criptos

@@ -39,15 +39,15 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 
 ### Screenshots
 
-| Home screen  | Crypto List + Detail Screen | Wallet/Tracking screen | Account screen |
-| :-: | :-: | :-: | :-: |
-| ![Home screen](./app/src/main/res/drawable/icono_cargando.png) | ![Crypto List + Detail Screen](./app/src/main/res/drawable/icono_cargando.png) | ![Wallet/Tracking screen](./app/src/main/res/drawable/icono_cargando.png) | ![Account screen](./app/src/main/res/drawable/icono_cargando.png) |
+|                 Home screen                  |                                                 Crypto List + Detail Screen                                                  | Wallet/Tracking screen | Account screen |
+|:--------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------:| :-: | :-: |
+| ![Home screen](./README/screenshots/Home_screenshot.png) | ![Crypto List](./README/screenshots/Market_screenshot.png)![Detail Screen](./README/screenshots/Market_detail_screenshot.png) | ![Wallet/Tracking screen](./README/screenshots/Wallet_screenshot.png) | ![Account screen](./README/screenshots/Login_Signup_screenshot.png) |
 
 ### User Registration
 
-| Log in + sign in  | Logged in |
-| :-: | :-: |
-| ![Log in + sign in](./app/src/main/res/drawable/icono_cargando.png) | ![Logged in](./app/src/main/res/drawable/icono_cargando.png)  |
+|                 Log in + sign in                 | Logged in |
+|:------------------------------------------------:| :-: |
+| ![Log in + sign in](./README/screenshots/Login_Signup_screenshot.png) | ![Logged in](./README/screenshots/Loggedin_screenshot.png)  |
 
 ## Useful links and resources
-- [Example](https://www.google.com/)
+- [Example link](https://github.com/big-damian/Cripto_Utilidades_Damian)

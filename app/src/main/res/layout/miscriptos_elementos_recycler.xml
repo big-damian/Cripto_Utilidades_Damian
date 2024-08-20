@@ -25,7 +25,7 @@
 
             <TextView
                 android:id="@+id/nombreListaMisCripto"
-                android:layout_width="115dp"
+                android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:gravity="center|left"
                 android:singleLine="true"
@@ -34,7 +34,7 @@
 
             <TextView
                 android:id="@+id/cantidadListaMisCripto"
-                android:layout_width="35dp"
+                android:layout_width="75dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center|right"
@@ -54,7 +54,7 @@
 
             <TextView
                 android:id="@+id/valorListaMisCripto"
-                android:layout_width="85dp"
+                android:layout_width="75dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center|right"
