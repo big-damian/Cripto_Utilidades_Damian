@@ -3,12 +3,12 @@
 </p>
 
 <p align="center">
-  <img src="./app/src/main/res/drawable/damian_bitcoin_utils_icono_v2_cutre_redondo.png" alt="Cripto_Utilidades_Damian" width="90" />
+  <img src="./app/src/main/res/drawable/damian_bitcoin_utils_icono_v2_cutre_redondo.png" alt="Cripto_Utilidades_Damian" width="110" />
 </p>
 
 <div align="center">
 
-![stability-basic](https://img.shields.io/badge/stability-basic-lightgrey.svg)
+![stability-strong](https://img.shields.io/badge/stability-strong-green.svg)
 
 </div>
 
