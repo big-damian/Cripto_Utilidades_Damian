@@ -42,7 +42,7 @@
                 android:text="TextView"
                 android:textSize="15.5sp" />
 
-<!--            TODO: Añadir precio por moneda en la lista-->
+<!--            TODO: OPCIONAL: Añadir precio por moneda en la lista-->
 <!--            <TextView-->
 <!--                android:id="@+id/precioListaMisCripto"-->
 <!--                android:layout_width="50dp"-->

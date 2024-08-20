@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="gone" >
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/textoNoMisCriptosGuardadas"
@@ -103,6 +103,39 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/botonGuardarMisCriptoNube"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="1"
+            android:onClick="guardarMisCriptoNube"
+            android:text="Guardar mis criptos en mi cuenta" />
+
+        <Button
+            android:id="@+id/botonCargarMisCriptoNube"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="1"
+            android:onClick="cargarMisCriptoNube"
+            android:text="Cargar criptos de mi cuenta" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
