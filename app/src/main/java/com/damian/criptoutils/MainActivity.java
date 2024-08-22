@@ -11,7 +11,14 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.damian.criptoutils.criptorecyclerapi.Criptomoneda;
+import com.damian.criptoutils.criptorecyclerapi.ListaCriptoAdapter;
+import com.damian.criptoutils.criptorecyclerapi.LlamadaAPIListaCripto;
+import com.damian.criptoutils.criptorecyclerapi.RetrofitLlamadaAPIListaCripto;
 import com.damian.criptoutils.databinding.ActivityMainBinding;
+import com.damian.criptoutils.ui.dashboard.DashboardFragment;
 import com.damian.criptoutils.ui.notifications.NotificationsFragment;
 import com.damian.criptoutils.utilities.CalculadoraFecha;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -45,8 +52,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -56,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     // MIS VARIABLES
     private SQLiteManager SQLiteBD;
-    int segundosDelay = 15; // Segundos tras los cuales actualizar
+    int segundosDelay = 30; // Segundos tras los cuales actualizar los precios
 
     // FIN MIS VARIABLES
 
@@ -132,9 +143,12 @@ public class MainActivity extends AppCompatActivity {
                     snackbar.show();
                 }
 
-                llamarAPIPrecioMonedaYBD("Bitcoin", true, false);
+                // Actualizamos precio de las monedas para el resto de la aplicación
+                llamarARetrofitYGuardarBDD();
+                // Actualizamos Bitcoin
+                // llamarAPIPrecioMonedaYBD("Bitcoin", true, false);
 
-                handler.postDelayed(this, delay * segundosDelay); //Repetir cada 30 segundos (delay * 30)
+                handler.postDelayed(this, delay * segundosDelay); //Repetir cada X segundos (delay * segundosDelay)
             }
         }, delay);
 
@@ -541,5 +555,50 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Login", "Se borra email y contraseña");
         }
 
+    }
+
+    public void llamarARetrofitYGuardarBDD() {
+
+        Log.e("llamarARetrofitYGuardarBDD", "Llamando a API para cargar lista de criptos");
+
+        Call<List<Criptomoneda>> call = RetrofitLlamadaAPIListaCripto.getClient().create(LlamadaAPIListaCripto.class).getCriptos();
+
+        call.enqueue(new Callback<List<Criptomoneda>>() {
+            @Override
+            public void onResponse(Call<List<Criptomoneda>> call, retrofit2.Response<List<Criptomoneda>> response) {
+
+                if (response.isSuccessful()) {
+                    Log.i("llamarARetrofitYGuardarBDD", "Respuesta recibida de API: " + response.body());
+
+                    // Guardamos info de las monedas en SQLite
+                    for (Criptomoneda cripto : response.body()) {
+                        // Iniciamos la BD
+                        SQLiteBD = new SQLiteManager(getApplication());
+                        SQLiteBD.open();
+                        // Si no existe registro de Precio, creamos uno nuevo
+                        if (SQLiteBD.selectPrecioBDD(cripto.getNombre()) == " ") {
+                            Log.i("SQLite", "Retrofit: Creando registro SQLite para: " + cripto.getNombre() + " en BBDD");
+                            SQLiteBD.insert(cripto.getNombre(), String.valueOf(cripto.getPrecio()), String.valueOf(cripto.getMarketCap()), "Descripcion", cripto.getIcono());
+                        } else {
+                            SQLiteBD.actualizarCriptomoneda(cripto.getNombre(), String.valueOf(cripto.getPrecio()), String.valueOf(cripto.getMarketCap()), "Descripcion", cripto.getIcono());
+                            Log.i("SQLite", "Retrofit: Ya existe registro en SQLite BDD para: " + cripto.getNombre());
+                        }
+                    }
+
+
+                }
+                else {
+                    Log.e("llamarARetrofitYGuardarBDD", "Error de conexión o de obtención de respuesta de la API metodo (onResponse > else)");
+                    Log.e("llamarARetrofitYGuardarBDD", "Respuesta recibida de API: " + response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Criptomoneda>> call, Throwable t) {
+                Log.e("llamarARetrofitYGuardarBDD", "Error de conexión o de obtención de respuesta de la API metodo (OnFailure)");
+                Log.e("llamarARetrofitYGuardarBDD", t.toString());
+
+            }
+        });
     }
 }

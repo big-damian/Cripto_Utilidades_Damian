@@ -407,7 +407,7 @@ public class NotificationsFragment extends Fragment {
             }
         });
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
             // Actualizamos el recyclerView para que muestre los cambios
             List<MisCriptomonedas> listaMisCriptoActualizada = SQLiteBD.selectTodasMiscriptos();
             adapter.actualizarRecycler(listaMisCriptoActualizada);
