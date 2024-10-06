@@ -31,6 +31,7 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 - [x] The user can see how many days are left until first of September (TFG delivery date) in the home screen.
 - [ ] The user can see 3 crypto currencies in the home screen.
 - [ ] The user can stay logged in if "remember password is selected".
+- [ ] The user can search crypto in the crypto list.
 
 ### Screenshots
 
