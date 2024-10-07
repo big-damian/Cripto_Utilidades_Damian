@@ -1,0 +1,78 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0" version="24.7.17">
+  <diagram name="Página-1" id="PtJz3wcRh21MPcSnk7ER">
+    <mxGraphModel dx="1386" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="R7zxrOuo9rmSERXDZEom-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Times New Roman;fontSize=14;" edge="1" parent="1" source="R7zxrOuo9rmSERXDZEom-1" target="R7zxrOuo9rmSERXDZEom-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=14;" edge="1" parent="1" source="R7zxrOuo9rmSERXDZEom-1" target="R7zxrOuo9rmSERXDZEom-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Times New Roman;fontSize=14;" edge="1" parent="1" source="R7zxrOuo9rmSERXDZEom-1" target="R7zxrOuo9rmSERXDZEom-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=13;" edge="1" parent="1" source="R7zxrOuo9rmSERXDZEom-1" target="R7zxrOuo9rmSERXDZEom-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-1" value="Inicio" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-2" value="Pantalla de inicio" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Times New Roman;fontSize=14;" edge="1" parent="1" source="R7zxrOuo9rmSERXDZEom-4" target="R7zxrOuo9rmSERXDZEom-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-4" value="Mercado de criptos" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="260" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Times New Roman;fontSize=13;" edge="1" parent="1" source="R7zxrOuo9rmSERXDZEom-5" target="R7zxrOuo9rmSERXDZEom-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=13;" edge="1" parent="1" source="R7zxrOuo9rmSERXDZEom-5" target="R7zxrOuo9rmSERXDZEom-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="565" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-5" value="Cartera de criptomonedas" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="460" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Times New Roman;fontSize=14;" edge="1" parent="1" source="R7zxrOuo9rmSERXDZEom-6" target="R7zxrOuo9rmSERXDZEom-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-6" value="Cuenta" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="640" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-10" value="Detalle de criptomoneda seleccionada" style="whiteSpace=wrap;html=1;rounded=1;fontFamily=Times New Roman;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="260" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-15" value="Dialago para&lt;div style=&quot;font-size: 13px;&quot;&gt;añadir&lt;/div&gt;&lt;div style=&quot;font-size: 13px;&quot;&gt;criptomonedas&lt;/div&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;fontFamily=Times New Roman;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="380" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Times New Roman;fontSize=14;" edge="1" parent="1" source="R7zxrOuo9rmSERXDZEom-17" target="R7zxrOuo9rmSERXDZEom-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-17" value="Registrarse/Iniciar sesión" style="whiteSpace=wrap;html=1;rounded=1;fontFamily=Times New Roman;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="640" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-21" value="Dialago para&lt;div style=&quot;font-size: 13px;&quot;&gt;eliminar criptomonedas&lt;/div&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;fontFamily=Times New Roman;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="540" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-22" value="Pantalla datos de usuario (sesión iniciada)" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="640" y="620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-24" value="&lt;span style=&quot;font-weight: normal; font-size: 18px;&quot;&gt;*&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=18;fontStyle=1;verticalAlign=middle;align=center;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="480" y="370" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-25" value="&lt;span style=&quot;font-weight: normal; font-size: 18px;&quot;&gt;*&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=18;fontStyle=1;verticalAlign=middle;align=center;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="640" y="370" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="R7zxrOuo9rmSERXDZEom-26" value="&lt;span style=&quot;font-weight: normal; font-size: 17px;&quot;&gt;&lt;font style=&quot;font-size: 17px;&quot; face=&quot;Times New Roman&quot;&gt;* Los bloques hexagonales indican que no se trata de pantallas completas sino cuadros de dialogo&lt;/font&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=17;fontStyle=1;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="80" y="700" width="680" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
