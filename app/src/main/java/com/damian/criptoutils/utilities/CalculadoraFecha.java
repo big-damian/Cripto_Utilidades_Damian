@@ -6,8 +6,8 @@ import java.time.temporal.ChronoUnit;
 public class CalculadoraFecha {
 
     private int Año = 2024;
-    private int Mes = 9;
-    private int Dia = 1;
+    private int Mes = 12;
+    private int Dia = 11;
 
     public void DevolverTiempoConsola() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {

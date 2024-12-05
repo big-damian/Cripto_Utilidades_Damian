@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.damian.criptoutils.MainActivity;
 import com.damian.criptoutils.databinding.FragmentAccountBinding;
 import com.damian.criptoutils.utilities.SQLiteManager;
 import com.google.android.material.snackbar.Snackbar;
@@ -78,6 +79,10 @@ public class AccountFragment extends Fragment {
             binding.formularioEmail.setText(dbManager.recuperarEmailRecordado());
             binding.formularioContra.setText(dbManager.recuperarContraseñaRecordado());
             binding.switchRecordarContra.setChecked(true);
+
+            // Si el usuario tiene los datos guardados inciamos sesion directamente
+            ((MainActivity)getActivity()).hacerLoginMySQL();
+
         } else {
             Log.e("Login", "No hay usuario recordado");
             binding.formularioEmail.setText("");

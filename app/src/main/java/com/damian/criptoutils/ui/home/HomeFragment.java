@@ -22,6 +22,7 @@ import com.bumptech.glide.module.AppGlideModule;
 
 import com.damian.criptoutils.R;
 import com.damian.criptoutils.databinding.FragmentHomeBinding;
+import com.damian.criptoutils.utilities.CalculadoraFecha;
 import com.damian.criptoutils.utilities.SQLiteManager;
 
 
@@ -45,6 +46,11 @@ public class HomeFragment extends Fragment {
         ////////////////////////////////////////////////////////////////////////////////////////////
         // MI CODIGO
         //
+
+        // Establecer dias que quedan hasta entrega
+        TextView text_diasQuedan = binding.textDiasQuedan;
+        CalculadoraFecha CalculadoraFecha = new CalculadoraFecha();
+        text_diasQuedan.setText(CalculadoraFecha.DevolverTiempoTexto());
 
 
         // Iniciamos la BD
