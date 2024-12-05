@@ -186,6 +186,24 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18px"
+            android:gravity="center_horizontal"
+            android:text="Aviso de Privacidad"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="38px"
+            android:gravity="center_horizontal"
+            android:text="Recopilamos tus datos para ofrecerte los servicios de la aplicación. Al registrarte, aceptas que tratemos tus datos personales conforme a nuestra política de privacidad. Puedes consultar y ejercer tus derechos de acceso, rectificación, cancelación y oposición en cualquier momento. Para más detalles, consulta nuestra Política de Privacidad."
+            android:textSize="13sp" />
+
         <Button
             android:id="@+id/boton_olvideContra"
             android:layout_width="match_parent"
