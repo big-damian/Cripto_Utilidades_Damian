@@ -6,6 +6,8 @@
 
 ![App_stability-strong](https://img.shields.io/badge/App_stability-strong-green.svg)
 ![Language_used-Java](https://img.shields.io/badge/Language_used-Java-orange.svg)
+![Version](https://img.shields.io/github/v/release/big-damian/Cripto_Utilidades_Damian)
+![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)
 
 </div>
 
