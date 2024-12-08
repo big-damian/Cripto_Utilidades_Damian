@@ -14,6 +14,12 @@
 # Cripto Utilidades Damian, a crypto Android application for my TFG (Bachelor´s Degree Final Project)
 
 Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s Degree Final Project (TFG). It provides users with a list of up-to-date cryptocurrencies and basic data using the [CoinGecko API](https://docs.coingecko.com/reference/introduction), along with detailed information based on the [CoinMarketCap website](https://coinmarketcap.com/). Users can add cryptocurrencies from the updated CoinGecko list to their wallet to track their value in euros. Additionally, you can log in to your account and update your user information.
+<br>
+
+<p align="center">
+  <img src="./README/images/others/Report_cover.jpg" alt="Report cover (Spanish)" style="width: 40%; height: auto text-align: center;" />
+  [View full report PDF](./Damian Peña Marin Trabajo de Final de Grado DAM 2.pdf)
+</p>
 
 ## App Details
 
