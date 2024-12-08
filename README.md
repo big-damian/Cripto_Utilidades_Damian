@@ -17,7 +17,7 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 <br>
 
 <p align="center">
-  <img src="./README/images/others/Report_cover.jpg" alt="Report cover (Spanish)" style="width: 40%; height: auto text-align: center;" />
+  <img src="./README/images/others/Report_cover.jpg" alt="Report cover (Spanish)" style="width: 28%; height: auto text-align: center;" />
 </p>
 <p align="center">
   <a href="./Damian Peña Marin Trabajo de Final de Grado DAM 2.pdf" target="_blank">View full report PDF (spanish)</a>
