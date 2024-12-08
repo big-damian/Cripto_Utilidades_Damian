@@ -49,9 +49,7 @@ Gantt chart of the project planning:
 
 ## Screen flow diagram (spanish)
 
-<div style="text-align: center;">
-  <img src="./README/images/diagrams/Diagrama pantallas aplicación.drawio.jpg" alt="Screen flow diagram (Spanish)" style="width: 65%; height: auto;" />
-</div>
+<img src="./README/images/diagrams/Diagrama pantallas aplicación.drawio.jpg" alt="Screen flow diagram (Spanish)" style="width: 65%; height: auto text-align: center;" />
 
 ## Database data structure
 
@@ -101,7 +99,7 @@ These are some of the main resources and API's I used to make this project possi
 ## Copyright and license
 
 **Copyright © 2024 Damián Peña-Marín Samaniego.**<br>
-This work is licensed under a **Creative Commons**:<br>
+This work is licensed under a **Creative Commons License**:<br>
 **Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**<br>
 <br>
 <img width="125" src="./README/images/others/CC BY-NC-SA 4.0.png">
