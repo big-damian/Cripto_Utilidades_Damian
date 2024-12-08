@@ -1,0 +1,26 @@
+Instrucciones instalación aplicación Android proyecto Damian Peña:
+
+Este proyecto es una aplicación de Android, o sea que se instala como cualquier otra aplicación Android
+
+Pasos a seguir:
+
+1. Descargar el APK: Copiar el archivo .apk (Cripto-Utilidades-Damian-v1.3.apk) en un móvil android o en un emulador.
+
+2. Activar la instalación desde fuentes externas (si no lo tienes ys):
+
+    - Ve a Configuración en tu móvil.
+    - Busca y selecciona Seguridad/Privacidad.
+    - Activa la opción "Permitir instalación de apps desde fuentes desconocidas".
+
+3. Encuentra el APK:
+
+    - Usa el Administrador de Archivos o abre la carpeta de Descargas en tu móvil o emulador.
+    - Busca el archivo APK que descargaste.
+
+4. Instala el APK:
+
+    - Toca el archivo APK.
+    - Aparecerá un aviso preguntando si deseas instalarlo. Toca Instalar.
+    - Espera a que se complete el proceso.
+
+5. Una vez instalado, puedes abrir la app directamente desde el menú de aplicaciones de tu móvil.
