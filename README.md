@@ -1,5 +1,3 @@
-<br>
-<br>
 <p align="center">
   <img src="./app/src/main/res/drawable/damian_bitcoin_utils_icono_v2_cutre_redondo.png" alt="Cripto_Utilidades_Damian" width="110" />
 </p>
@@ -14,12 +12,6 @@
 # Cripto Utilidades Damian, a crypto Android application for my TFG (Bachelor´s Degree Final Project)
 
 Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s Degree Final Project (TFG). It provides users with a list of up-to-date cryptocurrencies and basic data using the [CoinGecko API](https://docs.coingecko.com/reference/introduction), along with detailed information based on the [CoinMarketCap website](https://coinmarketcap.com/). Users can add cryptocurrencies from the updated CoinGecko list to their wallet to track their value in euros. Additionally, you can log in to your account and update your user information.
-
-## Gantt chart
-
-|                    Gantt chart                     |
-|:--------------------------------------------------:|
-| <img src="./README/images/charts/Gantt chart.png"> |
 
 ## App Details
 
@@ -37,6 +29,12 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
 - [ ] The user can see 3 crypto currencies in the home screen.
 - [ ] The user can search crypto in the crypto list.
 
+## Gantt chart
+
+Gantt chart of the project planning: 
+
+<img src="./README/images/charts/Gantt chart.png">
+
 ### Screenshots
 
   |                               Home screen                               |                        Market screen (Crypto List)                        |                         Wallet screen (Tracking)                          |                                 Account screen                                  |
@@ -49,29 +47,27 @@ Cripto Utilidades Damian is an Android app developed as part of my Bachelor’s 
   |:-------------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
   | <img width="250" src="./README/images/screenshots/Login_Signup_screenshot.png"> | <img width="250" src="./README/images/screenshots/Loggedin_screenshot.png"> |
 
-## Screen flow
+## Screen flow diagram
 
-  |                                    Screen flow diagram                                    |
-  |:-----------------------------------------------------------------------------------------:|
-  | <img width="325" src="./README/images/diagrams/Diagrama pantallas aplicación.drawio.png"> |
+<img src="./README/images/diagrams/Diagrama pantallas aplicación.drawio.png">
 
-## Database data strucutre
+## Database data structure
 
 The application's database is implemented using MySQL, featuring two main tables: one for user account management and login, and another for storing users' cryptocurrencies.<br>
 These are screenshots/visual representation of each table
 
-  |                                 Users table                                 |                               User's crypto wallet                               |
-  |:---------------------------------------------------------------------------:|:--------------------------------------------------------------------------------:|
-  | <img width="200" src="./README/images/database/Users_table_screenshot.png"> | <img width="200" src="./README/images/Users_crypto_wallet_table_screenshot.png"> |
+  |                           Users table                           |                             User's crypto wallet                              |
+  |:---------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
+  | <img src="./README/images/database/Users_table_screenshot.png"> | <img src="./README/images/database/Users_crypto_wallet_table_screenshot.png"> |
 
 ## Managing Exceptions and Unexpected Situations
 
-Possible exceptions have been handled with try-catch structures. The app relies heavily on a internet connection but still works showing some offline data and shows messages for when there is no internet connection while running the app.<br>
+Possible exceptions have been handled with try-catch structures. The app relies heavily on an internet connection but still works showing some offline data and shows messages for when there are no internet connection while running the app.<br>
 Here is some examples of error messages showing up when there's no internet:
 
-  |                             Home screen (no internet)                              |                      Market screen (Crypto List) (no internet)                      |                 Wallet screen (Tracking) (trying to add zero coins)                  |                                Account screen (no internet)                                |
-  |:----------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------:|
-  | <img width="250" src="./README/images/screenshots/Home_NoInternet_screenshot.png"> | <img width="250" src="./README/images/screenshots/Market_NoInernet_screenshot.png"> | <img width="250" src="./README/images/screenshots/Wallet_NoInternet_screenshot.png"> | <img width="250" src="./README/images/screenshots/Login_Signup_NoInternet_screenshot.png"> |
+  |                             Home screen (no internet)                              |                      Market screen (Crypto List) (no internet)                       |                 Wallet screen (Tracking) (trying to add zero coins)                  |                                Account screen (no internet)                                |
+  |:----------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------:|
+  | <img width="250" src="./README/images/screenshots/Home_NoInternet_screenshot.png"> | <img width="250" src="./README/images/screenshots/Market_NoInternet_screenshot.png"> | <img width="250" src="./README/images/screenshots/Wallet_NoInternet_screenshot.png"> | <img width="250" src="./README/images/screenshots/Login_Signup_NoInternet_screenshot.png"> |
 
 ## Conclussion
 
@@ -91,7 +87,7 @@ This enriching experience strengthened technical skills and project management c
 
 ## Personal data law compliance
 
-To comply with the [General Data Protection Regulation (Regulation (EU) 2016/679)](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation), a diclaimer was added to the login screen under the buttons (although no real Privacy Policy exsits).
+To comply with the [General Data Protection Regulation (Regulation (EU) 2016/679)](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation), a disclaimer was added to the login screen under the buttons (although no real Privacy Policy exists).
 
 ## Useful links and resources
 These are some of the main resources and API's I used to make this project possible: 
@@ -104,5 +100,5 @@ These are some of the main resources and API's I used to make this project possi
 
 **Copyright © 2024 Damián Peña-Marín Samaniego.**<br>
 This work is licensed under a **Creative Commons**:<br>
-**Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**
-<img width="50" src="./README/images/screenshots/others/CC BY-NC-SA 4.0.png">
+**Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**<br>
+<img width="50" src="./README/images/others/CC BY-NC-SA 4.0.png">
