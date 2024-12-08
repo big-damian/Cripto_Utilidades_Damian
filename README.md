@@ -49,7 +49,9 @@ Gantt chart of the project planning:
 
 ## Screen flow diagram (spanish)
 
-<img src="./README/images/diagrams/Diagrama pantallas aplicación.drawio.jpg" alt="Screen flow diagram (Spanish)" style="width: 65%; height: auto;" />
+<div style="text-align: center;">
+  <img src="./README/images/diagrams/Diagrama pantallas aplicación.drawio.jpg" alt="Screen flow diagram (Spanish)" style="width: 65%; height: auto;" />
+</div>
 
 ## Database data structure
 
